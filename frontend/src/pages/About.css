@@ -1,0 +1,7 @@
+.background-div {
+    background-image: url('../assets/homebg1.png');
+    background-size: cover; /* Adjust the size of the background image */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat;
+     /* Set a height for the div */
+  }
