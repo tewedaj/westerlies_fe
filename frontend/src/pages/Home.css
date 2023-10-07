@@ -16,7 +16,7 @@
 .container .content {
   background-color: var(--background-color1);
   position: relative;
-  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+ 
 }
 
 .container .content .hero-section {
