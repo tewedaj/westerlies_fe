@@ -9,8 +9,10 @@
 }
 .container {
   position: relative;
-  
-/* Adjust the maximum width as needed */
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
 }
 
 .container .content {
@@ -34,16 +36,16 @@
   position: relative;
   margin-top: 100px;
   margin-bottom: 150px;
-  height: 650px;
-  width: 850px;
+  height: 750px;
+  width: 1000px;
   float: left;
 }
 
 .container .content .hero-section .text-section {
   color: rgba(255, 248, 242, 0.87); /* #FFF8F2 with 0.99 opacity */
   position: relative;
-  margin-left: 100px;
-  margin-top: 270px;
+  margin-left: 150px;
+  margin-top: 300px;
   text-align: justify;
   
 }
@@ -51,42 +53,43 @@
 .container .content .hero-section .text-section h1 {
   font-family: Bradley Hand, cursive;
   line-height: 1.5;
-  font-size: 40px;
+  font-size: 45px;
 }
 
 .container .content .hero-section .text-section h3 {
   font-family: 'Freight Sans Pro Medium', sans-serif;
   font-weight: 400;
   line-height: 2.5;
-  font-size: 22px;
+  font-size: 25px;
 }
 
 .container .content .hero-section .text-section p {
   font-family: 'Freight Sans Pro Medium', sans-serif;
   font-weight: 100;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .container .content .hero-section .text-section input {
   display: inline;
-  height: 60px;
-  width: 360px;
-  border:  2px solid rgb(145, 147, 159); ;
+  height: 70px;
+  width: 420px;
+  border:  2px solid rgb(145, 147, 159);
   color:var(--color1);
   background-color: transparent;
   margin-top: 30px;
   text-align: center;
+  font-size: 22px;
 }
 
 .container .content .hero-section .text-section button {
   position: relative;
   margin-left: 10px;
-  height: 65px;
-  width: 200px;
+  height: 70px;
+  width: 250px;
   color:var(--color1);
   background-color:var(--color5);
-  margin-top: 20px;
-  font-size: 15px;
+  margin-top: 30px;
+  font-size: 20px;
   font-family: brandon-grotesque, sans-serif;
 }
 
@@ -96,19 +99,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 1208px) {
-  .container .content .hero-section {
-    flex-direction: column; /* Stack sections vertically on smaller screens */
-  }
 
-  .container .content .hero-section .hero,
-  .container .content .hero-section .text-section {
-    flex-direction: column; 
-    max-width: 100%; /* Allow both sections to take full width */
-    margin-left: 0; /* Reset margin for both sections */
-    margin-top: -15%; /* Adjust margin-top for spacing */
-  }
-}
 
 .container .content .start-exploring {
   background-color: var(--background-color1);
@@ -178,57 +169,6 @@
   font-size: 15px;
   font-family: brandon-grotesque, sans-serif;
 }
-/* Add a media query for screens smaller than 1208px */
-@media (max-width: 1208px) {
-  .container .content .start-exploring {
-    flex-direction: column; /* Display items as a row on smaller screens */
-    align-items: center; /* Center the items horizontally */
-    text-align: center; /* Center the text horizontally */
-  }
-
-  .container .content .start-exploring h1 {
-    margin-top: 30px; /* Adjust margin-top for spacing */
-    font-size: 30px; /* Adjust font size */
-  }
-
-  .container .content .start-exploring .images-section {
-    flex-direction: column;
-    margin-top: 20px; /* Adjust margin as needed */
-    margin-left: 0; /* Remove left margin */
-    padding: 0; /* Remove padding */
-  }
-
-  .container .content .start-exploring .images-section .first,
-  .container .content .start-exploring .images-section .second,
-  .container .content .start-exploring .images-section .third {
-    margin: 0; /* Remove margin */
-    padding: 20px; /* Add spacing between divs */
-    margin-right: 20px; /* Adjust margin-right for spacing */
-    text-align: center; /* Center the text */
-  }
-
-  .container .content .start-exploring .images-section img {
-    width: 50%; /* Make images fill the width */
-    height: auto; /* Maintain aspect ratio */
-  }
-
-  .container .content .start-exploring .images-section h2 {
-    margin-top: 10px; /* Adjust margin-top for spacing */
-    font-size: 20px; /* Adjust font size */
-  }
-
-  .container .content .start-exploring .images-section p {
-    margin-top: 10px; /* Adjust margin-top for spacing */
-    font-size: 16px; /* Adjust font size */
-  }
-
-  .container .content .start-exploring .images-section button {
-    height: 45px; /* Adjust button height */
-    width: 180px; /* Adjust button width */
-    margin-top: 15px; /* Adjust margin-top for spacing */
-    font-size: 14px; /* Adjust font size */
-  }
-}
 .container .content .learn-more {
   background-color: var(--color5);
   position: relative;
@@ -282,33 +222,6 @@ font-family: 'Freight Sans Pro Medium', sans-serif;
   width: 100px;
   height: auto;
 }
-
-  @media (max-width: 1208px) {
-    .container .content .learn-more {
-      flex-direction: column; /* Stack elements vertically on smaller screens */
-      align-items: center; /* Center the items horizontally */
-    }
-  
-    .container .content .learn-more .store-description {
-      margin-left: 0; /* Remove left margin */
-      margin-top: 30px; /* Adjust margin-top for spacing */
-    }
-  
-    .container .content .learn-more .store-description button {
-      margin-top: 20px; /* Adjust margin-top for spacing */
-    }
-    .container .content .learn-more .store-image .store-img{
-      margin-left: 50px; /* Remove left margin */
-      margin-top: 30px;
-      width: 50%; /* Make images automatically fit the screen width */
-      height: 50%; /* Maintain aspect ratio */
-    }
-  
-    .container .content .learn-more .store-image .featured{
-    display: none;
-    }
-
-  }
   .container .content .blog-section {
     background-image: url('../assets/home/homebg2.png');
     background-position: center;
@@ -375,49 +288,6 @@ font-family: 'Freight Sans Pro Medium', sans-serif;
     text-align: left;
     margin-left: 40px;
   }
-  @media (max-width: 1208px) {
-    .container .content .blog-section {
-      flex-direction: column; /* Display items as a row on smaller screens */
-      align-items: center; /* Center the items horizontally */
-      text-align: center; /* Center the text horizontally */
-    }
-  
-    .container .content .blog-section h1 {
-      margin-top: 30px; /* Adjust margin-top for spacing */
-      font-size: 30px; /* Adjust font size */
-    }
-  
-    .container .content .blog-section .images-section {
-      flex-direction: column;
-      margin-top: 20px; /* Adjust margin as needed */
-      margin-left: 0; /* Remove left margin */
-      padding: 0; /* Remove padding */
-    }
-  
-    .container .content .blog-section .images-section .first,
-    .container .content .blog-section .images-section .second,
-    .container .content .blog-section .images-section .third {
-      margin: 0; /* Remove margin */
-      padding: 20px; /* Add spacing between divs */
-      margin-right: 20px; /* Adjust margin-right for spacing */
-      text-align: center; /* Center the text */
-    }
-  
-    .container .content .blog-section .images-section img {
-      width: 50%; /* Make images fill the width */
-      height: auto; /* Maintain aspect ratio */
-    }
-  
-    .container .content .blog-section .images-section h2 {
-      margin-top: 10px; /* Adjust margin-top for spacing */
-      font-size: 20px; /* Adjust font size */
-    }
-  
-    .container .content .blog-section .images-section p {
-      margin-top: 10px; /* Adjust margin-top for spacing */
-      font-size: 16px; /* Adjust font size */
-    }
-  }  
   .container .content .mission-section {
     background-image: url('../assets/home/homebg3.png');
     background-color: #f2ebe4;
