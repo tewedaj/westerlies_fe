@@ -11,6 +11,7 @@ import feature from "../assets/home/featured.png";
 import blog1 from "../assets/home/blog1.png";
 import blog2 from "../assets/home/blog2.png";
 import blog3 from "../assets/home/blog3.png";
+import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
@@ -32,7 +33,12 @@ const Home = () => {
                 who <br /> sell goods that make the world a more beautiful,
                 thoughtful place.
               </p>
-              <input type="text" placeholder="ENTER LOCATION (city name)" />
+              <input
+                name="heroo"
+                id="heroo"
+                type="text"
+                placeholder="ENTER LOCATION (city name)"
+              />
               <button type="button">DISCOVER NOW</button>
             </div>
           </div>
@@ -128,6 +134,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };
