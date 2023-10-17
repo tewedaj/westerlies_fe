@@ -1,4 +1,5 @@
 import "./Home.css";
+import "../components/Header.css";
 import Header from "../components/Header";
 import hero from "../assets/home/hero.jpg";
 import whiteLogo from "../assets/logo_white.png";
@@ -12,6 +13,7 @@ import blog1 from "../assets/home/blog1.png";
 import blog2 from "../assets/home/blog2.png";
 import blog3 from "../assets/home/blog3.png";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <>
@@ -25,21 +27,25 @@ const Home = () => {
             <img className="hero" src={hero} alt="Hero" />
             <div className="text-section">
               <h1>
-                Find and Support <br /> Independent Shop + Makers
+                Find and Support<br></br>Independent Shop + Makers
               </h1>
-              <h3>AROUND THE CORNER OR ACROSS THE WORLD.</h3>
+              <h3>
+                <br></br>AROUND THE CORNER OR ACROSS THE WORLD.
+              </h3>
               <p>
                 Westerlies is on a mission to connect you with local businesses
                 who <br /> sell goods that make the world a more beautiful,
                 thoughtful place.
               </p>
-              <input
-                name="heroo"
-                id="heroo"
-                type="text"
-                placeholder="ENTER LOCATION (city name)"
-              />
-              <button type="button">DISCOVER NOW</button>
+              <div className="search">
+                <input
+                  name="heroo"
+                  id="heroo"
+                  type="text"
+                  placeholder="ENTER LOCATION (city name)"
+                />
+                <button type="button">DISCOVER NOW</button>
+              </div>
             </div>
           </div>
           <div className="start-exploring">
@@ -77,19 +83,20 @@ const Home = () => {
             </div>
           </div>
           <div className="learn-more">
+            <button></button>
             <div className="store-description">
               <h1>Salt & Honey Market</h1>
               <h3>SALT LAKE CITY, UT</h3>
               <p>
                 A little spot goes here to tell a bit about the shop & more
+                <br></br>
                 about their story, what they carry, etc.
               </p>
               <button type="button">LEARN MORE</button>
             </div>
-            <div className="store-image">
-              <img className="featured" src={feature} />
-              <img className="store-img" src={storeImage} />
-            </div>
+            <img className="featured" src={feature} />
+            <img className="store-img" src={storeImage} />
+            <button></button>
           </div>
           <div className="blog-section">
             <h1>LATEST FROM THE BLOG</h1>
@@ -99,16 +106,16 @@ const Home = () => {
                 <img src={blog1} />
                 <h2>BLOG POST TITLE HERE</h2>
                 <p>
-                  Have something specific in mind? Discover the latest from
-                  local artisans & small shops.
+                  Have something specific in mind? Discover the <br></br>latest
+                  from local artisans & small shops.
                 </p>
               </div>
               <div className="second">
                 <img src={blog2} />
                 <h2>BLOG POST TITLE HERE</h2>
                 <p>
-                  Have something specific in mind? Discover the latest from
-                  local artisans & small shops.
+                  Have something specific in mind? Discover the<br></br> latest
+                  from local artisans & small shops.
                 </p>
               </div>
 
@@ -116,8 +123,8 @@ const Home = () => {
                 <img src={blog3} />
                 <h2>BLOG POST TITLE HERE</h2>
                 <p>
-                  Have something specific in mind? Discover the latest from
-                  local artisans & small shops.
+                  Have something specific in mind? Discover the <br></br>latest
+                  from local artisans & small shops.
                 </p>
               </div>
             </div>
@@ -130,7 +137,9 @@ const Home = () => {
               who sell goods that make the world a more beautiful, thoughtful
               place.
             </p>
-            <button>MORE ABOUT US</button>
+            <Link to="/about">
+              <button>MORE ABOUT US</button>
+            </Link>
           </div>
         </div>
       </div>

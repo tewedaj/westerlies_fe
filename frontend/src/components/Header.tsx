@@ -1,5 +1,5 @@
-import "./Header.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 interface HeaderProps {
   logo: string;
   headerBg: string;
@@ -20,8 +20,13 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
       <header style={headerStyle}>
         <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
           <ul>
-            <li>Search</li>
-            <li>About</li>
+            <Link to="/Find A Shop">
+              <li>Search</li>
+            </Link>
+            <Link to="/about">
+              <li>About</li>
+            </Link>
+
             <li>Blog</li>
           </ul>
         </div>

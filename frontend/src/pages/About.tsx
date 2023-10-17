@@ -1,15 +1,14 @@
-import Header from "../components/Header";
 import "./About.css";
-import Logo from "../assets/logo.png";
-import bg from "../assets/headerbg.png";
+import "../components/FASheader.css";
 import Footer from "../components/Footer";
 import image from "../assets/about/image.png";
+import FASheader from "../components/FASheader";
 const About = () => {
   return (
     <>
-      <Header headerBg={bg} logo={Logo} />
-      <div className="container">
-        <div className="content">
+      <FASheader />
+      <div className="container-2">
+        <div className="content-2">
           <div className="section-1">
             <div className="text-section">
               <h1>

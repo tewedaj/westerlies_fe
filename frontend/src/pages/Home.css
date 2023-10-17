@@ -1,3 +1,5 @@
+@import url("https://use.typekit.net/yfs0bso.css");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
 :root {
   --background-color1:#FDF4ED;
   --color1:#202D3F;
@@ -7,93 +9,99 @@
   --color5:#DBAE8F;
   --color6:#B3553D;
 }
+
 .container {
   position: relative;
+  display: flex;
   max-width: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
 }
 
-.container .content {
+.content {
   background-color: var(--background-color1);
   position: relative;
- 
+  display: flex;
+  flex-direction: column;
 }
 
-.container .content .hero-section {
+.hero-section {
   background-image: url('../assets/home/homebg1.png');
   background-position:center;
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
   display: flex;
-  flex-direction: row;/* Display hero and text-section side by side */
- 
+  flex-direction: row;
 }
 
-.container .content .hero-section .hero {
+.hero-section .hero {
   position: relative;
   margin-top: 100px;
   margin-bottom: 150px;
-  height: 750px;
-  width: 1000px;
+  height: auto;
+  width: 750px;
   float: left;
 }
 
-.container .content .hero-section .text-section {
-  color: rgba(255, 248, 242, 0.87); /* #FFF8F2 with 0.99 opacity */
+ .hero-section .text-section {
+  color: rgba(255, 248, 242, 0.9); /* #FFF8F2 with 0.99 opacity */
   position: relative;
-  margin-left: 150px;
-  margin-top: 300px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-top: 200px;
   text-align: justify;
-  
 }
-
-.container .content .hero-section .text-section h1 {
-  font-family: Bradley Hand, cursive;
-  line-height: 1.5;
-  font-size: 45px;
+.hero-section .text-section h1 {
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing: 2px;
 }
-
-.container .content .hero-section .text-section h3 {
-  font-family: 'Freight Sans Pro Medium', sans-serif;
-  font-weight: 400;
-  line-height: 2.5;
-  font-size: 25px;
+.hero-section .text-section h3 {
+  margin-top: -15px;
+  letter-spacing: 3px;
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
 }
-
-.container .content .hero-section .text-section p {
-  font-family: 'Freight Sans Pro Medium', sans-serif;
+.hero-section .text-section p {
+  margin-top: 7px;
+  font-family: 'Alegreya', serif;
   font-weight: 100;
   font-size: 20px;
+  opacity: 0.9;
+}
+.hero-section .text-section .search{
+  display: flex;
+  flex-direction: row;
 }
 
-.container .content .hero-section .text-section input {
-  display: inline;
-  height: 70px;
-  width: 420px;
-  border:  2px solid rgb(145, 147, 159);
+.hero-section .text-section .search input {
+  height: 53px;
+  width: 370px;
+  border:  1.5px solid rgb(145, 147, 159);
   color:var(--color1);
   background-color: transparent;
   margin-top: 30px;
   text-align: center;
-  font-size: 22px;
+  font-size: 12px;
+  letter-spacing: 3px;
 }
-
-.container .content .hero-section .text-section button {
+.hero-section .text-section .search button {
   position: relative;
   margin-left: 10px;
-  height: 70px;
-  width: 250px;
+  height: 55px;
+  width: 200px;
   color:var(--color1);
   background-color:var(--color5);
   margin-top: 30px;
-  font-size: 20px;
-  font-family: brandon-grotesque, sans-serif;
+  font-size: 15px;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
-.container .content .hero-section .text-section button:hover {
+.hero-section .text-section button:hover {
   opacity: 0.7;
   transition: 0.2s;
   cursor: pointer;
@@ -101,128 +109,127 @@
 
 
 
-.container .content .start-exploring {
+.start-exploring {
   background-color: var(--background-color1);
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center; /* Center the items horizontally */
-  text-align: justify; /* Center the text horizontally */
+  flex-direction: column; 
 }
-.container .content .start-exploring h1 {
+.start-exploring h1 {
   position: relative;
-  margin-left: 0; /* Remove margin */
-  margin-top: 130px;
+  margin-top: 80px;
   text-align: center; /* Center the text */
-  font-family: 'Freight Sans Pro Medium', sans-serif;
-  font-weight: 100;
-  font-size: 40px;
-  font-weight: bold;
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 43px;
+  color: var(--color1);
 }
 
-.container .content .start-exploring .images-section {
+.start-exploring .images-section {
   position: relative;
   display: flex;
-  margin-top: 50px; /* Adjust margin as needed */
-  margin-left: 50px;
-  padding: 55px;
-}
-.container .content .start-exploring .images-section .first,
-.container .content .start-exploring .images-section .second,
-.container .content .start-exploring .images-section .third {
-  margin: 0 90px; /* Add spacing between divs */
-  flex: 1; /* Allow divs to grow and fill available space evenly */
-  text-align: center; /* Center the text */
-  padding: 0px;
+  margin-top: 80px; /* Adjust margin as needed */
+  margin-left: 80px;
   margin-bottom: 100px;
+  margin-right: 80px;
+}
+.start-exploring .images-section .first,
+.start-exploring .images-section .second,
+.start-exploring .images-section .third {
+  margin:0 20px;
+  text-align: center;
 }
 
-.container .content .start-exploring .images-section img {
-  align-items: center;
-  width: 320px;
-  height: 280px;
-  margin: 0px; /* Add spacing between images */
+.start-exploring .images-section img {
+  width: 300px;
+  height: 240px;
 }
-.container .content .start-exploring .images-section h2 {
+.start-exploring .images-section h2 {
   position: relative;
   margin-left: 0; /* Remove margin */
   margin-top: 30px;
-  text-align: center; /* Center the text */
   font-family: 'Freight Sans Pro Medium', sans-serif;
-  font-weight: 100;
-  font-size: 25px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
-.container .content .start-exploring .images-section p{
-  font-family: 'Freight Sans Pro Medium', sans-serif;
+.start-exploring .images-section p{
+  font-family: 'Alegreya', serif;
   font-weight: 100;
-  font-size: 18px;
- margin-top: 10px;
-  text-align: justify;
+  font-size: 20px;
+  margin-top: 10px;
 }
-.container .content .start-exploring .images-section button{
+.start-exploring .images-section button{
   position: relative;
   height: 55px;
-  width: 220px;
+  width: 200px;
   color:var(--color4);
   background-color:var(--color2);
+  border: none;
   margin-top: 20px;
   font-size: 15px;
-  font-family: brandon-grotesque, sans-serif;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  letter-spacing: 2px;
 }
-.container .content .learn-more {
+ .learn-more {
   background-color: var(--color5);
   position: relative;
   display: flex;
   flex-direction: row;
 }
-.container .content .learn-more .store-description{
-  margin-left: 150px;
+.learn-more .store-description{
   text-align: center;
-  margin-top: 350px;
+  margin-top: 300px;
   position: relative;
-  margin-right: 100px;
+  margin-left: 100px;
 }
-.container .content .learn-more .store-description h1 {
-  font-family: Bradley Hand, cursive;
-  font-size: 40px;
+.learn-more .store-description h1 {
+  color: var(--color1);
+  font-family:"brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 44px;
 }
-.container .content .learn-more .store-description h3 {
-  font-family: 'Freight Sans Pro Medium', sans-serif;
-  font-weight: 400;
-  line-height: 2.5;
-  font-size: 22px;
+.learn-more .store-description h3 {
+  color: var(--color1);
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  letter-spacing: 3px;
 }
-.container .content .learn-more .store-description p{
-font-family: 'Freight Sans Pro Medium', sans-serif;
+.learn-more .store-description p{
+  color: var(--color1);
+  font-family:  'Alegreya', serif;;
   font-weight: 100;
   font-size: 18px;
-  text-align: justify;
 }
-  .container .content .learn-more .store-description button{
+.learn-more .store-description button{
     position: relative;
-  height: 55px;
-  width: 220px;
-  color:rgba(255, 248, 242, 0.70);
-  background-color:var(--color6);
-  font-size: 15px;
-  font-family: brandon-grotesque, sans-serif;
-  font-weight: 100;
-  margin-top: 30px;
+    height: 55px;
+    width: 200px;
+    color:rgba(255, 248, 242, 0.70);
+    background-color:var(--color6);
+    border: none;
+    font-size: 15px;
+   font-family:'Freight Sans Pro Medium', sans-serif;
+   font-weight: 100;
+   letter-spacing: 2px;
+   margin-top: 30px;
   }
-.container .content .learn-more .store-image{
-  position: relative;
-  display: flex;
-  flex-direction: row;
+
+.learn-more .store-img{
+  width: 815px; /* Make images automatically fit the screen width */
+  height: 750px; /* Maintain aspect ratio */
 }
-.container .content .learn-more .store-image .store-img{
-  width: 800px; /* Make images automatically fit the screen width */
-  height: auto; /* Maintain aspect ratio */
-}
-.container .content .learn-more .store-image .featured{
-  width: 100px;
+.learn-more .featured{
+  width: 70px;
   height: auto;
+  margin-left: 50px;
 }
-  .container .content .blog-section {
+  .blog-section {
     background-image: url('../assets/home/homebg2.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -230,65 +237,62 @@ font-family: 'Freight Sans Pro Medium', sans-serif;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the items horizontally */
-    text-align: justify; /* Center the text horizontally */
+
   }
-  .container .content .blog-section h1 {
+   .blog-section h1 {
     color: var(--color1);
     position: relative;
-    margin-top: 150px;
+    margin-top: 50px;
     text-align: center; /* Center the text */
     font-family: 'Freight Sans Pro Medium', sans-serif;
     font-weight: 100;
-    font-size: 35px;
-    font-weight: 100;
+    font-size: 28px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 5px;
     text-transform: uppercase;
   }
-  .container .content .blog-section .images-section {
+   .blog-section .images-section {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
-    margin-top: 50px; /* Adjust margin as needed */
-    margin-left: 50px;
-    padding: 55px;
+    margin-top: 80px; /* Adjust margin as needed */
+    margin-left: 80px;
+    margin-right: 100px;
+    margin-bottom: 100px;
   }
-  .container .content .blog-section .images-section .first,
-  .container .content .blog-section .images-section .second,
-  .container .content .blog-section .images-section .third {
-    margin: 0 20px; /* Add spacing between divs */
-    flex: 1; /* Allow divs to grow and fill available space evenly */
-    text-align: center; /* Center the text */
-    padding: 0px;
-    margin-bottom: 10px;
+   .blog-section .images-section .first,
+   .blog-section .images-section .second,
+   .blog-section .images-section .third {
+    margin-left: 60px; /* Add spacing between divs */
+    
   }
   
-  .container .content .blog-section .images-section img {
-    align-items: center;
-    width: 420px;
-    height: 480px;
-    margin: 0px; /* Add spacing between images */
+   .blog-section .images-section img {
+    width: 350px;
+    height: 400px;
   }
-  .container .content .blog-section .images-section h2 {
+   .blog-section .images-section h2 {
     color: var(--color1);
     position: relative;
-    margin-left: 40px; /* Remove margin */
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: left; /* Center the text */
     font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-weight: 100;
-    font-size: 25px;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    letter-spacing: 3px;
     text-transform: uppercase;
   }
-  .container .content .blog-section .images-section p{
+   .blog-section .images-section p{
     color: var(--color1);
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-weight: 100;
-    font-size: 22px;
-   margin-top: 10px;
-    text-align: left;
-    margin-left: 40px;
+    font-family: 'Alegreya', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: justify;
   }
-  .container .content .mission-section {
+   .mission-section {
     background-image: url('../assets/home/homebg3.png');
     background-color: #f2ebe4;
     background-position: center;
@@ -298,34 +302,39 @@ font-family: 'Freight Sans Pro Medium', sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center; /* Center the items horizontally */
-    text-align: justify;
-  }
-  .container .content .mission-section h1{
-    color: var(--color1);
-    position: relative;
-    margin-left: 0; /* Remove margin */
-    margin-top: 130px;
-    text-align: center; /* Center the text */
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-weight: 100;
-    font-size: 40px;
-    font-weight: normal;
-  }
-  .container .content .mission-section p{
-    color: var(--color1);
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-weight: 100;
-    font-size: 20px;
-   margin-top: 30px;
     text-align: center;
   }
-  .container .content .mission-section button{
+   .mission-section h1{
     color: var(--color1);
     position: relative;
-  height: 55px;
-  width: 300px;
+    margin-top: 120px;
+    text-align: center; /* Center the text */
+    font-family:"brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-size: 38px;
+    font-style: normal;
+    letter-spacing: 7px;
+  }
+.mission-section p{
+    color: var(--color1);
+    font-family:  'Alegreya', serif;
+    font-weight: 100;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .mission-section button{
+    color: var(--color1);
+    position: relative;
+   height: 55px;
+   width: 250px;
   background-color:var(--color5);
   margin-top: 35px;
-  font-size: 18px;
-  font-family: brandon-grotesque, sans-serif;
+  font-size: 14px;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 3px;
+  margin-bottom: 100px;
+  border: none;
   }

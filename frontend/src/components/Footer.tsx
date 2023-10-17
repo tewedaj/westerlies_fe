@@ -9,14 +9,14 @@ const Footer = () => {
     <>
       <footer>
         <div className="connect">
-          <div className="text-section">
+          <div className="ftext-section">
             <h1>
               CONNECT <br></br>WITH US
             </h1>
             <p>@followthewesterlies</p>
           </div>
 
-          <div className="image-section">
+          <div className="fimage-section">
             <img src={footer1} />
             <img src={footer2} />
             <img src={footer3} />

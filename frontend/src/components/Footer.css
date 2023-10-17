@@ -17,46 +17,50 @@ footer{
 }
 .connect{
     background-image: url("../assets/footerbg.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     position: relative;
     display: flex;
 }
-.connect .text-section{
+.connect .ftext-section{
     display: flex;
     flex-direction: column;
     position: relative;
     margin-top: 170px;
-    margin-bottom: 200px;
-    margin-left: 200px;
+    margin-left: 150px;
     text-align: center;
     color: var(--color4);
-    font-size: 30px;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-style: normal;
+}
+.connect .ftext-section h1{
     font-weight: 100;
-}
-.connect .text-section h1{
-    text-align: center;
-    font-size: 40px;
+    font-size: 27px;
+    letter-spacing: 5px;
     line-height: 1.5;
-    font-family: Bradley Hand, cursive;
+   
 }
-.connect .text-section p{
-    margin-top:-20px;
-    font-family: Bradley Hand, cursive;
+.connect .ftext-section p{
+    font-family: 'Alegreya', serif;
+    margin-top: 10px;
+    font-weight: 100;
+    font-size: 18px;
+    letter-spacing: 1.2px;
 }
-.connect .image-section{
-    margin-left: 80px;
-    background-image: url("../assets/footerbg.png");
+.connect .fimage-section{
+    margin-left: 70px;
     position: relative;
     display: flex;
     flex-direction: row;
-    margin-top: 170px;
-    margin-bottom: 200px;
+    margin-top: 120px;
+    margin-bottom: 180px;
     position: relative;
 }
-.connect .image-section img{   
-    width: 250px;
-    height: 250px;
-    padding-left: 80px;
-  
+.connect .fimage-section img{   
+    width: 230px;
+    height: 180px;
+    padding-left: 50px;
 }
 
 .email-collection{
@@ -72,46 +76,49 @@ footer{
 }
 .email-collection .logo img{
     position: relative;
-    margin-left: 80px;
+    margin-left: 50px;
     margin-right: 50px;
-    width: 500px;
-    height: 250px;
+    opacity: 0.9;
+    width: 394px;
+    height: 190px;
 }
 .email-collection .email{
     display: flex;
     flex-direction: row;
 }
 .email-collection .email h3{
-    color:rgba(255,255,255,0.8);
-    font-family: brandon-grotesque, sans-serif;
-    font-size: 35px;
+    color:rgba(255,255,255,0.9);
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-size: 24px;
     font-weight: 100;
+    letter-spacing:4px;
+    font-style: normal;
     position: relative;
-    margin-left: 270px;
-    margin-top: 90px ;
+    margin-left: 180px;
+    margin-top: 80px ;
 }
 .email-collection .email input{
     display: inline;
-    height: 55px;
-    width: 500px;
+    height: 45px;
+    width: 400px;
     border:  2px solid rgb(145, 147, 159); ;
     background-color: transparent;
-    margin-top: 80px ;
+    margin-top: 70px ;
     margin-left: 25px;
-    text-align: center;
-    font-size: 22px;
+    font-size: 15px;
+    font-family: 'Alegreya', serif;;
 
 }
 .email-collection .email button{
     position: relative;
     margin-left: 10px;
-    height: 60px;
-    width: 150px;
+    height: 45px;
+    width: 100px;
     color:var(--color1);
     background-color:var(--color5);
-    margin-top: 80px ;
-    font-size: 20px;
-    font-family: brandon-grotesque, sans-serif;
+    margin-top: 70px ;
+    font-size: 16px;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
     font-weight: 500;
 }
 .copyright{
@@ -119,66 +126,20 @@ footer{
     position: relative;
     display: flex;
     flex-direction: row;
-    color: var(--color4);
-    font-size: 23px;
-    font-family: brandon-grotesque, sans-serif;
+    color: var(--color3);
+    font-family: 'Alegreya', serif;
+    font-size: 20px;
     font-weight: 500;
 }
 .copyright  p{
     position: relative;
-    margin-left: 100px;
-    text-align: left;
-    margin-bottom: 50px;
-    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 .copyright p:nth-child(2) {
     position: relative;
-    margin-left: 1300px;
+    margin-left: 1070px;
     text-align: right;
   }
 
-  @media (max-width: 1280px) {
-    /* Adjust the margin and font size for smaller screens */
-    .connect .text-section {
-        margin-left: 5%; /* Adjust the margin for smaller screens */
-    }
-
-    .connect .text-section h1 {
-        font-size: 30px; /* Adjust the font size for smaller screens */
-    }
-
-    .connect .text-section p {
-        font-size: 30px; /* Adjust the font size for smaller screens */
-    }
-
-    .connect .image-section {
-        margin-left: 5%; /* Adjust the margin for smaller screens */
-        display: flex;
-        flex-direction: column;
-    }
-
-    .connect .image-section img {
-        max-width: 50%; /* Ensure images scale down proportionally */
-        height: auto; /* Maintain aspect ratio */
-    }
-
-    .email-collection .email h3 {
-        margin-left: 5%; /* Adjust the margin for smaller screens */
-        font-size: 1.5em; /* Adjust the font size for smaller screens */
-    }
-
-    .email-collection .email input {
-        margin-left: 2%; /* Adjust the margin for smaller screens */
-        width: 90%; /* Make the input width responsive */
-        font-size: 1em; /* Adjust the font size for smaller screens */
-    }
-
-    .email-collection .email button {
-        font-size: 1em; /* Adjust the font size for smaller screens */
-    }
-
-    .copyright p:nth-child(2) {
-        margin-left: 5%; /* Adjust the margin for smaller screens */
-        text-align: left; /* Adjust text alignment */
-    }
-}
