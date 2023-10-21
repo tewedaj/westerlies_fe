@@ -12,6 +12,7 @@ import feature from "../assets/home/featured.png";
 import blog1 from "../assets/home/blog1.png";
 import blog2 from "../assets/home/blog2.png";
 import blog3 from "../assets/home/blog3.png";
+import arrowbutton from "../assets/home/arrow_in_circle.svg";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 const Home = () => {
@@ -42,14 +43,14 @@ const Home = () => {
                   name="heroo"
                   id="heroo"
                   type="text"
-                  placeholder="ENTER LOCATION (city name)"
+                  placeholder="   ENTER LOCATION (city name)"
                 />
                 <button type="button">DISCOVER NOW</button>
               </div>
             </div>
           </div>
           <div className="start-exploring">
-            <h1>Start Exploring</h1>
+            <h1>Start Exploring "Feature Coming Soon"</h1>
 
             <div className="images-section">
               <div className="first">
@@ -83,23 +84,24 @@ const Home = () => {
             </div>
           </div>
           <div className="learn-more">
-            <button></button>
+            <img className="arrowbutton" src={arrowbutton} />
             <div className="store-description">
               <h1>Salt & Honey Market</h1>
               <h3>SALT LAKE CITY, UT</h3>
               <p>
-                A little spot goes here to tell a bit about the shop & more
-                <br></br>
-                about their story, what they carry, etc.
+                A little spot goes here to tell a bit about the shop & &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
+                carry, etc.
               </p>
               <button type="button">LEARN MORE</button>
             </div>
+
             <img className="featured" src={feature} />
             <img className="store-img" src={storeImage} />
-            <button></button>
+            <img className="arrowbutton" src={arrowbutton} />
           </div>
           <div className="blog-section">
-            <h1>LATEST FROM THE BLOG</h1>
+            <h1>LATEST FROM THE BLOG "Blog comming soon"</h1>
 
             <div className="images-section">
               <div className="first">

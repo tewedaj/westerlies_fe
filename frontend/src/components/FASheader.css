@@ -14,13 +14,12 @@
     padding: 0;
     position: relative;
     background-color: var(--color3);
-    height: 150px;
+    height: 100px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid rgb(145, 147, 159); /* Use a different color */
-    font-family: 'Freight Sans Pro Medium', sans-serif;
+    border-bottom: 1.4px solid rgb(145, 147, 159); /* Use a different color */
     z-index: 1;
   
 }
@@ -32,9 +31,10 @@
     
 }
 .header2 .logo img{
-    height: 180px;
-    margin-right:900px ;
+    height: 150px;
+    margin-right:650px ;
     position: relative;
+    
 }
 .header2 .navbar2{
     transition: 0.3s linear;
@@ -50,9 +50,12 @@
 .header2 .navbar2 ul li{
     color: var(--color1);
     text-transform: uppercase; 
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-size: 18px;
-    font-weight: 100;
+    text-decoration: none;
+    font-family:  "brandon-grotesque", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: 2px;
 }
 .header2 .navbar2 ul li:hover{
     color:var(--color2);

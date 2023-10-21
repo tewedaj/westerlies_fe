@@ -29,7 +29,12 @@ const Footer = () => {
           </div>
           <div className="email">
             <h3>EXPLORE WITH US</h3>
-            <input type="text" placeholder="Email Address" />
+            <input
+              type="text"
+              name="signup"
+              id="signup"
+              placeholder="       Sign up and explore"
+            />
             <button>SIGN UP</button>
           </div>
         </div>

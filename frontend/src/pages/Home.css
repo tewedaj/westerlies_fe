@@ -43,33 +43,34 @@
 }
 
  .hero-section .text-section {
-  color: rgba(255, 248, 242, 0.9); /* #FFF8F2 with 0.99 opacity */
+  color: #FBF3EC;
   position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 100px;
-  margin-top: 200px;
+  margin-top: 270px;
   text-align: justify;
 }
 .hero-section .text-section h1 {
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 500;
-  font-size: 44px;
-  letter-spacing: 2px;
+  font-size: 45px;
+  letter-spacing:2px;
+  line-height: 1.15;
 }
 .hero-section .text-section h3 {
   margin-top: -15px;
   letter-spacing: 3px;
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
 }
 .hero-section .text-section p {
   margin-top: 7px;
   font-family: 'Alegreya', serif;
   font-weight: 100;
   font-size: 20px;
-  opacity: 0.9;
+  
 }
 .hero-section .text-section .search{
   display: flex;
@@ -77,27 +78,29 @@
 }
 
 .hero-section .text-section .search input {
-  height: 53px;
+  height: 55px;
   width: 370px;
-  border:  1.5px solid rgb(145, 147, 159);
-  color:var(--color1);
-  background-color: transparent;
+  border: 1px solid rgba(251, 243, 236, 0.8) ;
+  background-color: rgb(96,96,96, 0.5);
   margin-top: 30px;
-  text-align: center;
-  font-size: 12px;
-  letter-spacing: 3px;
+  text-align: left;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+#heroo::placeholder {
+  color: rgb(219, 174,  143);
 }
 .hero-section .text-section .search button {
   position: relative;
   margin-left: 10px;
   height: 55px;
   width: 200px;
-  color:var(--color1);
+  color:#202D3F;
   background-color:var(--color5);
   margin-top: 30px;
   font-size: 15px;
   font-family: 'Freight Sans Pro Medium', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 2px;
 }
 
@@ -110,7 +113,7 @@
 
 
 .start-exploring {
-  background-color: var(--background-color1);
+  background-color:#FBF3EC;
   position: relative;
   display: flex;
   flex-direction: column; 
@@ -123,7 +126,7 @@
   font-weight: 500;
   font-style: normal;
   font-size: 43px;
-  color: var(--color1);
+  color: #202D3F;
 }
 
 .start-exploring .images-section {
@@ -165,11 +168,12 @@
   position: relative;
   height: 55px;
   width: 200px;
-  color:var(--color4);
+  color: #FDF4ED;
   background-color:var(--color2);
   border: none;
   margin-top: 20px;
   font-size: 15px;
+  font-weight: 500;
   font-family: 'Freight Sans Pro Medium', sans-serif;
   letter-spacing: 2px;
 }
@@ -183,14 +187,15 @@
   text-align: center;
   margin-top: 300px;
   position: relative;
-  margin-left: 100px;
+  margin-left: 50px;
+  margin-right: 150px;
 }
 .learn-more .store-description h1 {
   color: var(--color1);
   font-family:"brandon-grotesque", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 44px;
+  font-size: 43px;
 }
 .learn-more .store-description h3 {
   color: var(--color1);
@@ -203,37 +208,40 @@
 .learn-more .store-description p{
   color: var(--color1);
   font-family:  'Alegreya', serif;;
-  font-weight: 100;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 20px;
 }
 .learn-more .store-description button{
     position: relative;
     height: 55px;
     width: 200px;
-    color:rgba(255, 248, 242, 0.70);
+    color:rgba(253, 244, 237, 0.8);
     background-color:var(--color6);
     border: none;
     font-size: 15px;
    font-family:'Freight Sans Pro Medium', sans-serif;
-   font-weight: 100;
+   font-weight: 500;
    letter-spacing: 2px;
-   margin-top: 30px;
+   margin-top: 15px;
   }
 
 .learn-more .store-img{
-  width: 815px; /* Make images automatically fit the screen width */
-  height: 750px; /* Maintain aspect ratio */
+  width: 850px; /* Make images automatically fit the screen width */
+  height: 800px; /* Maintain aspect ratio */
+  margin-right: -88px;
 }
 .learn-more .featured{
-  width: 70px;
-  height: auto;
-  margin-left: 50px;
+  width: 100px;
+  height: 800px;
+}
+.learn-more .arrowbutton{
+  margin-top: 320px;
+  width: 90px;
+  height: 100px;
+  opacity: 0.75;
 }
   .blog-section {
-    background-image: url('../assets/home/homebg2.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color:  #FBF3EC;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -245,19 +253,18 @@
     margin-top: 50px;
     text-align: center; /* Center the text */
     font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-weight: 100;
+    font-weight: 500;
     font-size: 28px;
     font-weight: 500;
     font-style: normal;
     letter-spacing: 5px;
-    text-transform: uppercase;
   }
    .blog-section .images-section {
     position: relative;
     display: flex;
     margin-top: 80px; /* Adjust margin as needed */
     margin-left: 80px;
-    margin-right: 100px;
+    margin-right: 10px;
     margin-bottom: 100px;
   }
    .blog-section .images-section .first,
@@ -268,8 +275,8 @@
   }
   
    .blog-section .images-section img {
-    width: 350px;
-    height: 400px;
+    width: 400px;
+    height: 450px;
   }
    .blog-section .images-section h2 {
     color: var(--color1);
@@ -279,7 +286,7 @@
     font-family: 'Freight Sans Pro Medium', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 18px;
+    font-size: 20px;
     letter-spacing: 3px;
     text-transform: uppercase;
   }
@@ -288,13 +295,13 @@
     font-family: 'Alegreya', sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 18px;
-    margin-top: 10px;
+    font-size: 20px;
+    margin-top: 5px;
     text-align: justify;
   }
    .mission-section {
-    background-image: url('../assets/home/homebg3.png');
-    background-color: #f2ebe4;
+    background-image: url('../assets/home/ourmissionbg.png');
+    background-color: #FBF3EC;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -311,30 +318,31 @@
     text-align: center; /* Center the text */
     font-family:"brandon-grotesque", sans-serif;
     font-weight: 500;
-    font-size: 38px;
+    font-size: 43px;
     font-style: normal;
     letter-spacing: 7px;
   }
 .mission-section p{
     color: var(--color1);
-    font-family:  'Alegreya', serif;
-    font-weight: 100;
+    font-family: 'Alegreya', sans-serif;
+    font-weight: 500;
+    font-style: normal;
     font-size: 20px;
     margin-top: 10px;
     text-align: center;
   }
   .mission-section button{
-    color: var(--color1);
+    color:#202D3F;
     position: relative;
    height: 55px;
-   width: 250px;
+   width: 200px;
   background-color:var(--color5);
   margin-top: 35px;
-  font-size: 14px;
+  font-size: 15px;
   font-family: 'Freight Sans Pro Medium', sans-serif;
   font-weight: 500;
   font-style: normal;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   margin-bottom: 100px;
   border: none;
   }

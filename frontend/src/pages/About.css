@@ -16,24 +16,22 @@
 
   }
 .section-1{
-display: flex;
-background-color: var(--color5);
+ display: flex;
+ background-color: var(--color5);
 }
 
 .section-1 .text-section {
     display: flex;
     flex-direction: column;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 250px;
-    text-align: center;
-    font-family: "brandon-grotesque", sans-serif;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 150px;
     color: var(--color1);
 }
 .section-1 .text-section h1{
-    font-size: 55px;
-    text-align:center;
-
+    font-family: "brandon-grotesque", sans-serif;
+    text-align: center;
+    font-size: 44px;
 }
 .section-1 .text-section h3{
     font-size: 25px;
@@ -41,10 +39,10 @@ background-color: var(--color5);
 .section-1 .text-section p{
     font-size: 20px;
     font-weight: 100;
-    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-family:  'Alegreya', sans-serif;
 }
 .section-1 .image-section img{
-  width: 1100px;
+  width: 860px;
   height: auto;
 }
 .section-2{
