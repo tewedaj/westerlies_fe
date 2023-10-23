@@ -9,97 +9,129 @@
   }
 body {
     margin: 0;
-    background-color: var(--color3);
+    background-color: var(--color4);
 }
 .title{
     position: relative;
-    margin-top: 70px;
-    margin-left: 200px;
+    margin-top: 100px;
+    margin-left: 100px;
     display: flex;
     flex-direction: row;
-    color: var(--color1);
-    font-weight: 100;
+    
+}
+.title h1{
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 43px;
+    color: #202D3F;
+   
 }
 .filter{
     position: relative;
-    margin-top: 30px;
+    margin-top: 80px;
     display: flex;
     flex-direction: row;
-    color: var(--color1);
+    margin-left: 100px;
+    border-bottom: 1px solid var(--color1) ;
+    margin-right:140px ;
+   
 }
 .filter h3{
-    margin-left: 200px;
+    
+    color: var(--color1);
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 1px;
+    
 }
 .filter ul{
-    margin-left: 100px;
+
     list-style-type: none;
     display: flex;
     align-items: center;
-    width: 300px;
     justify-content:space-around;
+    
 }
 .filter ul li {
-    color: black;
-    text-transform: uppercase;
+    color: var(--color1);
     font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
     font-size: 18px;
-    font-weight: 100;
-    margin-left: 90px;
-    white-space: nowrap; /* Prevent the li from wrapping to the next line */
+    letter-spacing: 1px;
+    margin-left: 80px;
+    white-space: nowrap; 
 }
-
-/* Container for the grid */
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(3, 500px); /* Adjust the row height as needed */
-    gap: 70px; /* Adjust the gap between columns */
-    overflow-y: scroll; /* Enable vertical scrolling for the container */
-    max-height: auto; /* Adjust the max height as needed */
-    max-width: fit-content;
-    margin-left: 200px;
+    grid-template-columns: 1fr 1fr 1fr; /* Adjust the third column width as needed */
+    grid-template-rows: repeat(3, auto); /* Let rows auto-size based on content */
+    overflow-y: scroll;
+    gap: 55px;
+    max-height: auto;
+    max-width: min-content;
+    margin-left: 100px;
     margin-top: 50px;
-    
 }
 
 /* Individual grid items */
 .grid-item {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    
     justify-content: center;
-    border: 1px solid #ccc;
-    background-size: contain; /* Fit the image inside the container */
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    /*border:1px solid black;*/
+    width: 350px; /* Set the fixed width for all grid items */
+    height: 420px; /* Set the fixed height for all grid items */
+}
+
+.grid-item img {
+    width: 350px;
+    height: 400px;
+
+}
+.grid-item h2{
+    margin-top: 20px;
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 28px;
+    color: #202D3F;
+    text-align: left;
+    line-height: 1.15;
+
+}
+.grid-item p{
+    margin-top: 10px;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #202D3F;
+    text-align: left;
+
+}
+
+.grid-item-map {
+        border: 15px solid var(--color5);
+        display: flex; /* Add this to center the image horizontally and vertically */
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
     
 }
-/* Add styles for images */
-.grid-item img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Maintain image aspect ratio */
-  
+.grid-item-map img{
+    width: 540px; 
+    height: 400px; 
+
 }
 
-/* Add content to the grid items (you can replace these with your content) */
-.grid-item:nth-child(1) {
-
-    background-size: auto;
-}
-
-.grid-item:nth-child(2) {
- 
-    background-size: auto;
-}
-
-/* Example map content (you can replace this with your map) */
-.grid-item:nth-child(3) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Scrollbar styles (optional) */
 ::-webkit-scrollbar {
     width: 10px;
 }

@@ -6,7 +6,7 @@
   --color2:#3779A6;
   --color3:#FFF8F2;
   --color4:#FBF3EC;
-  --color5:#DBAE8F;
+  --color5:hwb(24 56% 14%);
   --color6:#B3553D;
 }
 
@@ -53,6 +53,7 @@
 }
 .hero-section .text-section h1 {
   font-family: "brandon-grotesque", sans-serif;
+  font-style: normal;
   font-weight: 500;
   font-size: 45px;
   letter-spacing:2px;
@@ -88,7 +89,7 @@
   letter-spacing: 2px;
 }
 #heroo::placeholder {
-  color: rgb(219, 174,  143);
+  color: #FBF3EC;
 }
 .hero-section .text-section .search button {
   position: relative;
@@ -96,6 +97,7 @@
   height: 55px;
   width: 200px;
   color:#202D3F;
+  border: 1px solid rgb(219, 174, 143);
   background-color:var(--color5);
   margin-top: 30px;
   font-size: 15px;
@@ -235,7 +237,7 @@
   height: 800px;
 }
 .learn-more .arrowbutton{
-  margin-top: 320px;
+  margin-top: 350px;
   width: 90px;
   height: 100px;
   opacity: 0.75;
@@ -250,7 +252,7 @@
    .blog-section h1 {
     color: var(--color1);
     position: relative;
-    margin-top: 50px;
+    margin-top: 100px;
     text-align: center; /* Center the text */
     font-family: 'Freight Sans Pro Medium', sans-serif;
     font-weight: 500;
@@ -265,7 +267,7 @@
     margin-top: 80px; /* Adjust margin as needed */
     margin-left: 80px;
     margin-right: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
   }
    .blog-section .images-section .first,
    .blog-section .images-section .second,
@@ -314,7 +316,7 @@
    .mission-section h1{
     color: var(--color1);
     position: relative;
-    margin-top: 120px;
+    margin-top: 250px;
     text-align: center; /* Center the text */
     font-family:"brandon-grotesque", sans-serif;
     font-weight: 500;
@@ -343,6 +345,6 @@
   font-weight: 500;
   font-style: normal;
   letter-spacing: 2px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
   border: none;
   }

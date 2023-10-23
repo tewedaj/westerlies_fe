@@ -20,7 +20,9 @@ const FASheader = () => {
               <Link to="/about">About</Link>
             </li>
 
-            <li>Blog</li>
+            <li>
+              <Link to="/">Blog</Link>
+            </li>
           </ul>
         </div>
         <div className="logo">

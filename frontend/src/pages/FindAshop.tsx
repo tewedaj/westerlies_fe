@@ -8,8 +8,8 @@ const FindAshop = () => {
     <>
       <FASheader />
       <div className="title">
-        <h1>Find a Shop | </h1>
-        <h1>Washington D.C</h1>
+        <h1>Find a Shop &nbsp;&nbsp;|</h1>
+        <h1>&nbsp;&nbsp;Washington D.C</h1>
       </div>
       <div className="filter">
         <h3>FILTER BY:</h3>
@@ -22,14 +22,19 @@ const FindAshop = () => {
       <div className="grid-container">
         <div className="grid-item">
           <img src={img} alt="Image 1" />
+          <h2>Salt and Sundry</h2>
+          <p>GIFTS</p>
         </div>
-
         <div className="grid-item">
           <img src={img} alt="Image 2" />
+          <h2>Made in Dc</h2>
+          <p>Stationery / Apparel / GIFTS</p>
         </div>
-
-        <div className="grid-item"></div>
+        <div className="grid-item-map">
+          <img src={img} alt="Map Image" />
+        </div>
       </div>
+
       <Footer />
     </>
   );

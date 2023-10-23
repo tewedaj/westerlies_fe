@@ -51,7 +51,7 @@ header .navbar ul{
     width: 300px;
     justify-content:space-around;
 }
-header .navbar ul li{
+header .navbar ul li a{
     color: var(--color4);
     text-transform: uppercase; 
     text-decoration: none;

@@ -99,9 +99,9 @@ footer{
 }
 .email-collection .email input{
     display: inline;
-    height: 50px;
+    height: 55px;
     width: 400px;
-    border:  2px solid rgba(251, 243, 236, 0.60) ;
+    border:  1px solid rgba(251, 243, 236, 0.8) ;
     background-color: rgb(96, 96,  96, 0.5);
     margin-top: 65px ;
     margin-left: 25px;
@@ -114,9 +114,10 @@ footer{
 .email-collection .email button{
     position: relative;
     margin-left: 10px;
-    height: 50px;
-    width: 100px;
+    height: 55px;
+    width: 150px;
     color:#202D;
+    border:  1px solid var(--color5);
     background-color:var(--color5);
     margin-top: 65px ;
     font-size: 15px;

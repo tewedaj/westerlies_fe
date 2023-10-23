@@ -50,7 +50,7 @@ const Home = () => {
             </div>
           </div>
           <div className="start-exploring">
-            <h1>Start Exploring "Feature Coming Soon"</h1>
+            <h1>Start Exploring (Feature Coming Soon)</h1>
 
             <div className="images-section">
               <div className="first">
@@ -101,7 +101,7 @@ const Home = () => {
             <img className="arrowbutton" src={arrowbutton} />
           </div>
           <div className="blog-section">
-            <h1>LATEST FROM THE BLOG "Blog comming soon"</h1>
+            <h1>LATEST FROM THE BLOG (Blog Coming Soon)</h1>
 
             <div className="images-section">
               <div className="first">

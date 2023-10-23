@@ -20,14 +20,16 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
       <header style={headerStyle}>
         <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
           <ul>
-            <Link to="/Find A Shop">
-              <li>Search</li>
-            </Link>
-            <Link to="/about">
-              <li>About</li>
-            </Link>
+            <li>
+              <Link to="/Find A Shop">Search </Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
 
-            <li>Blog</li>
+            <li>
+              <Link to="/">Blog</Link>
+            </li>
           </ul>
         </div>
         <div className="logo">

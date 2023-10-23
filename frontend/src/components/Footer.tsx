@@ -33,7 +33,7 @@ const Footer = () => {
               type="text"
               name="signup"
               id="signup"
-              placeholder="       Sign up and explore"
+              placeholder="       Sign up and explore (signup feature coming soon)"
             />
             <button>SIGN UP</button>
           </div>
