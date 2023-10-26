@@ -1,8 +1,8 @@
 import "./About.css";
-import "../components/FASheader.css";
-import Footer from "../components/Footer";
-import image from "../assets/about/image.png";
-import FASheader from "../components/FASheader";
+import "../../components/shaders/FASheader.css";
+import Footer from "../../components/footer/Footer";
+import image from "../../assets/about/image.png";
+import FASheader from "../../components/shaders/FASheader";
 const About = () => {
   return (
     <>

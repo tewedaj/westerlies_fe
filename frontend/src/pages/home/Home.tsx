@@ -1,19 +1,19 @@
 import "./Home.css";
-import "../components/Header.css";
-import Header from "../components/Header";
-import hero from "../assets/home/hero.jpg";
-import whiteLogo from "../assets/logo_white.png";
-import bg from "../assets/home/homebg1.png";
-import first from "../assets/home/seimg1.png";
-import second from "../assets/home/seimg2.png";
-import thrid from "../assets/home/seimg3.png";
-import storeImage from "../assets/home/learnMoreimg.png";
-import feature from "../assets/home/featured2.png";
-import blog1 from "../assets/home/blog1.png";
-import blog2 from "../assets/home/blog2.png";
-import blog3 from "../assets/home/blog3.png";
-import arrowbutton from "../assets/home/arrow_in_circle.svg";
-import Footer from "../components/Footer";
+import "../../components/header/Header.css";
+import Header from "../../components/header/Header";
+import hero from "../../assets/home/hero.jpg";
+import whiteLogo from "../../assets/logo_white.png";
+import bg from "../../assets/home/homebg1.png";
+import first from "../../assets/home/seimg1.png";
+import second from "../../assets/home/seimg2.png";
+import thrid from "../../assets/home/seimg3.png";
+import storeImage from "../../assets/home/learnMoreimg.png";
+import feature from "../../assets/home/featured2.png";
+import blog1 from "../../assets/home/blog1.png";
+import blog2 from "../../assets/home/blog2.png";
+import blog3 from "../../assets/home/blog3.png";
+import arrowbutton from "../../assets/home/arrow_in_circle.svg";
+import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom";
 const Home = () => {
   return (
