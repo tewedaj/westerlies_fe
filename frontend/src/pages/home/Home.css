@@ -24,7 +24,7 @@
 }
 
 .hero-section {
-  background-image: url('../assets/home/homebg1.png');
+  background-image: url('../../assets/home/homebg1.png');
   background-position:center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -302,7 +302,7 @@
     text-align: justify;
   }
    .mission-section {
-    background-image: url('../assets/home/ourmissionbg.png');
+    background-image: url('../../assets/home/ourmissionbg.png');
     background-color: #FBF3EC;
     background-position: center;
     background-repeat: no-repeat;

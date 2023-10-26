@@ -1,24 +1,17 @@
+import "./FASheader.css";
 import { useState } from "react";
+import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
-interface HeaderProps {
-  logo: string;
-  headerBg: string;
-}
-
-const Header = ({ logo, headerBg }: HeaderProps) => {
+const FASheader = () => {
   const [isNavbarVisible, setNavbarVisibility] = useState(false);
 
   const toggleNavbar = () => {
     setNavbarVisibility(!isNavbarVisible);
   };
-  const headerStyle = {
-    backgroundImage: `url(${headerBg})`, // Set the background image
-  };
-
   return (
     <>
-      <header style={headerStyle}>
-        <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
+      <header className="header2">
+        <div className={`navbar2 ${isNavbarVisible ? "" : "navbar-hidden2"}`}>
           <ul>
             <li>
               <Link to="/Find A Shop">Search </Link>
@@ -51,4 +44,4 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default FASheader;

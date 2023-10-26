@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import Footer from "../components/Footer";
-import img from "../assets/footer1.png";
+import Footer from "../../components/footer/Footer";
+import img from "../../assets/footer1.png";
 import "./FindAshop.css";
-import FASheader from "../components/FASheader";
+import FASheader from "../../components/shaders/FASheader";
 
 const FindAshop = () => {
   useEffect(() => {

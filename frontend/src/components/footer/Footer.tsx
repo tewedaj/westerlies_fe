@@ -1,8 +1,8 @@
-import footer1 from "../assets/footer1.png";
-import footer2 from "../assets/footer2.png";
-import footer3 from "../assets/footer3.png";
-import footer4 from "../assets/footer4.png";
-import logo from "../assets/logo_white.png";
+import footer1 from "../../assets/footer1.png";
+import footer2 from "../../assets/footer2.png";
+import footer3 from "../../assets/footer3.png";
+import footer4 from "../../assets/footer4.png";
+import logo from "../../assets/logo_white.png";
 import "./Footer.css";
 const Footer = () => {
   return (

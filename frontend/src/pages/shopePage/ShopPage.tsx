@@ -1,10 +1,10 @@
 import "./ShopPage.css";
-import Header from "../components/Header";
-import logo from "../assets/logo.png";
-import bg1 from "../assets/shopPage/bg1.png";
-import bg2 from "../assets/shopPage/bg2.png";
-import bg3 from "../assets/shopPage/bg3.png";
-import storeimg from "../assets/footer3.png";
+import Header from "../../components/header/Header";
+import logo from "../../assets/logo.png";
+import bg1 from "../../assets/shopPage/bg1.png";
+import bg2 from "../../assets/shopPage/bg2.png";
+import bg3 from "../../assets/shopPage/bg3.png";
+import storeimg from "../../assets/footer3.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 
