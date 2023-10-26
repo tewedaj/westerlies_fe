@@ -40,66 +40,75 @@ const FindAshop = () => {
         <h1>Find a Shop &nbsp;&nbsp;|</h1>
         <h1>&nbsp;&nbsp;Washington D.C</h1>
       </div>
-
+      <div className="filter-navbar">
+        <h2>FILTER BY:</h2>
+        <a>PRODUCT</a>
+        <a>SOCIAL IMPACT</a>
+        <a>OFFERS CLASSES</a>
+      </div>
       <div className="container-fas">
         <div className="results">
-          <div className="filter-navbar">
-            <a>FILTER BY:</a>
-            <a>PRODUCT</a>
-            <a>SOCIAL IMPACT</a>
-            <a>OFFERS CLASSES</a>
-          </div>
-
           <div className="result-container">
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Name</p>
-              <p>Primary tag</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             {/* Add more result items here */}
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
             <div className="result">
               <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
+              <h3>Shop Name</h3>
+              <p>Primary tag | secondary</p>
             </div>
           </div>
 
