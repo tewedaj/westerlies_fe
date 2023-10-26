@@ -1,35 +1,36 @@
-import Header from "../components/Header";
 import "./About.css";
-import Logo from "../assets/logo.png";
-import bg from "../assets/headerbg.png";
+import "../components/FASheader.css";
 import Footer from "../components/Footer";
 import image from "../assets/about/image.png";
+import FASheader from "../components/FASheader";
 const About = () => {
   return (
     <>
-      <Header headerBg={bg} logo={Logo} />
-      <div className="container">
-        <div className="content">
+      <FASheader />
+      <div className="container-2">
+        <div className="content-2">
           <div className="section-1">
             <div className="text-section">
               <h1>
-                “Every time you spend money, you're casting a vote for the kind
-                of world you want.”
+                “Every time you spend <br></br>money, you're casting a vote for
+                the kind of world you want.”
               </h1>{" "}
-              <h3>- A N N A L A P P E</h3>
-              <p>
-                Hundreds of years ago ships set sail in search of fortune,
-                adventure, and discovery. Using winds like the Westerlies,
-                sailors crossed the world, trading not only goods, but also
-                ideas, beliefs, languages, and so much more. In doing so, they
-                changed the world. We hope this site, named for these winds,
-                will do the same.
-              </p>
-              <p>
-                Westerlies is on a mission to connect you with independent shop
-                owners and makers – both near and far – who sell goods that make
-                the world a more beautiful, thoughtful place
-              </p>
+              <h3>-ANNA LAPPE</h3>
+              <div className="description">
+                <p>
+                  Hundreds of years ago ships set sail in search of fortune,
+                  adventure, and discovery. Using winds like the Westerlies,
+                  sailors crossed the world, trading not only goods, but also
+                  ideas, beliefs, languages, and so much more. In doing so, they
+                  changed the world. We hope this site, named for these winds,
+                  will do the same.
+                </p>
+                <p>
+                  Westerlies is on a mission to connect you with independent
+                  shop owners and makers – both near and far – who sell goods
+                  that make the world a more beautiful, thoughtful place.
+                </p>
+              </div>
             </div>
             <div className="image-section">
               <img src={image} />
@@ -41,7 +42,9 @@ const About = () => {
             </h1>
             <div className="texts">
               <div className="text-one">
-                <h1>M A K E R S, A R T I S A N S, A N D B U I L D E R S</h1>
+                <h1>
+                  MAKERS, ARTISANS, <br></br> AND BUILDERS
+                </h1>
                 <p>
                   Those who’ve honed their craft and are creating goods that
                   tell a story – because we believe that we should fill our
@@ -50,7 +53,7 @@ const About = () => {
               </div>
               <div className="text-two">
                 <h1>
-                  S M A L L <br></br>B U S I N E S S E S
+                  SMALL<br></br>BUSINESSES
                 </h1>
                 <p>
                   Not just one day of the year, but every day – because we
@@ -61,7 +64,7 @@ const About = () => {
               </div>
               <div className="text-three">
                 <h1>
-                  E T H I C A L <br></br>B U S I N E S S E S
+                  ETHICAL<br></br>BUSINESSES
                 </h1>
                 <p>
                   Who operate with purpose, equity, and dignity – because we

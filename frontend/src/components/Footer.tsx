@@ -9,14 +9,14 @@ const Footer = () => {
     <>
       <footer>
         <div className="connect">
-          <div className="text-section">
+          <div className="ftext-section">
             <h1>
               CONNECT <br></br>WITH US
             </h1>
             <p>@followthewesterlies</p>
           </div>
 
-          <div className="image-section">
+          <div className="fimage-section">
             <img src={footer1} />
             <img src={footer2} />
             <img src={footer3} />
@@ -29,7 +29,12 @@ const Footer = () => {
           </div>
           <div className="email">
             <h3>EXPLORE WITH US</h3>
-            <input type="text" placeholder="Email Address" />
+            <input
+              type="text"
+              name="signup"
+              id="signup"
+              placeholder="       Sign up and explore (signup feature coming soon)"
+            />
             <button>SIGN UP</button>
           </div>
         </div>

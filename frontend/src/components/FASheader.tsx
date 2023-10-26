@@ -1,6 +1,7 @@
-import "./Header.css";
+import "./FASheader.css";
 import { useState } from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 const FASheader = () => {
   const [isNavbarVisible, setNavbarVisibility] = useState(false);
 
@@ -9,12 +10,19 @@ const FASheader = () => {
   };
   return (
     <>
-      <header>
-        <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
+      <header className="header2">
+        <div className={`navbar2 ${isNavbarVisible ? "" : "navbar-hidden2"}`}>
           <ul>
-            <li>Search</li>
-            <li>About</li>
-            <li>Blog</li>
+            <li>
+              <Link to="/Find A Shop">Search </Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+
+            <li>
+              <Link to="/">Blog</Link>
+            </li>
           </ul>
         </div>
         <div className="logo">

@@ -1,3 +1,4 @@
+@import url("https://use.typekit.net/yfs0bso.css");
 :root {
     --background-color1:#FDF4ED;
     --color1:#202D3F;
@@ -7,48 +8,113 @@
     --color5:#DBAE8F;
     --color6:#B3553D;
   }
-  .container{
+  .container-2{
     position: relative;
   }
-  .content{
+  .content-2{
     position: relative;
-
   }
 .section-1{
-display: flex;
-background-color: var(--color5);
+ display: flex;
+ background-color: var(--color5);
 }
 
 .section-1 .text-section {
     display: flex;
     flex-direction: column;
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-top: 250px;
-    text-align: center;
-    font-family: 'Freight Sans Pro Medium', sans-serif;
+    margin-left: 80px;
+    margin-right: 50px;
+    margin-top: 200px;
     color: var(--color1);
+    text-align: center;
+    width: 50%;
 }
 .section-1 .text-section h1{
-    font-size: 45px;
-    text-align:center;
-
+    text-align: center;
+    font-family: "brandon-grotesque", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 1.15;
 }
-.section-1 .text-section p{
+.section-1 .text-section h3{
+    letter-spacing: 2px;
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
     font-size: 20px;
-    font-weight: 100;
+    margin-bottom: -30px;
+    margin-top: 7px;
+    line-height: 1.15;
+}
+
+.section-1 .text-section .description{
+    color: #202D3F;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    font-family:  'Alegreya', sans-serif;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    
+}
+.section-1 .text-section .description p{
+    text-align: center;
+    justify-content: center;
+    margin-bottom: -30px;
+}
+
+.section-1 .image-section{
+    width: 60%;
+    
 }
 .section-1 .image-section img{
-  width: 1100px;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
+
 .section-2{
     display: flex;
     flex-direction: column;
+    background-color: #FBF3EC;
     color: var(--color1);
     text-align: center;
     align-items: center;
+    
+}
+.section-2 h1{
     margin-top: 100px;
+    font-family: "brandon-grotesque", sans-serif;
+    font-size: 45px;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing:1px;
+    line-height: 1.15;
+}
+.section-2 .texts{
+    display: flex; 
+    margin-left: 200px;
+    margin-right: 280px;
+}
+.section-2 .texts .text-one,.section-2 .texts .text-two, .section-2 .texts .text-three {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 80px;
+    margin-top: -50px;
+}
+.section-2 .texts p{
+    margin-top: 10px;
+    font-family: 'Alegreya', serif;
+    font-weight: 100;
+    font-size: 20px;
+}
+.section-2 .texts h1{
+    line-height: 1.5;
+    letter-spacing: 3px;
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-size: 23px;
 }
 .section-2 button{
     position: relative;
@@ -56,28 +122,15 @@ background-color: var(--color5);
     width: 300px;
     color:rgba(255, 248, 242);
     background-color:var(--color6);
-    font-size: 18px;
-    font-family: brandon-grotesque, sans-serif;
-    font-weight: 100;
-    margin-top: 30px;
-    margin-bottom: 100px;
+    border: none;
+    font-size: 15px;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-style: normal;
+    margin-top: 50px;
+    margin-bottom: 150px;
+
 }
-.section-2 .texts{
-    display: flex;
-    margin-left: 200px;
-    margin-right: 250px;  
-}
-.section-2 .texts .text-one,.section-2 .texts .text-two, .section-2 .texts .text-three {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    padding: 50px;
-  
-}
-.section-2 .texts p{
-    font-size: 22px;
-}
-.section-2 .texts h1{
-font-size: 30px;
-}
+
 

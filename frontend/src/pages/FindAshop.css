@@ -9,106 +9,96 @@
   }
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: var(--color3);
+    padding: 0;
+    background-color: var(--color4);
 }
 .title{
     position: relative;
-    margin-top: 70px;
-    margin-left: 200px;
+    margin-top: 60px;
+    margin-left: 30px;
     display: flex;
     flex-direction: row;
-    color: var(--color1);
-    font-weight: 100;
+    
 }
-.filter{
-    position: relative;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    color: var(--color1);
-}
-.filter h3{
-    margin-left: 200px;
-}
-.filter ul{
-    margin-left: 100px;
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    width: 300px;
-    justify-content:space-around;
-}
-.filter ul li {
-    color: black;
-    text-transform: uppercase;
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-size: 18px;
-    font-weight: 100;
-    margin-left: 90px;
-    white-space: nowrap; /* Prevent the li from wrapping to the next line */
+.title h1{
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 33px;
+    color: #202D3F;
+   
 }
 
-/* Container for the grid */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(3, 500px); /* Adjust the row height as needed */
-    gap: 70px; /* Adjust the gap between columns */
-    overflow-y: scroll; /* Enable vertical scrolling for the container */
-    max-height: auto; /* Adjust the max height as needed */
-    max-width: fit-content;
-    margin-left: 200px;
+.container-fas {
+    display: flex;
+}
+
+#map {
+    position: sticky;
+    margin-top: 80px;
+    width: 35%;
+    height: fit-content;
+}
+#map img{
+    width: 100%;
+    height:630px;
+}
+.sticky-map {
+    position: sticky;
+    top: 50px;
     margin-top: 50px;
-    
+  }
+
+.results {
+    flex: 1;
+    padding: 10px;
+    margin-top: 50px;
 }
 
-/* Individual grid items */
-.grid-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    background-size: contain; /* Fit the image inside the container */
-    background-repeat: no-repeat;
-    background-position: center center;
-    
-}
-/* Add styles for images */
-.grid-item img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Maintain image aspect ratio */
-  
+.filter-navbar {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color1);
+    padding: 10px;
 }
 
-/* Add content to the grid items (you can replace these with your content) */
-.grid-item:nth-child(1) {
-
-    background-size: auto;
+.filter-navbar a {
+    color: var(--color1);
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 50px;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 2px;
 }
 
-.grid-item:nth-child(2) {
- 
-    background-size: auto;
-}
-
-/* Example map content (you can replace this with your map) */
-.grid-item:nth-child(3) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Scrollbar styles (optional) */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
+.filter-navbar a:hover {
     background-color: #555;
+}
+
+.result-container {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.result {
+    margin: 0px;
+    padding: 10px;
+    margin-bottom: 50px;
+   
+    border-radius: 5px;
+    width: 33%; /* Display results in 3 columns */
+}
+
+.result img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pagination {
+    text-align: center;
+    padding: 10px;
 }
