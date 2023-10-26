@@ -8,7 +8,7 @@ import first from "../assets/home/seimg1.png";
 import second from "../assets/home/seimg2.png";
 import thrid from "../assets/home/seimg3.png";
 import storeImage from "../assets/home/learnMoreimg.png";
-import feature from "../assets/home/featured.png";
+import feature from "../assets/home/featured2.png";
 import blog1 from "../assets/home/blog1.png";
 import blog2 from "../assets/home/blog2.png";
 import blog3 from "../assets/home/blog3.png";

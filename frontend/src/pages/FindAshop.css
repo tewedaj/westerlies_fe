@@ -9,12 +9,13 @@
   }
 body {
     margin: 0;
+    padding: 0;
     background-color: var(--color4);
 }
 .title{
     position: relative;
-    margin-top: 100px;
-    margin-left: 100px;
+    margin-top: 60px;
+    margin-left: 30px;
     display: flex;
     flex-direction: row;
     
@@ -23,123 +24,81 @@ body {
     font-family: "brandon-grotesque", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 43px;
+    font-size: 33px;
     color: #202D3F;
    
 }
-.filter{
-    position: relative;
-    margin-top: 80px;
-    display: flex;
-    flex-direction: row;
-    margin-left: 100px;
-    border-bottom: 1px solid var(--color1) ;
-    margin-right:140px ;
-   
-}
-.filter h3{
-    
-    color: var(--color1);
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 18px;
-    letter-spacing: 1px;
-    
-}
-.filter ul{
 
-    list-style-type: none;
+.container-fas {
     display: flex;
-    align-items: center;
-    justify-content:space-around;
-    
 }
-.filter ul li {
-    color: var(--color1);
-    font-family: 'Freight Sans Pro Medium', sans-serif;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 18px;
-    letter-spacing: 1px;
-    margin-left: 80px;
-    white-space: nowrap; 
+
+#map {
+    position: sticky;
+    margin-top: 80px;
+    width: 35%;
+    height: fit-content;
 }
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Adjust the third column width as needed */
-    grid-template-rows: repeat(3, auto); /* Let rows auto-size based on content */
-    overflow-y: scroll;
-    gap: 55px;
-    max-height: auto;
-    max-width: min-content;
-    margin-left: 100px;
+#map img{
+    width: 100%;
+    height:630px;
+}
+.sticky-map {
+    position: sticky;
+    top: 50px;
+    margin-top: 50px;
+  }
+
+.results {
+    flex: 1;
+    padding: 10px;
     margin-top: 50px;
 }
 
-/* Individual grid items */
-.grid-item {
-    display: flex;
-    flex-direction: column;
-    
-    justify-content: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    /*border:1px solid black;*/
-    width: 350px; /* Set the fixed width for all grid items */
-    height: 420px; /* Set the fixed height for all grid items */
+.filter-navbar {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color1);
+    padding: 10px;
 }
 
-.grid-item img {
-    width: 350px;
-    height: 400px;
-
-}
-.grid-item h2{
-    margin-top: 20px;
-    font-family: "brandon-grotesque", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 28px;
-    color: #202D3F;
-    text-align: left;
-    line-height: 1.15;
-
-}
-.grid-item p{
-    margin-top: 10px;
+.filter-navbar a {
+    color: var(--color1);
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 50px;
     font-family: 'Freight Sans Pro Medium', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
-    font-size: 14px;
-    letter-spacing: 1px;
-    color: #202D3F;
-    text-align: left;
-
+    font-size: 18px;
+    letter-spacing: 2px;
 }
 
-.grid-item-map {
-        border: 15px solid var(--color5);
-        display: flex; /* Add this to center the image horizontally and vertically */
-        align-items: center; /* Center vertically */
-        justify-content: center; /* Center horizontally */
-    
-}
-.grid-item-map img{
-    width: 540px; 
-    height: 400px; 
-
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
+.filter-navbar a:hover {
     background-color: #555;
+}
+
+.result-container {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.result {
+    margin: 0px;
+    padding: 10px;
+    margin-bottom: 50px;
+   
+    border-radius: 5px;
+    width: 33%; /* Display results in 3 columns */
+}
+
+.result img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pagination {
+    text-align: center;
+    padding: 10px;
 }

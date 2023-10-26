@@ -16,19 +16,21 @@ const About = () => {
                 the kind of world you want.”
               </h1>{" "}
               <h3>-ANNA LAPPE</h3>
-              <p>
-                Hundreds of years ago ships set sail in search of fortune,
-                adventure, and discovery. Using winds like the Westerlies,
-                sailors crossed the world, trading not only goods, but also
-                ideas, beliefs, languages, and so much more. In doing so, they
-                changed the world. We hope this site, named for these winds,
-                will do the same.
-              </p>
-              <p>
-                Westerlies is on a mission to connect you with independent shop
-                owners and makers – both near and far – who sell goods that make
-                the world a more beautiful, thoughtful place.
-              </p>
+              <div className="description">
+                <p>
+                  Hundreds of years ago ships set sail in search of fortune,
+                  adventure, and discovery. Using winds like the Westerlies,
+                  sailors crossed the world, trading not only goods, but also
+                  ideas, beliefs, languages, and so much more. In doing so, they
+                  changed the world. We hope this site, named for these winds,
+                  will do the same.
+                </p>
+                <p>
+                  Westerlies is on a mission to connect you with independent
+                  shop owners and makers – both near and far – who sell goods
+                  that make the world a more beautiful, thoughtful place.
+                </p>
+              </div>
             </div>
             <div className="image-section">
               <img src={image} />
