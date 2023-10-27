@@ -4,6 +4,9 @@ import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import FindAshop from "./pages/Find_a_shope/FindAshop";
 import ShopPage from "./pages/shopePage/ShopPage";
+import Main from "./pages/Admin/Main";
+import Storemgmt from "./pages/Admin/Storemgmt";
+import Emailmgmt from "./pages/Admin/Emailmgmt";
 function App() {
   return (
     <>
@@ -13,6 +16,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/Find A Shop" element={<FindAshop />} />
           <Route path="/Shop Page" element={<ShopPage />} />
+          <Route path="/Admin" element={<Main />} />
+          <Route path="/store mgmt" element={<Storemgmt />} />
+          <Route path="/email mgmt" element={<Emailmgmt />} />
         </Routes>
       </Router>
     </>

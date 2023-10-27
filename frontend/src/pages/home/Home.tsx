@@ -21,7 +21,7 @@ const Home = () => {
       <header>
         <Header headerBg={bg} logo={whiteLogo} />
       </header>
-      <div className="container">
+      <div className="container-abc">
         <div className="content">
           <div className="hero-section">
             <img className="hero" src={hero} alt="Hero" />
