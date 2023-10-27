@@ -1,13 +1,17 @@
+import { useState } from "react";
 import footer1 from "../../assets/footer1.png";
 import footer2 from "../../assets/footer2.png";
 import footer3 from "../../assets/footer3.png";
 import footer4 from "../../assets/footer4.png";
 import logo from "../../assets/logo_white.png";
+import Menu from "../menu/menu";
 import "./Footer.css";
+import "./mobile.footer.css";
 const Footer = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <>
-      <footer>
+      <footer>       
         <div className="connect">
           <div className="ftext-section">
             <h1>
@@ -39,12 +43,13 @@ const Footer = () => {
           </div>
         </div>
         <div className="copyright">
+          <div className="copyrightInner">
           <p>Copyright Westerlies 2023</p>
 
           <p>Web Design by MARA</p>
+          </div>
         </div>
       </footer>
-    </>
   );
 };
 export default Footer;

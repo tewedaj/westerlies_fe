@@ -10,10 +10,19 @@
   --color6:#B3553D;
 }
 
+.learn-more-mobile{
+  display: none;
+}
 .container {
-  position: relative;
+  position: absolute;
   display: flex;
   max-width: 100%;
+  top:0px;
+  left:0px;
+  min-height: 100%;
+  display:flex;
+  flex-direction: column;
+  background-color: white;
 }
 
 .content {
@@ -30,32 +39,40 @@
   background-repeat: no-repeat;
   position: relative;
   display: flex;
+  width:100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  height: 130dvh;
   flex-direction: row;
+  /* flex-wrap: wrap; */
 }
 
 .hero-section .hero {
   position: relative;
-  margin-top: 100px;
-  margin-bottom: 150px;
+ left:0px;
   height: auto;
-  width: 750px;
-  float: left;
+  width: 100dvh;
+  margin-top: -170px;
 }
+
+
 
  .hero-section .text-section {
   color: #FBF3EC;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
-  margin-top: 270px;
-  text-align: justify;
+  display: flex;
+  justify-content: center;
+  top: -70px;
+  
 }
 .hero-section .text-section h1 {
   font-family: "brandon-grotesque", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 45px;
+  font-size: 35px;
   letter-spacing:2px;
   line-height: 1.15;
 }
@@ -64,13 +81,15 @@
   letter-spacing: 3px;
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
+  color:  rgb(208, 206, 206);
 }
 .hero-section .text-section p {
   margin-top: 7px;
   font-family: 'Alegreya', serif;
   font-weight: 100;
-  font-size: 20px;
+  font-size: 17px;
+  color: rgb(208, 206, 206)
   
 }
 .hero-section .text-section .search{
@@ -85,11 +104,15 @@
   background-color: rgb(96,96,96, 0.5);
   margin-top: 30px;
   text-align: left;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 2px;
 }
+
+
+
 #heroo::placeholder {
-  color: #FBF3EC;
+  color: #a2a2a1;
+  font-family: cursive;
 }
 .hero-section .text-section .search button {
   position: relative;
@@ -118,6 +141,7 @@
   background-color:#FBF3EC;
   position: relative;
   display: flex;
+  width:100%;
   flex-direction: column; 
 }
 .start-exploring h1 {
@@ -134,10 +158,9 @@
 .start-exploring .images-section {
   position: relative;
   display: flex;
-  margin-top: 80px; /* Adjust margin as needed */
-  margin-left: 80px;
-  margin-bottom: 100px;
-  margin-right: 80px;
+  justify-content: center;
+  align-items: center;
+  margin:50px;
 }
 .start-exploring .images-section .first,
 .start-exploring .images-section .second,
@@ -148,7 +171,7 @@
 
 .start-exploring .images-section img {
   width: 300px;
-  height: 240px;
+
 }
 .start-exploring .images-section h2 {
   position: relative;
@@ -164,7 +187,6 @@
   font-family: 'Alegreya', serif;
   font-weight: 100;
   font-size: 20px;
-  margin-top: 10px;
 }
 .start-exploring .images-section button{
   position: relative;
@@ -184,6 +206,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  width:100%;
 }
 .learn-more .store-description{
   text-align: center;
@@ -247,6 +270,10 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    width:100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
   }
    .blog-section h1 {
@@ -259,26 +286,29 @@
     font-size: 28px;
     font-weight: 500;
     font-style: normal;
+    margin:80px;
     letter-spacing: 5px;
   }
    .blog-section .images-section {
     position: relative;
     display: flex;
-    margin-top: 80px; /* Adjust margin as needed */
-    margin-left: 80px;
-    margin-right: 10px;
-    margin-bottom: 150px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width:100%;
+    flex-wrap: wrap;
+
   }
    .blog-section .images-section .first,
    .blog-section .images-section .second,
    .blog-section .images-section .third {
-    margin-left: 60px; /* Add spacing between divs */
+     /* Add spacing between divs */
     
   }
   
    .blog-section .images-section img {
-    width: 400px;
-    height: 450px;
+  
+    height: 400px;
   }
    .blog-section .images-section h2 {
     color: var(--color1);

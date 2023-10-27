@@ -1,4 +1,5 @@
 import "./Home.css";
+import "./mobile.home.css";
 import "../../components/header/Header.css";
 import Header from "../../components/header/Header";
 import hero from "../../assets/home/hero.jpg";
@@ -15,14 +16,23 @@ import blog3 from "../../assets/home/blog3.png";
 import arrowbutton from "../../assets/home/arrow_in_circle.svg";
 import Footer from "../../components/footer/Footer";
 import { Link } from "react-router-dom";
+import { discoverNow } from "./controller.home";
+import { useState } from "react";
+import { Loading } from "../../components/loading/loading";
 const Home = () => {
+
+  const [tobeDiscovered, setTobeDiscovered] = useState("");
+  const [loading, setLoading] = useState(false);
   return (
-    <>
-      <header>
-        <Header headerBg={bg} logo={whiteLogo} />
-      </header>
+  
+    
 
       <div className="container">
+        <Loading loading={loading} setLoading={(loading:string)=>{
+          setLoading(!loading);
+        }} />
+        <Header headerBg={bg} logo={whiteLogo} />
+     
         <div className="content">
           <div className="hero-section">
             <img className="hero" src={hero} alt="Hero" />
@@ -30,7 +40,7 @@ const Home = () => {
               <h1>
                 Find and Support<br></br>Independent Shop + Makers
               </h1>
-              <h3>
+              <h3>s
                 <br></br>AROUND THE CORNER OR ACROSS THE WORLD.
               </h3>
               <p>
@@ -40,12 +50,29 @@ const Home = () => {
               </p>
               <div className="search">
                 <input
+                onChange={(e)=>{ 
+                  console.log(e.target.value)
+                  setTobeDiscovered(e.target.value);
+                }
+                }
                   name="heroo"
                   id="heroo"
                   type="text"
                   placeholder="   ENTER LOCATION (city name)"
                 />
-                <button type="button">DISCOVER NOW</button>
+                <button onClick={()=>{
+                  setLoading(true);
+                  discoverNow(tobeDiscovered).then((res) => {
+                    console.log("RES: ",res)
+                    setTimeout(() => {
+                      setLoading(false)
+                    alert(JSON.stringify(res));
+
+                    }, 3000);
+                  }).catch((err) => {
+                    console.log(err);
+                  })
+                }} type="button">DISCOVER NOW</button>
               </div>
             </div>
           </div>
@@ -100,19 +127,36 @@ const Home = () => {
             <img className="store-img" src={storeImage} />
             <img className="arrowbutton" src={arrowbutton} />
           </div>
+
+          <div className="learn-more-mobile">
+            <img src={storeImage} />
+            <div className="store-description">
+              <h1>Salt & Honey Market</h1>
+              <h3>SALT LAKE CITY, UT</h3>
+              <p>
+                A little spot goes here to tell a bit about the shop & &nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
+                carry, etc.
+              </p>
+              <button type="button">LEARN MORE</button>
+            </div>
+            <div>
+
+            </div>
+             </div>
           <div className="blog-section">
             <h1>LATEST FROM THE BLOG (Blog Coming Soon)</h1>
 
             <div className="images-section">
               <div className="first">
-                <img src={blog1} />
+                <img src={blog1}  />
                 <h2>BLOG POST TITLE HERE</h2>
                 <p>
                   Have something specific in mind? Discover the <br></br>latest
                   from local artisans & small shops.
                 </p>
               </div>
-              <div className="second">
+              <div className="first">
                 <img src={blog2} />
                 <h2>BLOG POST TITLE HERE</h2>
                 <p>
@@ -121,7 +165,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="third">
+              <div className="first">
                 <img src={blog3} />
                 <h2>BLOG POST TITLE HERE</h2>
                 <p>
@@ -143,13 +187,15 @@ const Home = () => {
               <button>MORE ABOUT US</button>
             </Link>
           </div>
+          <Footer />
         </div>
+      
       </div>
-      <footer>
-        <Footer />
-      </footer>
-    </>
+   
+    
   );
 };
 
 export default Home;
+
+
