@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Menu from "../menu/menu";
 interface HeaderProps {
   logo: string;
   headerBg?: string;
@@ -13,12 +14,18 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
     setNavbarVisibility(!isNavbarVisible);
   };
   const headerStyle = {
-    backgroundImage: `url(${headerBg})`, // Set the background image
+    backgroundImage: `url(${headerBg})`,
+    width:'100%',
+    margin:0,
+    overflow: 'hidden'
   };
-
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <header style={headerStyle}>
+      <Menu isOpen={isOpen} title={"home"} callBack={()=>{
+      setIsOpen(!isOpen);
+    }} />
         <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
           <ul>
             <li>
@@ -38,7 +45,8 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
         </div>
         <input
           onClick={() => {
-            toggleNavbar();
+            setIsOpen(!isOpen);
+            //toggleNavbar();
           }}
           id="toggle"
         ></input>
