@@ -11,45 +11,50 @@ const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-      <footer>       
-        <div className="connect">
-          <div className="ftext-section">
-            <h1>
-              CONNECT <br></br>WITH US
-            </h1>
-            <a href="https://www.instagram.com/followthewesterlies/"> <p>@followthewesterlies</p></a>
-          </div>
+    <footer>
+      <div className="connect">
+        <div className="ftext-section">
+          <h1>
+            CONNECT <br></br>WITH US
+          </h1>
+          <a
+            href="https://www.instagram.com/followthewesterlies/"
+            target="_blank"
+          >
+            @followthewesterlies
+          </a>
+        </div>
 
-          <div className="fimage-section">
-            <img src={footer1} />
-            <img src={footer2} />
-            <img src={footer3} />
-            <img src={footer4} />
-          </div>
+        <div className="fimage-section">
+          <img src={footer1} />
+          <img src={footer2} />
+          <img src={footer3} />
+          <img src={footer4} />
         </div>
-        <div className="email-collection">
-          <div className="logo">
-            <img src={logo} />
-          </div>
-          <div className="email">
-            <h3>EXPLORE WITH US</h3>
-            <input
-              type="text"
-              name="signup"
-              id="signup"
-              placeholder="       Sign up and explore (signup feature coming soon)"
-            />
-            <button>SIGN UP</button>
-          </div>
+      </div>
+      <div className="email-collection">
+        <div className="logo">
+          <img src={logo} />
         </div>
-        <div className="copyright">
-          <div className="copyrightInner">
+        <div className="email">
+          <h3>EXPLORE WITH US</h3>
+          <input
+            type="text"
+            name="signup"
+            id="signup"
+            placeholder="       Sign up and explore (signup feature coming soon)"
+          />
+          <button>SIGN UP</button>
+        </div>
+      </div>
+      <div className="copyright">
+        <div className="copyrightInner">
           <p>Copyright Westerlies 2023</p>
 
           <p>Web Design by MARA</p>
-          </div>
         </div>
-      </footer>
+      </div>
+    </footer>
   );
 };
 export default Footer;

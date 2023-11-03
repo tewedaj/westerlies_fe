@@ -267,6 +267,8 @@
 
 .learn-more .featured{
   width: 100%; 
+  position: relative;
+  left: 18px;
 }
 .learn-more .arrowbutton{
   margin-top: 350px;

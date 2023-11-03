@@ -58,7 +58,7 @@ const FindAshop = () => {
         <FASheader />
         <div className="title">
           <h1>Find a Shop &nbsp;&nbsp;|</h1>
-          <h1>&nbsp;&nbsp;Washington D.C</h1>
+          <h1>&nbsp;&nbsp;{city ? city : "No City selected"}</h1>
         </div>
         <div className="filter-navbar">
           <h2>FILTER BY:</h2>
@@ -87,67 +87,23 @@ const FindAshop = () => {
         <div className="container-fas">
           <div className="results">
             <div className="result-container">
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
-              <div className="result">
-                <img src={img} alt="Shop 1" />
-                <h3>Shop Name</h3>
-                <p>Primary tag | secondary</p>
-              </div>
+              {shopList.length > 0 &&
+                shopList?.map((shop: any) => {
+                  return (
+                    <Shope
+                      name={shop.name}
+                      image={shop.profilePicture?.replace(
+                        "api.westerlies.io",
+                        "apibeta.westerlies.com"
+                      )}
+                      primaryKey={shop.primaryKey}
+                      address={""}
+                      phone={""}
+                      email={""}
+                      status={0}
+                    />
+                  );
+                })}
             </div>
 
             <nav aria-label="Page navigation example">
