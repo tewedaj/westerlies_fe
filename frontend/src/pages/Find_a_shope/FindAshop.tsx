@@ -3,9 +3,25 @@ import Footer from "../../components/footer/Footer";
 import img from "../../assets/footer1.png";
 import "./FindAshop.css";
 import FASheader from "../../components/shaders/FASheader";
+import { useParams } from "react-router-dom";
+import { discoverNow } from "../home/controller.home";
+import Shope from "../../components/shope/shope";
 import Filterlist from "../../components/findashop/Filterlist";
 
 const FindAshop = () => {
+  const param: any = useParams();
+  const [city, setCity] = useState(param?.city);
+  const [shopList, setShopList] = useState<any[]>([]);
+
+  useEffect(() => {
+    // get item list from here and set it to shopList
+    console.log("city: ", city);
+    discoverNow(city).then((res: any) => {
+      console.log("RES: ", res);
+      setShopList(res.data);
+    });
+  }, []);
+
   useEffect(() => {
     const resultContainer: HTMLElement | null =
       document.querySelector(".result-container");

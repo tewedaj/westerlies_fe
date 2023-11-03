@@ -1,0 +1,16 @@
+.result-container {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.result {
+    margin: 0px;
+    padding: 10px;
+    margin-bottom: 50px;
+   /* background-color: rgb(229, 229, 229); */
+   border: 1px solid #314B5E;
+    border-radius: 5px;
+    width: 33%; /* Display results in 3 columns */
+}

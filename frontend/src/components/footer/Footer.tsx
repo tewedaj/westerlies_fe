@@ -17,7 +17,7 @@ const Footer = () => {
             <h1>
               CONNECT <br></br>WITH US
             </h1>
-            <p>@followthewesterlies</p>
+            <a href="https://www.instagram.com/followthewesterlies/"> <p>@followthewesterlies</p></a>
           </div>
 
           <div className="fimage-section">
