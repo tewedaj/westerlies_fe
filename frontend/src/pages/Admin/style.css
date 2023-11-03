@@ -89,11 +89,7 @@ overflow-y: scroll;
 overflow-x: hidden;
 padding: 40px 30px 30px 30px;
 }
-.plussign{
-	align-items: center;
-	justify-content: center;
-	
-}
+
 
 .main::-webkit-scrollbar-thumb {
 background-image:
@@ -323,7 +319,17 @@ border-radius: 4px;
   }
   
   .search-box input {
-	width: 100%;
+	width: 60%;
 	padding: 5px;
   }
-  
+  .plussign{
+	align-items: right;
+	justify-content: right;
+	display: flex;
+	
+	
+}
+.plussign img{
+   width: 5%;
+   padding: 10px;
+}

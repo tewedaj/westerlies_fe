@@ -3,6 +3,7 @@ import Anavbar from "../../components/admincomponents/Anavbar";
 import "./responsive.css";
 import "./style.css";
 import plus from "../../assets/admin/plus.png";
+import exp from "../../assets/admin/export.png";
 import DataTable from "react-data-table-component";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
@@ -77,6 +78,7 @@ const Emailmgmt = () => {
         <div className="main">
           <div className="plussign">
             <img className="plussign" src={plus} />
+            <img className="export-icon" src={exp} />
           </div>
           <div className="search-box">
             <input

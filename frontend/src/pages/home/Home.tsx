@@ -23,7 +23,7 @@ const Home = () => {
   const [tobeDiscovered, setTobeDiscovered] = useState("");
   const [loading, setLoading] = useState(false);
   return (
-    <div className="container">
+    <div className="container-abc">
       <Loading
         loading={loading}
         setLoading={(loading: string) => {
@@ -34,13 +34,16 @@ const Home = () => {
 
       <div className="content">
         <div className="hero-section">
-          <img className="hero" src={hero} alt="Hero" />
-          <div className="text-section">
+          <div className="hero">
+            <img src={hero} alt="Hero" />
+          </div>
+
+          <div className="hero-text-section">
             <h1>
               Find and Support<br></br>Independent Shop + Makers
             </h1>
             <h3>
-              s<br></br>AROUND THE CORNER OR ACROSS THE WORLD.
+              <br></br>AROUND THE CORNER OR ACROSS THE WORLD.
             </h3>
             <p>
               Westerlies is on a mission to connect you with local businesses
@@ -120,15 +123,16 @@ const Home = () => {
             <h1>Salt & Honey Market</h1>
             <h3>SALT LAKE CITY, UT</h3>
             <p>
-              A little spot goes here to tell a bit about the shop & &nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
-              carry, etc.
+              A little spot goes here to tell a bit about the shop &<br></br>
+              more about their story, what they carry, etc.
             </p>
             <button type="button">LEARN MORE</button>
           </div>
 
-          <img className="featured" src={feature} />
-          <img className="store-img" src={storeImage} />
+          <div className="learn-more-images">
+            <img className="featured" src={feature} />
+            <img className="store-img" src={storeImage} />
+          </div>
           <img className="arrowbutton" src={arrowbutton} />
         </div>
 

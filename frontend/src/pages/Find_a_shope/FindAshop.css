@@ -1,3 +1,6 @@
+@import url("https://use.typekit.net/yfs0bso.css");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+
 :root {
     --background-color1:#FDF4ED;
     --color1:#202D3F;
@@ -7,11 +10,10 @@
     --color5:#DBAE8F;
     --color6:#B3553D;
   }
-body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--color4);
+.findashop{
+    background-color: #FBF3EC;
 }
+
 .title{
     position: relative;
     margin-top: 60px;
@@ -130,4 +132,9 @@ body {
 .pagination {
     text-align: center;
     padding: 10px;
+    justify-content: center;
+    
+}
+.page-item a{
+    color: #202d3f;
 }
