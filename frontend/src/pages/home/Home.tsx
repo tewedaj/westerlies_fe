@@ -15,14 +15,17 @@ import blog2 from "../../assets/home/blog2.png";
 import blog3 from "../../assets/home/blog3.png";
 import arrowbutton from "../../assets/home/arrow_in_circle.svg";
 import Footer from "../../components/footer/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { discoverNow } from "./controller.home";
 import { useState } from "react";
 import { Loading } from "../../components/loading/loading";
+import LocationInput from "../../components/locationInput/locationInput";
 const Home = () => {
 
   const [tobeDiscovered, setTobeDiscovered] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigator = useNavigate();
   return (
   
     
@@ -49,6 +52,7 @@ const Home = () => {
                 thoughtful place.
               </p>
               <div className="search">
+                {/* <LocationInput /> */}
                 <input
                 onChange={(e)=>{ 
                   console.log(e.target.value)
@@ -66,7 +70,9 @@ const Home = () => {
                     console.log("RES: ",res)
                     setTimeout(() => {
                       setLoading(false)
-                    alert(JSON.stringify(res));
+                      // navigate to find a shop page with paramter of res
+                      navigator("/Find_A_Shop/"+tobeDiscovered);
+                  //  alert(JSON.stringify(res));
 
                     }, 3000);
                   }).catch((err) => {
@@ -187,8 +193,8 @@ const Home = () => {
               <button>MORE ABOUT US</button>
             </Link>
           </div>
-          <Footer />
         </div>
+        <Footer />
       
       </div>
    

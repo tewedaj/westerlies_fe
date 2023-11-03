@@ -1,11 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Footer from "../../components/footer/Footer";
 import img from "../../assets/footer1.png";
 import "./FindAshop.css";
 import FASheader from "../../components/shaders/FASheader";
+import { useParams } from "react-router-dom";
+import { discoverNow } from "../home/controller.home";
+import Shope from "../../components/shope/shope";
 
 const FindAshop = () => {
+
+  const param:any = useParams();
+  const [city, setCity] = useState(param?.city);
+  const [shopList, setShopList] = useState<any[]>([]);
+
+
   useEffect(() => {
+    // get item list from here and set it to shopList
+    console.log("city: ",city);
+    discoverNow(city).then((res:any) => {
+      console.log("RES: ",res)
+      setShopList(res.data);
+    });
+
+  },[]);
+
+
+
+  useEffect(() => {
+
     const resultContainer: HTMLElement | null =
       document.querySelector(".result-container");
     const map: HTMLElement | null = document.getElementById("map");
@@ -38,7 +60,7 @@ const FindAshop = () => {
       <FASheader />
       <div className="title">
         <h1>Find a Shop &nbsp;&nbsp;|</h1>
-        <h1>&nbsp;&nbsp;Washington D.C</h1>
+        <h1>&nbsp;&nbsp;{city?city:"No City selected"}</h1>
       </div>
 
       <div className="container-fas">
@@ -51,56 +73,14 @@ const FindAshop = () => {
           </div>
 
           <div className="result-container">
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Name</p>
-              <p>Primary tag</p>
-            </div>
-            {/* Add more result items here */}
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
-            <div className="result">
-              <img src={img} alt="Shop 1" />
-              <p>Shop Description 1</p>
-            </div>
+          
+            {shopList.length > 0 && shopList?.map((shop:any) => {
+              
+              return (
+              <Shope name={shop.name} image={shop.profilePicture?.replace("api.westerlies.io","apibeta.westerlies.com") } primaryKey={shop.primaryKey} address={""} phone={""} email={""} status={0} />
+              );
+            
+            })}
           </div>
 
           <div className="pagination">Page 1 of 2</div>
