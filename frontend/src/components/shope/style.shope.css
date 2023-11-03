@@ -1,0 +1,37 @@
+.result-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.result {
+    margin: 0px;
+    padding: 10px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    width: 33%; /* Display results in 3 columns */
+}
+.result h3{
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 30px;
+    color: #202D3F;
+    line-height: 1.5;
+}
+.result p{
+    margin-top: 10px;
+    color: var(--color1);
+    text-decoration: none;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.result img {
+    max-width: 100%;
+    height: auto;
+}
