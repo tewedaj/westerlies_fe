@@ -33,14 +33,11 @@ align-items: center;
 .icn {
 height: 30px;
 }
-.menuicn {
-cursor: pointer;
-height: 100px;
-display: flex;
-align-items: center;
-justify-content: center;
-
+.logo img{
+	
+	width: 30%;
 }
+
 
 .searchbar,
 .message,
@@ -151,10 +148,16 @@ padding: 0 30px 0 20px;
 gap: 20px;
 transition: all 0.1s ease-in-out;
 
+
 }
 .nav-option a{
 	text-decoration: none;
 	color: #ffffff;
+	font-family: "brandon-grotesque", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 25px;
+	letter-spacing: 1px;
 }
 .nav-option:hover {
 border-left: 5px solid #a2a2a2;
@@ -311,16 +314,18 @@ border-radius: 4px;
 	font-family: "brandon-grotesque", sans-serif;
 	font-style: normal;
 	font-weight: 500;
-	
   }
   /*email mgmt */
   .search-box {
-	margin-bottom: 10px;
+	padding: 20px;
+	
   }
   
   .search-box input {
-	width: 60%;
+	width: 50%;
 	padding: 5px;
+	border: 1px solid rgba(251, 243, 236, 0.8) ;
+	background-color: rgb(96,96,96, 0.2);
   }
   .plussign{
 	align-items: right;
@@ -330,6 +335,6 @@ border-radius: 4px;
 	
 }
 .plussign img{
-   width: 5%;
+   width: 4%;
    padding: 10px;
 }

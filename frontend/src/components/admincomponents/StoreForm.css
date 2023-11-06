@@ -14,4 +14,58 @@
     font-style: normal;
     font-weight: 500;
     font-size: 34px;
+    text-align: left;
+}
+.storeForm-disabled{
+  display: none;
+}
+.storeForm{
+  border: 1px solid rgb(96,96,96, 0.5) ;
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+}
+.navigation-form ul{
+  justify-content: right;
+  text-align: right;
+  padding-top: 2%;
+  border-bottom: 1px solid var(--color1);
+}
+.navigation-form ul li{
+  display: inline;
+  color: var(--color1);
+  text-decoration: none;
+  padding: 10px;
+  padding-left: 50px;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 2px;
+  
+}
+.row{
+  width: 95%;
+  display: flex;
+  position: relative;
+  left: 20px;
+}
+.form-btn{
+  display: flex;
+  justify-content: right;
+}
+.nxt {
+  justify-content: right;
+  text-align: right; /* Align "Next" button to the right */
+  padding: 1%;
+}
+
+.prev {
+  text-align: left; /* Align "Previous" button to the left */
+  padding: 1%;
+}
+.submit {
+  text-align: right; /* Align "Next" button to the right */
+  padding: 1%;
 }

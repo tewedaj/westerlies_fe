@@ -70,8 +70,22 @@ const FindAshop = () => {
           >
             PRODUCT
           </a>
-          <a onClick={() => setShowFilter(true)}>SOCIAL IMPACT</a>
-          <a onClick={() => setShowFilter(true)}>OFFERS CLASSES</a>
+          <a
+            onClick={() => {
+              setShowFilter(!showFilter);
+              setSelectedFilter("Social Impact");
+            }}
+          >
+            SOCIAL IMPACT
+          </a>
+          <a
+            onClick={() => {
+              setShowFilter(!showFilter);
+              setSelectedFilter("Offers Classes");
+            }}
+          >
+            OFFERS CLASSES
+          </a>
         </div>
         <Filterlist
           isOpen={showFilter}

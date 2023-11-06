@@ -3,7 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Aheader from "../../components/admincomponents/Aheader";
 import Anavbar from "../../components/admincomponents/Anavbar";
 import plus from "../../assets/admin/plus.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import StoreForm from "../../components/admincomponents/StoreForm";
+import getAdminStores from "./controller.admin";
 
 // Define the type for your data object
 interface StoreData {
@@ -14,6 +16,18 @@ interface StoreData {
 
 const Storemgmt = () => {
   const [searchText, setSearchText] = useState("");
+  const [data, setData] = useState<StoreData[]>([]); // Define the setData function
+
+  useEffect(() => {
+    getAdminStores(100, 10) // Replace page and size with the values you want
+      .then((data) => {
+        console.log("Fetched data:", data); // Add this line to check the fetched data
+        setData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
@@ -61,49 +75,11 @@ const Storemgmt = () => {
     // Add your delete logic here
   };
 
-  const data: StoreData[] = [
-    // Your data array goes here, each object should have storeName, city, and country properties
-    // Add your data
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-  ];
   const filteredData = data.filter((item) => {
     const rowValues = Object.values(item).join(" ").toLowerCase();
     return rowValues.includes(searchText.toLowerCase());
   });
+  const [addStore, setAddstore] = useState<boolean>(false);
   return (
     <>
       <Aheader />
@@ -111,8 +87,15 @@ const Storemgmt = () => {
         <Anavbar />
         <div className="main">
           <div className="plussign">
-            <img className="plussign" src={plus} />
+            <img
+              onClick={() => {
+                setAddstore(!addStore);
+              }}
+              className="plussign"
+              src={plus}
+            />
           </div>
+          <StoreForm isOpen={addStore} />
           <div className="search-box">
             <input
               type="text"
@@ -121,17 +104,19 @@ const Storemgmt = () => {
               onChange={handleSearch}
             />
           </div>
-          <DataTable
-            title="Store Data"
-            columns={columns}
-            data={filteredData}
-            pagination
-            paginationPerPage={10}
-            paginationRowsPerPageOptions={[5, 10, 20, 30]}
-            highlightOnHover
-            responsive
-            striped
-          />
+          <div className="storedata">
+            <DataTable
+              title="Store Data"
+              columns={columns}
+              data={filteredData}
+              pagination
+              paginationPerPage={10}
+              paginationRowsPerPageOptions={[5, 10, 20, 30]}
+              highlightOnHover
+              responsive
+              striped
+            />
+          </div>
         </div>
       </div>
     </>
