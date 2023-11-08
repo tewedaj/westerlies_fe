@@ -2,17 +2,21 @@ import Aheader from "../../components/admincomponents/Aheader";
 import Anavbar from "../../components/admincomponents/Anavbar";
 import "./responsive.css";
 import "./style.css";
-import plus from "../../assets/admin/plus.png";
-import exp from "../../assets/admin/export.png";
 import DataTable from "react-data-table-component";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+import { BiExport } from "react-icons/bi";
+import { IoAddCircleSharp } from "react-icons/io5";
+import { FcSearch } from "react-icons/fc";
+import EmailForm from "../../components/admincomponents/EmailForm";
 // Define the type for your data object
 interface EmailData {
   email: string;
 }
 const Emailmgmt = () => {
   const [searchText, setSearchText] = useState("");
+
+  const [emailForm, setEmailForm] = useState<boolean>(false);
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
@@ -25,18 +29,19 @@ const Emailmgmt = () => {
     {
       name: "Manage",
       cell: (row: EmailData) => (
-        <div>
+        <div className="manage">
           <button
             className="btn btn-sm btn-primary"
             onClick={() => handleEdit(row)}
           >
-            <i className="fa fa-pencil"></i> Edit
-          </button>{" "}
+            Edit
+          </button>
+          {""}
           <button
             className="btn btn-sm btn-danger"
             onClick={() => handleDelete(row)}
           >
-            <i className="fa fa-trash"></i> Delete
+            Delete
           </button>
         </div>
       ),
@@ -77,9 +82,18 @@ const Emailmgmt = () => {
         <Anavbar></Anavbar>
         <div className="main">
           <div className="plussign">
-            <img className="plussign" src={plus} />
-            <img className="export-icon" src={exp} />
+            <h1>
+              <IoAddCircleSharp
+                onClick={() => {
+                  setEmailForm(!emailForm);
+                }}
+              />
+            </h1>
+            <h1>
+              <BiExport />
+            </h1>
           </div>
+          <EmailForm isOpen={emailForm} />
           <div className="search-box">
             <input
               type="text"
@@ -87,6 +101,9 @@ const Emailmgmt = () => {
               value={searchText}
               onChange={handleSearch}
             />
+            <h2>
+              <FcSearch />
+            </h2>
           </div>
           <DataTable
             title="Email Directory"

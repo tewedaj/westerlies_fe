@@ -1,28 +1,40 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Menu from "../menu/menu";
+import "./Header.css";
 interface HeaderProps {
   logo: string;
   headerBg?: string;
   headerBgColor?: string;
+  navbartwo?: boolean;
+  navbarcolor?: boolean;
+  type?: string;
+  shopePage?: boolean;
 }
 
-const Header = ({ logo, headerBg }: HeaderProps) => {
+const Header = ({
+  logo,
+  headerBg,
+  navbartwo,
+  navbarcolor,
+  headerBgColor,
+  type,
+  shopePage,
+}: HeaderProps) => {
   const [isNavbarVisible, setNavbarVisibility] = useState(false);
-
-  const toggleNavbar = () => {
-    setNavbarVisibility(!isNavbarVisible);
-  };
   const headerStyle = {
     backgroundImage: `url(${headerBg})`,
     width: "100%",
     margin: 0,
     overflow: "hidden",
   };
+  const bgcolor = {
+    backgroundColor: headerBgColor,
+  };
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <header style={headerStyle}>
+      <header style={type == "FindaShop" ? bgcolor : headerStyle}>
         <Menu
           isOpen={isOpen}
           title={"home"}
@@ -31,7 +43,10 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
           }}
         />
         <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
-          <ul>
+          <ul className={navbarcolor ? "navbarcolor1" : "navbarcolor2"}>
+            <li className={shopePage ? "extra" : "extra-disable"}>
+              <Link to="/Find A Shop">Explore</Link>
+            </li>
             <li>
               <Link to="/Find A Shop">Search </Link>
             </li>
@@ -59,6 +74,20 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
           <span></span>
           <span></span>
         </label>
+        <div className={navbartwo ? "navbar" : "navbar-two-hidden"}>
+          <ul className={navbarcolor ? "navbarcolor1" : "navbarcolor2"}>
+            <li>
+              <Link to="/Find A Shop">SUGGEST A STORE</Link>
+            </li>
+            <li>
+              <Link to="/about">SIGN UP</Link>
+            </li>
+
+            <li>
+              <Link to="/">LOG IN</Link>
+            </li>
+          </ul>
+        </div>
       </header>
     </>
   );

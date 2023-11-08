@@ -6,6 +6,8 @@ import plus from "../../assets/admin/plus.png";
 import { useEffect, useState } from "react";
 import StoreForm from "../../components/admincomponents/StoreForm";
 import getAdminStores from "./controller.admin";
+import { IoAddCircleSharp } from "react-icons/io5";
+import { FcSearch } from "react-icons/fc";
 
 // Define the type for your data object
 interface StoreData {
@@ -16,18 +18,17 @@ interface StoreData {
 
 const Storemgmt = () => {
   const [searchText, setSearchText] = useState("");
-  const [data, setData] = useState<StoreData[]>([]); // Define the setData function
+  // const [data, setData] = useState<StoreData[]>([]); // Define the setData function
 
-  useEffect(() => {
-    getAdminStores(100, 10) // Replace page and size with the values you want
-      .then((data) => {
-        console.log("Fetched data:", data); // Add this line to check the fetched data
-        setData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   getAdminStores(1, 10) // Replace page and size with the values you want
+  //     .then((data) => {
+  //       setData(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching data:", error);
+  //     });
+  // }, []);
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
@@ -47,18 +48,20 @@ const Storemgmt = () => {
     {
       name: "Manage",
       cell: (row: StoreData) => (
-        <div>
+        <div className="manage">
           <button
             className="btn btn-sm btn-primary"
             onClick={() => handleEdit(row)}
           >
-            <i className="fa fa-pencil"></i> Edit
+            {" "}
+            Edit
           </button>{" "}
           <button
             className="btn btn-sm btn-danger"
             onClick={() => handleDelete(row)}
           >
-            <i className="fa fa-trash"></i> Delete
+            {" "}
+            Delete
           </button>
         </div>
       ),
@@ -75,6 +78,45 @@ const Storemgmt = () => {
     // Add your delete logic here
   };
 
+  const data: StoreData[] = [
+    // Your data array goes here, each object should have storeName, city, and country properties
+    // Add your data
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+    {
+      storeName: "hsafg",
+      city: "aa",
+      country: "jhas",
+    },
+  ];
   const filteredData = data.filter((item) => {
     const rowValues = Object.values(item).join(" ").toLowerCase();
     return rowValues.includes(searchText.toLowerCase());
@@ -87,13 +129,15 @@ const Storemgmt = () => {
         <Anavbar />
         <div className="main">
           <div className="plussign">
-            <img
-              onClick={() => {
-                setAddstore(!addStore);
-              }}
-              className="plussign"
-              src={plus}
-            />
+            <h1>
+              <IoAddCircleSharp
+                onClick={() => {
+                  setAddstore(!addStore);
+                }}
+                className="plussign"
+                src={plus}
+              />
+            </h1>
           </div>
           <StoreForm isOpen={addStore} />
           <div className="search-box">
@@ -102,7 +146,10 @@ const Storemgmt = () => {
               placeholder="Search..."
               value={searchText}
               onChange={handleSearch}
-            />
+            />{" "}
+            <h2>
+              <FcSearch />
+            </h2>
           </div>
           <div className="storedata">
             <DataTable

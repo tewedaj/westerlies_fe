@@ -62,9 +62,25 @@ const StoreForm = (StoreForm: StoreForm) => {
     }
     return true;
   };
-  const handleNext = () => {
+
+  const handleNext = (e: { preventDefault: () => void }) => {
+    e.preventDefault(); // Add this line to prevent page refresh
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
+    } else if (currentStep === steps.length - 1) {
+      // Handle the final step (converting text inputs to JSON)
+      const textData = {
+        storeName: formData.storeName,
+        email: formData.email,
+        phone: formData.phone,
+        about: formData.about,
+        // Add other text fields as needed
+      };
+
+      // Convert textData to JSON
+      const jsonData = JSON.stringify(textData);
+      // Log the JSON data in the browser console
+      console.log("JSON Data:", jsonData);
     }
   };
 
@@ -445,7 +461,11 @@ const StoreForm = (StoreForm: StoreForm) => {
             )}
             {currentStep === steps.length - 1 && (
               <div className="submit">
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={handleNext}
+                >
                   Save
                 </button>
               </div>

@@ -6,6 +6,7 @@ import search from "../../assets/admin/search.png";
 import like from "../../assets/admin/like-removebg-preview.png";
 import "./responsive.css";
 import "./style.css";
+import { FcSearch } from "react-icons/fc";
 
 const Main = () => {
   return (
@@ -14,12 +15,12 @@ const Main = () => {
       <div className="main-container">
         <Anavbar></Anavbar>
         <div className="main">
-          <div className="searchbar2">
-            <input type="text" name="" id="" placeholder="Search" />
-            <div className="searchbtn">
-              <img src={search} className="icn srchicn" alt="search-button" />
-            </div>
-          </div>
+          {/* <div className="search-box">
+            <input type="text" placeholder="Search..." />{" "}
+            <h2>
+              <FcSearch />
+            </h2>
+          </div> */}
 
           <div className="box-container">
             <div className="box box1">

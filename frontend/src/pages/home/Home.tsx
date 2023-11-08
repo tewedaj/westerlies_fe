@@ -23,7 +23,7 @@ import LocationInput from "../../components/locationInput/locationInput";
 const Home = () => {
   const [tobeDiscovered, setTobeDiscovered] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [navbar2] = useState(true);
   const navigator = useNavigate();
   return (
     <div className="container-abc">
@@ -33,7 +33,7 @@ const Home = () => {
           setLoading(!loading);
         }}
       />
-      <Header headerBg={bg} logo={whiteLogo} />
+      <Header headerBg={bg} logo={whiteLogo} navbarcolor={navbar2} />
 
       <div className="content">
         <div className="hero-section">

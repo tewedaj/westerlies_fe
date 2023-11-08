@@ -19,10 +19,8 @@ header{
     background-size: cover;
     background-repeat: no-repeat;
     height: 100px;
-    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1.4px solid rgb(145, 147, 159); /* Use a different color */
     z-index: 1;
   
@@ -30,35 +28,45 @@ header{
 header .logo{
     display: flex;
     align-items: center;
-    float: center;
-    position: relative;
-    
+    justify-content: center;
 }
 header .logo img{
-    height: 150px;
-    margin-right:650px ;
-    position: relative;
-    opacity: 0.9;
+width: 40%;
+    
 }
 header .navbar{
     transition: 0.3s linear;
     z-index: 1;
+    white-space: nowrap; 
+    position: relative;
 }
+.navbar-two-hidden{
+    display: none;
+}
+.extra-disable{
+  display: none;
+}
+
 header .navbar ul{
     list-style-type: none;
     display: flex;
-    align-items: center;
-    width: 300px;
-    justify-content:space-around;
 }
 header .navbar ul li a{
-    color: var(--color4);
+    padding: 20px;
     text-transform: uppercase; 
     text-decoration: none;
     font-family:  "brandon-grotesque", sans-serif;
     font-size: 14px;
-    font-weight: 100;
+  
     letter-spacing: 2px;
+}
+.navbarcolor1 li a{
+    color: var(--color4);
+    font-weight: 100;
+}
+.navbarcolor2 li a{
+    color: black;
+    font-weight: 500;
 }
 header .navbar ul li:hover{
     color:var(--color4);

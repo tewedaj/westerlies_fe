@@ -6,7 +6,7 @@ const Aheader = () => {
   return (
     <>
       <header className="headerA">
-        <div className="logo">
+        <div className="logoadmin">
           <img
             src={logo}
             className="icn menuicn"
@@ -17,11 +17,8 @@ const Aheader = () => {
             }}
           />
         </div>
-
-        <div className="message">
-          <div className="dp">
-            <img src={""} className="dpicn" alt="dp" />
-          </div>
+        <div className="dp">
+          <img src={""} className="dpicn" alt="dp" />
         </div>
       </header>
     </>

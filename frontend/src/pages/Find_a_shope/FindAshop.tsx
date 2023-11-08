@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/footer/Footer";
 import img from "../../assets/footer1.png";
 import "./FindAshop.css";
-import FASheader from "../../components/shaders/FASheader";
+import Header from "../../components/header/Header";
 import { useParams } from "react-router-dom";
 import { discoverNow } from "../home/controller.home";
 import Shope from "../../components/shope/shope";
 import Filterlist from "../../components/findashop/Filterlist";
+import logo from "../../assets/logo.png";
 
 const FindAshop = () => {
   const param: any = useParams();
@@ -51,11 +52,18 @@ const FindAshop = () => {
   }, []);
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<string>("");
-
+  const [isNavbarVisibletwo] = useState(true);
+  const [navbar2] = useState(false);
   return (
     <>
       <div className="findashop">
-        <FASheader />
+        <Header
+          logo={logo}
+          navbartwo={isNavbarVisibletwo}
+          navbarcolor={navbar2}
+          type="FindaShop"
+          headerBgColor="#FBF3EC"
+        />
         <div className="title">
           <h1>Find a Shop &nbsp;&nbsp;|</h1>
           <h1>&nbsp;&nbsp;{city ? city : "No City selected"}</h1>

@@ -1,12 +1,19 @@
 import "./About.css";
-import "../../components/shaders/FASheader.css";
 import Footer from "../../components/footer/Footer";
 import image from "../../assets/about/image.png";
-import FASheader from "../../components/shaders/FASheader";
+import Header from "../../components/header/Header";
+import logo from "../../assets/logo.png";
+import { useState } from "react";
 const About = () => {
+  const [navbarcolor] = useState(false);
   return (
     <>
-      <FASheader />
+      <Header
+        logo={logo}
+        navbarcolor={navbarcolor}
+        type="FindaShop"
+        headerBgColor="#FBF3EC"
+      />
       <div className="container-2">
         <div className="content-2">
           <div className="section-1">
