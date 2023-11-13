@@ -1,0 +1,17 @@
+@import url("https://use.typekit.net/yfs0bso.css");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+:root {
+    --background-color1:#FDF4ED;
+    --color1:#202D3F;
+    --color2:#3779A6;
+    --color3:#FFF8F2;
+    --color4:#FBF3EC;
+    --color5:hwb(24 56% 14%);
+    --color6:#B3553D;
+  }
+.row h1{
+    font-family: "brandon-grotesque", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 34px;
+}

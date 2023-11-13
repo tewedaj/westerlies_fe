@@ -9,7 +9,7 @@ export default function Shope(shopeProp: ShopeProp){
     return(
         <div className="result">
           <img src={shopeProp?.image==""? Image_not_available : shopeProp.image? shopeProp.image?.replace("http:","https:") : Image_not_available } alt="Shop 1" />
-          <p>{shopeProp.name } </p>
+          <h3>{shopeProp.name } </h3>
           <p>{shopeProp.primaryKey}</p>
         </div>
     );

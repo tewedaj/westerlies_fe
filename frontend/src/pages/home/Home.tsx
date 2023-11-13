@@ -21,63 +21,61 @@ import { useState } from "react";
 import { Loading } from "../../components/loading/loading";
 import LocationInput from "../../components/locationInput/locationInput";
 const Home = () => {
-
   const [tobeDiscovered, setTobeDiscovered] = useState("");
   const [loading, setLoading] = useState(false);
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+
+  
 
   const navigator = useNavigate();
   return (
-  
-    
-
-      <div className="container">
-        <Loading loading={loading} setLoading={(loading:string)=>{
+    <div className="container-abc">
+      <Loading
+        loading={loading}
+        setLoading={(loading: string) => {
           setLoading(!loading);
-        }} />
-        <Header headerBg={bg} logo={whiteLogo} />
-     
-        <div className="content">
-          <div className="hero-section">
-            <img className="hero" src={hero} alt="Hero" />
-            <div className="text-section">
-              <h1>
-                Find and Support<br></br>Independent Shop + Makers
-              </h1>
-              <h3>s
-                <br></br>AROUND THE CORNER OR ACROSS THE WORLD.
-              </h3>
-              <p>
-                Westerlies is on a mission to connect you with local businesses
-                who <br /> sell goods that make the world a more beautiful,
-                thoughtful place.
-              </p>
-              <div className="search">
-                {/* <LocationInput /> */}
-                <input
-                onChange={(e)=>{ 
-                  console.log(e.target.value)
-                  setTobeDiscovered(e.target.value);
-                }
-                }
-                  name="heroo"
-                  id="heroo"
-                  type="text"
-                  placeholder="   ENTER LOCATION (city name)"
-                />
-                <button onClick={()=>{
-                  setLoading(true);
-                  discoverNow(tobeDiscovered).then((res) => {
-                    console.log("RES: ",res)
-                    setTimeout(() => {
-                      setLoading(false)
-                      // navigate to find a shop page with paramter of res
-                      navigator("/Find_A_Shop/"+tobeDiscovered);
-                  //  alert(JSON.stringify(res));
+        }}
+      />
+      <Header headerBg={bg} logo={whiteLogo} />
 
-                    }, 3000);
-                  }).catch((err) => {
-                    console.log(err);
-                  })
+      <div className="content">
+        <div className="hero-section">
+          <div className="hero">
+            <img src={hero} alt="Hero" />
+          </div>
+
+          <div className="hero-text-section">
+            <h1>
+              Find and Support<br></br>Independent Shop + Makers
+            </h1>
+            <h3>
+              <br></br>AROUND THE CORNER OR ACROSS THE WORLD.
+            </h3>
+            <p>
+              Westerlies is on a mission to connect you with local businesses
+              who <br /> sell goods that make the world a more beautiful,
+              thoughtful place.
+            </p>
+            <div className="search">
+                <LocationInput callBack={(city: string,country: string)=>{ 
+                  setCity(city);
+                  setCountry(country);
+                }} />
+              {/* <input
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setTobeDiscovered(e.target.value);
+                }}
+                name="heroo"
+                id="heroo"
+                type="text"
+                placeholder="   ENTER LOCATION (city name)"
+              /> */}
+              <button
+                onClick={() => {
+                  setLoading(true);
+                  navigator("/Find_A_Shop/"+country+"/"+city);
                 }} type="button">DISCOVER NOW</button>
               </div>
             </div>
@@ -85,91 +83,90 @@ const Home = () => {
           <div className="start-exploring">
             <h1>Start Exploring (Feature Coming Soon)</h1>
 
-            <div className="images-section">
-              <div className="first">
-                <img src={first} />
-                <h2>By City</h2>
-                <p>
-                  Find the hidden gems of your own city or shop small as you
-                  discover a new place.
-                </p>
-                <button>DISCOVER NOW</button>
-              </div>
-              <div className="second">
-                <img src={second} />
-                <h2>By Product</h2>
-                <p>
-                  Have something specific in mind? Discover the latest from
-                  local artisans & small shops.
-                </p>
-                <button>DISCOVER NOW</button>
-              </div>
+          <div className="images-section">
+            <div className="first">
+              <img src={first} />
+              <h2>By City</h2>
+              <p>
+                Find the hidden gems of your own city or shop small as you
+                discover a new place.
+              </p>
+              <button>DISCOVER NOW</button>
+            </div>
+            <div className="second">
+              <img src={second} />
+              <h2>By Product</h2>
+              <p>
+                Have something specific in mind? Discover the latest from local
+                artisans & small shops.
+              </p>
+              <button>DISCOVER NOW</button>
+            </div>
 
-              <div className="third">
-                <img src={thrid} />
-                <h2>By Social Impact </h2>
-                <p>
-                  Looking to support a specific cause? Find a maker or small
-                  shop who does so.
-                </p>
-                <button>DISCOVER NOW</button>
-              </div>
+            <div className="third">
+              <img src={thrid} />
+              <h2>By Social Impact </h2>
+              <p>
+                Looking to support a specific cause? Find a maker or small shop
+                who does so.
+              </p>
+              <button>DISCOVER NOW</button>
             </div>
           </div>
-          <div className="learn-more">
-            <img className="arrowbutton" src={arrowbutton} />
-            <div className="store-description">
-              <h1>Salt & Honey Market</h1>
-              <h3>SALT LAKE CITY, UT</h3>
-              <p>
-                A little spot goes here to tell a bit about the shop & &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
-                carry, etc.
-              </p>
-              <button type="button">LEARN MORE</button>
-            </div>
+        </div>
+        <div className="learn-more">
+          <img className="arrowbutton" src={arrowbutton} />
+          <div className="store-description">
+            <h1>Salt & Honey Market</h1>
+            <h3>SALT LAKE CITY, UT</h3>
+            <p>
+              A little spot goes here to tell a bit about the shop &<br></br>
+              more about their story, what they carry, etc.
+            </p>
+            <button type="button">LEARN MORE</button>
+          </div>
 
+          <div className="learn-more-images">
             <img className="featured" src={feature} />
             <img className="store-img" src={storeImage} />
-            <img className="arrowbutton" src={arrowbutton} />
           </div>
+          <img className="arrowbutton" src={arrowbutton} />
+        </div>
 
-          <div className="learn-more-mobile">
-            <img src={storeImage} />
-            <div className="store-description">
-              <h1>Salt & Honey Market</h1>
-              <h3>SALT LAKE CITY, UT</h3>
+        <div className="learn-more-mobile">
+          <img src={storeImage} />
+          <div className="store-description">
+            <h1>Salt & Honey Market</h1>
+            <h3>SALT LAKE CITY, UT</h3>
+            <p>
+              A little spot goes here to tell a bit about the shop & &nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
+              carry, etc.
+            </p>
+            <button type="button">LEARN MORE</button>
+          </div>
+          <div></div>
+        </div>
+        <div className="blog-section">
+          <h1>LATEST FROM THE BLOG (Blog Coming Soon)</h1>
+
+          <div className="images-section">
+            <div className="first">
+              <img src={blog1} />
+              <h2>BLOG POST TITLE HERE</h2>
               <p>
-                A little spot goes here to tell a bit about the shop & &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
-                carry, etc.
+                Have something specific in mind? Discover the <br></br>latest
+                from local artisans & small shops.
               </p>
-              <button type="button">LEARN MORE</button>
             </div>
-            <div>
-
+            <div className="first">
+              <img src={blog2} />
+              <h2>BLOG POST TITLE HERE</h2>
+              <p>
+                Have something specific in mind? Discover the<br></br> latest
+                from local artisans & small shops.
+              </p>
             </div>
-             </div>
-          <div className="blog-section">
-            <h1>LATEST FROM THE BLOG (Blog Coming Soon)</h1>
-
-            <div className="images-section">
-              <div className="first">
-                <img src={blog1}  />
-                <h2>BLOG POST TITLE HERE</h2>
-                <p>
-                  Have something specific in mind? Discover the <br></br>latest
-                  from local artisans & small shops.
-                </p>
-              </div>
-              <div className="first">
-                <img src={blog2} />
-                <h2>BLOG POST TITLE HERE</h2>
-                <p>
-                  Have something specific in mind? Discover the<br></br> latest
-                  from local artisans & small shops.
-                </p>
-              </div>
 
               <div className="first">
                 <img src={blog3} />
@@ -193,8 +190,8 @@ const Home = () => {
               <button>MORE ABOUT US</button>
             </Link>
           </div>
+          <Footer />
         </div>
-        <Footer />
       
       </div>
    
@@ -203,5 +200,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

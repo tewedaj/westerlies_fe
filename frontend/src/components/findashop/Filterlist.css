@@ -1,0 +1,40 @@
+@import url("https://use.typekit.net/yfs0bso.css");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+:root {
+    --background-color1:#FDF4ED;
+    --color1:#202D3F;
+    --color2:#3779A6;
+    --color3:#FFF8F2;
+    --color4:#FBF3EC;
+    --color5:#DBAE8F;
+    --color6:#B3553D;
+  }
+.check-list-background-disabled{
+    display: none;
+}
+.checklist{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-left: 30px;
+    background-color: transparent;
+}
+.checklist h1{
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 20px;
+    color: #202D3F;
+    letter-spacing: 2px;
+    line-height: 1.15;
+}
+.form-check{
+    font-family: 'Alegreya', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    color: #202D3F;
+}
+.form-check-input{
+    color: transparent;
+}

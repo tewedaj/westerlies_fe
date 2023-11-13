@@ -15,17 +15,21 @@ const Header = ({ logo, headerBg }: HeaderProps) => {
   };
   const headerStyle = {
     backgroundImage: `url(${headerBg})`,
-    width:'100%',
-    margin:0,
-    overflow: 'hidden'
+    width: "100%",
+    margin: 0,
+    overflow: "hidden",
   };
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <header style={headerStyle}>
-      <Menu isOpen={isOpen} title={"home"} callBack={()=>{
-      setIsOpen(!isOpen);
-    }} />
+        <Menu
+          isOpen={isOpen}
+          title={"home"}
+          callBack={() => {
+            setIsOpen(!isOpen);
+          }}
+        />
         <div className={`navbar ${isNavbarVisible ? "" : "navbar-hidden"}`}>
           <ul>
             <li>

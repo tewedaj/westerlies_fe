@@ -189,3 +189,13 @@ a{
 
   }
 
+
+ .connect .ftext-section a{
+    font-family: 'Alegreya', serif;
+    margin-top: 10px;
+    font-weight: 100;
+    font-size: 18px;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    color: white;
+  }
