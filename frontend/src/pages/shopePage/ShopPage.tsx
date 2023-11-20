@@ -10,13 +10,51 @@ import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import Footer from "../../components/footer/Footer";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { useEffect, useState } from "react";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import Footer from "../../components/footer/Footer";
+import { useParams } from "react-router-dom";
+import { getStoreDetailInfo } from "./shopeController";
+import GoogleMap from "../../components/mapComponent/mapComponent";
 
 const ShopPage = () => {
   const [isNavbarVisibletwo] = useState(true);
   const [navbarcolor] = useState(false);
   const [shopePage] = useState(true);
+  const [isNavbarVisibletwo] = useState(true);
+  const [navbarcolor] = useState(false);
+  const [shopePage] = useState(true);
+  const param = useParams();
+  const [storeId, setStoreId] = useState<any>(param.id);
+  const [storeInfo, setStoreInfo] = useState<any>();
+  const [shopeLocation, setShopeLocation] = useState<any[]>([]);
+
+  useEffect(() => {
+    getStoreDetailInfo(storeId, 0).then((res) => {
+      setStoreInfo(res);
+      var locationList: any[] = [];
+      res?.addresses?.map((item: any) => {
+        locationList.push({
+          latitude: item?.location?.latitude,
+          longitude: item?.location?.longitude,
+        });
+      });
+      setShopeLocation(locationList);
+      console.log(res);
+    });
+  }, []);
+
   return (
     <>
+      <Header
+        headerBg={bg1}
+        logo={logo}
+        navbartwo={isNavbarVisibletwo}
+        navbarcolor={navbarcolor}
+        shopePage={shopePage}
+      />
       <Header
         headerBg={bg1}
         logo={logo}
@@ -34,20 +72,18 @@ const ShopPage = () => {
             </div>
 
             <div className="section-one-part1-image">
-              <img src={storeimg} />
+              <img
+                src={storeInfo?.profilePicture
+                  .replace("http://", "https://")
+                  .replace("api.westerlies.io", "apibeta.westerlies.com")}
+              />
             </div>
           </div>
 
           <div className="section-one-part2">
             <div className="section-one-part2-text-section">
-              <h1>Salt & Sundry</h1>
-              <p>
-                Salt &Sundry is a home and lifestyle boutique featuring
-                homewares and goods, apparel, apothecary, accessories, and other
-                goods from independent makers and designers, both local and from
-                across the globe,including 80+ women-owned, 25+ BI POC-owned and
-                20+ local to the DC region.They also contribute to organizations
-              </p>
+              <h1>{storeInfo?.name} </h1>
+              <p>{storeInfo?.description}</p>
             </div>
             <div className="section-one-part2-link-section">
               <p>
@@ -56,13 +92,9 @@ const ShopPage = () => {
               <div className="section-one-part2-links">
                 <div className="section-one-part2-links-social">
                   <h5>SOCIAL</h5>
-                  <h3>
-                    <FontAwesomeIcon icon={faFacebookF} />
-                  </h3>
+                  <FontAwesomeIcon icon={faFacebookF} />
                   &nbsp;&nbsp;&nbsp;
-                  <h3>
-                    <FontAwesomeIcon icon={faInstagram} />
-                  </h3>
+                  <FontAwesomeIcon icon={faInstagram} />
                 </div>
 
                 <div className="section-one-part2-links-join">
@@ -71,26 +103,6 @@ const ShopPage = () => {
                     Join Little Leaf for workshops and other<br></br>events at
                     littleleafshop.com/pages/events!
                   </p>
-                </div>
-                <div className="section-one-part2-links-button">
-                  <h5>IMPACT</h5>
-                  <div className="section-one-part2-links-button-btn">
-                    <div className="impact-buttons">
-                      <button>Women-owned</button>
-                    </div>
-                    <div className="impact-buttons">
-                      <button>Gives Back</button>
-                    </div>
-                    <div className="impact-buttons">
-                      <button>Gives Back</button>
-                    </div>
-                    <div className="impact-buttons">
-                      <button>Gives Back</button>
-                    </div>
-                    <div className="impact-buttons">
-                      <button>Gives Back</button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -103,29 +115,39 @@ const ShopPage = () => {
             <div className="section-two-part1-infoloc">
               <div className="section-two-part1-info">
                 <div className="section-two-part1-working-days">
-                  <p>MONDAY</p>
-                  <p>TUESDAY</p>
-                  <p>WEDNESDAY</p>
-                  <p>MONDAY</p>
-                  <p>MONDAY</p>
-                </div>
-                <div className="section-two-part1-working-hours">
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
+                  {storeInfo?.addresses[0]?.businessHours?.map((item: any) => {
+                    return (
+                      <>
+                        <p>{item?.day}</p>
+                        <p>
+                          {item?.startTime} - {item?.closingTime}
+                        </p>
+                      </>
+                    );
+                  })}
                 </div>
               </div>
               <div className="section-two-part1-loc">
-                <p>1 309 5th Street Northeast Union Market</p>
-                <p>Washington, District of Columbia 20002</p>
-                <p>+ 1 202 . 5 56.1 86 6</p>
+                {storeInfo?.addresses.map((item: any) => {
+                  return (
+                    <>
+                      <p>{item?.location?.street}</p>
+                      <p>{item?.location?.city?.countryName}</p>
+                      {/* <p>{item?.location?.city} {item?.state} {item?.zipCode}</p> */}
+                      <p>{item?.location?.country}</p>
+                    </>
+                  );
+                })}
               </div>
             </div>
           </div>
           <div className="section-two-part2">
-            <img src={storeimg} />
+            <div
+              id="map"
+              style={{ width: 500, overflow: "hidden", background: "red" }}
+            >
+              <GoogleMap locations={shopeLocation} />
+            </div>
           </div>
         </div>
         <div className="section-three">

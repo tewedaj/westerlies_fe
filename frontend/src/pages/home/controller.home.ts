@@ -3,9 +3,9 @@ import axios from "axios";
 import { url } from "../../util/constant";
 
 export function 
-discoverNow(name: string){
+discoverNow(country: string,name: string,page: number){
     return new Promise((resolve, reject) => {
-        axios.get(url+'api/search/store/Ethiopia/'+name+'?page=0&size=20')
+        axios.get(url+'api/search/store/'+country+'/'+name+'?page='+page+'&size=10')
           .then(function (response:any) {
             console.log(response);
             resolve(response);
@@ -15,4 +15,20 @@ discoverNow(name: string){
           resolve(error);
           });
         });
+}
+
+export function
+getRandomStores(){
+  return new Promise((resolve, reject) => {
+    axios.get(url+'api/store/random/50')
+        .then(function (response:any) {
+        console.log(response);
+        resolve(response);
+        }
+        )
+        .catch(function (error: any) {
+        console.log(error);
+        resolve(error);
+        });
+      });
 }

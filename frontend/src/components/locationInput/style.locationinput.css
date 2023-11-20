@@ -1,0 +1,40 @@
+.locationSuggetion ul{
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    list-style-type: none;
+    padding:0px;
+    margin:0px;
+    width:39dvh;
+    overflow-x:hidden;
+}
+
+    .locationInput{
+        padding:15px;
+        color: white;
+    }
+
+    .locationInput::placeholder{
+        
+    }
+
+.locationSuggetion li{
+    margin:0px;
+    padding:0px;
+}
+
+.locationSuggetion li:hover{
+    margin:0px;
+    padding:0px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+input{
+    width:50dvh;
+}
+
+.locationSuggetion{
+   width: 40dvh;
+   overflow-x: hidden;
+}

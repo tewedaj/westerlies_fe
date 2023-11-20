@@ -1,4 +1,19 @@
-@import url("https://use.typekit.net/yfs0bso.css");
+.slideshow-container {
+    overflow: hidden;
+  }
+  
+  .learn-more.hide {
+    display: none;
+    transition: transform 5s ease-in-out; /* Adjust the duration and easing as needed */
+  }
+  
+
+  
+  /* Additional styles for each slide, such as width and positioning */
+  
+  
+  /* Add styles for other transitions, such as opacity, if desired */
+  @import url("https://use.typekit.net/yfs0bso.css");
 @import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
 :root {
   --background-color1:#FDF4ED;
@@ -216,6 +231,9 @@ a{
   display: flex;
   flex-direction: row;
   width:100%;
+  height: 100dvh;
+  transition: transform 5s ease-in-out; /* Adjust the duration and easing as needed */
+
 }
 .learn-more .store-description{
   text-align: center;
@@ -265,15 +283,15 @@ a{
   }
 
 .learn-more .store-img{
-  width: 100%; /* Make images automatically fit the screen width */
-  height: 100%; /* Maintain aspect ratio */
-  margin-right: -88px;
+  height: 100dvh; /* Maintain aspect ratio */
+  /* margin-right: -88px; */
 }
 
 .learn-more .featured{
-  width: 100%; 
+  width: 100dvh; 
   position: relative;
-  left: 18px;
+  width:100px;
+  right:-40px;
 }
 .learn-more .arrowbutton{
   margin-top: 350px;

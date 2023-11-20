@@ -26,10 +26,34 @@ const Footer = () => {
         </div>
 
         <div className="fimage-section">
-          <img src={footer1} />
-          <img src={footer2} />
-          <img src={footer3} />
-          <img src={footer4} />
+          <a
+            href="https://www.instagram.com/followthewesterlies/"
+            target="_blank"
+          >
+            {" "}
+            <img src={footer1} />{" "}
+          </a>
+          <a
+            href="https://www.instagram.com/followthewesterlies/"
+            target="_blank"
+          >
+            {" "}
+            <img src={footer2} />{" "}
+          </a>
+          <a
+            href="https://www.instagram.com/followthewesterlies/"
+            target="_blank"
+          >
+            {" "}
+            <img src={footer3} />{" "}
+          </a>
+          <a
+            href="https://www.instagram.com/followthewesterlies/"
+            target="_blank"
+          >
+            {" "}
+            <img src={footer4} />{" "}
+          </a>
         </div>
       </div>
       <div className="email-collection">

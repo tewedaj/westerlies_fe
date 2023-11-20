@@ -16,9 +16,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/Find A Shop" element={<FindAshop />} />
-          <Route path="/Find_A_Shop/:city" element={<FindAshop />} />
+          <Route path="/Find_A_Shop/:country/:city" element={<FindAshop />} />
 
           <Route path="/Shop Page" element={<ShopPage />} />
+          <Route path="/Shop_Page/:id" element={<ShopPage />} />
+
           <Route path="/Admin" element={<Main />} />
           <Route path="/store mgmt" element={<Storemgmt />} />
           <Route path="/email mgmt" element={<Emailmgmt />} />

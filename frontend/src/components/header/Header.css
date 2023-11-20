@@ -102,6 +102,7 @@ header span{
         top:100px; left:0;
         display:flex;
         align-items: center;
+        background-color: red;
         justify-content: center;
         z-index: 1;
 
