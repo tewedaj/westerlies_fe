@@ -14,9 +14,9 @@
 }
 .checklist{
     display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-left: 30px;
+    flex-direction: row;
+    padding: 2vh;
+    margin-left: 2vw;
     background-color: transparent;
 }
 .checklist h1{
@@ -34,6 +34,7 @@
     font-style: normal;
     font-size: 18px;
     color: #202D3F;
+   margin-left: 2vw;
 }
 .form-check-input{
     color: transparent;

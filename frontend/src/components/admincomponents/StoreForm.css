@@ -55,6 +55,34 @@
   display: flex;
   justify-content: right;
 }
+.address-section{
+  display: flex;
+  flex-direction: row;
+ 
+}
+.address-section .address-section-input{
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  height: 70%;
+
+}
+.add-rmv{
+  display: flex;
+  padding: 2%;
+}
+.add-rmv .col-md-6{
+  margin-left: 5%;
+}
+.address-section .map-section{
+  display: flex;
+  width: 50%;
+  height: 70%;
+  margin-left: 2%;
+}
+.address-section .map-section img{
+  width: 100%;
+}
 .nxt {
   justify-content: right;
   text-align: right; /* Align "Next" button to the right */

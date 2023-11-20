@@ -55,6 +55,7 @@
     font-weight: 500;
     font-size: 20px;
     position: relative;
+    color: #202D3F
 
 }
 .section-one-part1-image{
@@ -108,11 +109,37 @@
     letter-spacing: 2px;
     margin-right: 5%;
 }
+.section-one-part2-links-social h3{
+    margin-top: -2%;
+    margin-left: 2%;
+}
+.section-one-part2-links-join p{
+    margin-top: -2%;
+}
+.section-one-part2-links-button .impact-buttons button{
+    background-color: #E2DACF;
+    border: none;
+    width: 7vw;
+    height: 7vh;
+    color: #202D3F;
+    
+}
+.section-one-part2-links-button .impact-buttons{
+    
+    padding: 2%;
+}
+.section-one-part2-links-button .section-one-part2-links-button-btn{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -2%;
+}
+
 .section-one-part2-links-social, 
-.section-one-part2-links-join{
+.section-one-part2-links-join,.section-one-part2-links-button{
     display: flex;
     flex-direction: row;
     margin-bottom: 5%;
+  
 }
 .section-two{
     display: flex;

@@ -1,8 +1,11 @@
 import { useState } from "react";
 
+import storeimg from "../../assets/footer3.png";
 import "./StoreForm.css";
 import { StoreForm } from "./prop.StoreForm";
 import Multiselect from "multiselect-react-dropdown";
+import { IoIosRemoveCircle } from "react-icons/io";
+import { BsHouseAddFill } from "react-icons/bs";
 
 const StoreForm = (StoreForm: StoreForm) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -12,12 +15,12 @@ const StoreForm = (StoreForm: StoreForm) => {
     phone: "",
     about: "",
     eventsClasses: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
+    address: [{ street: "", city: "", state: "", zip: "" }],
     website: "",
     instagram: "",
+    facebook: "",
+    wechat: "",
+    weibo: "",
     tikTok: "",
     additionalInfo: "",
     startTime: "",
@@ -27,7 +30,36 @@ const StoreForm = (StoreForm: StoreForm) => {
     socialImpactTags: [],
     offerClasses: "yes", // or "no"
   });
-  const steps = ["Store Info", "Working Hours", "Tags"];
+  const steps = ["Store Info", "Address", "Working Hours", "Tags"];
+  const handleAddressChange = (index: number, field: string, value: string) => {
+    const updatedAddresses = [...formData.address];
+    // updatedAddresses[index][field] = value;
+
+    setFormData({
+      ...formData,
+      address: updatedAddresses,
+    });
+  };
+
+  const handleAddAddress = () => {
+    setFormData({
+      ...formData,
+      address: [
+        ...formData.address,
+        { street: "", city: "", state: "", zip: "" },
+      ],
+    });
+  };
+
+  const handleRemoveAddress = (index: number) => {
+    const updatedAddresses = [...formData.address];
+    updatedAddresses.splice(index, 1);
+
+    setFormData({
+      ...formData,
+      address: updatedAddresses,
+    });
+  };
 
   const handleInputChange = (event: { target: { name: any; value: any } }) => {
     const { name, value } = event.target;
@@ -128,32 +160,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                   id="inputGroupFile02"
                 />
               </div>
-              <div className="col-md-6">
-                <label htmlFor="inputEmail4" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="inputEmail4"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputPhone" className="form-label">
-                  Phone
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="inputPhone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                />
-              </div>
+
               <div className="col-md-6">
                 <span className="input-group-text">About</span>
                 <textarea
@@ -175,61 +182,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                 ></textarea>
               </div>
 
-              <div className="col-12">
-                <label htmlFor="inputAddress" className="form-label">
-                  Address
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputAddress"
-                  placeholder="1234 Main St"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="inputCity" className="form-label">
-                  City
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputCity"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="col-md-4">
-                <label htmlFor="inputState" className="form-label">
-                  State
-                </label>
-                <select
-                  id="inputState"
-                  className="form-select"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleInputChange}
-                >
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select>
-              </div>
-              <div className="col-md-2">
-                <label htmlFor="inputZip" className="form-label">
-                  Zip
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputZip"
-                  name="zip"
-                  value={formData.zip}
-                  onChange={handleInputChange}
-                />
-              </div>
               <div className="col-md-6">
                 <div className="input-group mb-3">
                   <span
@@ -274,6 +226,25 @@ const StoreForm = (StoreForm: StoreForm) => {
                     className="input-group-text"
                     id="inputGroup-sizing-default"
                   >
+                    Facebook
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="website"
+                    value={formData.facebook}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-3">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     TikTok
                   </span>
                   <input
@@ -288,18 +259,186 @@ const StoreForm = (StoreForm: StoreForm) => {
                 </div>
               </div>
               <div className="col-md-6">
-                <span className="input-group-text">Additional Information</span>
-                <textarea
-                  className="form-control"
-                  aria-label="With textarea"
-                  name="additionalIfo"
-                  value={formData.additionalInfo}
-                  onChange={handleInputChange}
-                ></textarea>
+                <div className="input-group mb-3">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
+                    Weibo
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="website"
+                    value={formData.weibo}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="input-group mb-3">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
+                    WeChat
+                  </span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default"
+                    name="website"
+                    value={formData.wechat}
+                    onChange={handleInputChange}
+                  />
+                </div>
               </div>
             </>
           )}
           {currentStep === 1 && (
+            /* Working Hours */
+            <>
+              {formData.address.map((address, index) => (
+                <div key={index} className="address-section">
+                  <div className="address-section-input">
+                    <div className="col-12">
+                      <label
+                        htmlFor={`inputStreet${index}`}
+                        className="form-label"
+                      >
+                        Street
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id={`inputStreet${index}`}
+                        placeholder="1234 Main St"
+                        value={address.street}
+                        onChange={(e) =>
+                          handleAddressChange(index, "street", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label
+                        htmlFor={`inputCity${index}`}
+                        className="form-label"
+                      >
+                        City
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id={`inputCity${index}`}
+                        value={address.city}
+                        onChange={(e) =>
+                          handleAddressChange(index, "city", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div className="col-md-4">
+                      <label
+                        htmlFor={`inputState${index}`}
+                        className="form-label"
+                      >
+                        State
+                      </label>
+                      <select
+                        id={`inputState${index}`}
+                        className="form-select"
+                        value={address.state}
+                        onChange={(e) =>
+                          handleAddressChange(index, "state", e.target.value)
+                        }
+                      >
+                        <option selected>Choose...</option>
+                        {/* Add your state options here */}
+                      </select>
+                    </div>
+                    <div className="col-md-2">
+                      <label
+                        htmlFor={`inputZip${index}`}
+                        className="form-label"
+                      >
+                        Zip
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id={`inputZip${index}`}
+                        value={address.zip}
+                        onChange={(e) =>
+                          handleAddressChange(index, "zip", e.target.value)
+                        }
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="inputEmail4" className="form-label">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="inputEmail4"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="inputPhone" className="form-label">
+                        Phone
+                      </label>
+                      <input
+                        type="number"
+                        className="form-control"
+                        id="inputPhone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <span className="input-group-text">
+                        Additional Information
+                      </span>
+                      <textarea
+                        className="form-control"
+                        aria-label="With textarea"
+                        name="additionalIfo"
+                        value={formData.additionalInfo}
+                        onChange={handleInputChange}
+                      ></textarea>
+                    </div>
+                    <div className="add-rmv">
+                      <div className="col-md-6">
+                        <h2>
+                          <BsHouseAddFill onClick={handleAddAddress} />
+                        </h2>
+                      </div>
+                      {index > 0 && (
+                        <div className="col-md-6">
+                          <h2>
+                            <IoIosRemoveCircle
+                              onClick={() => handleRemoveAddress(index)}
+                            />
+                          </h2>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="map-section">
+                    <img src={storeimg}></img>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+
+          {currentStep === 2 && (
             /* Working Hours */
             <>
               <div className="col-md-6">
@@ -347,7 +486,7 @@ const StoreForm = (StoreForm: StoreForm) => {
               </div>
             </>
           )}
-          {currentStep === 2 && (
+          {currentStep === 3 && (
             /* Tags */
             <>
               <div className="col-md-6">

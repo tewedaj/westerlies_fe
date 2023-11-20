@@ -56,9 +56,13 @@ const ShopPage = () => {
               <div className="section-one-part2-links">
                 <div className="section-one-part2-links-social">
                   <h5>SOCIAL</h5>
-                  <FontAwesomeIcon icon={faFacebookF} />
+                  <h3>
+                    <FontAwesomeIcon icon={faFacebookF} />
+                  </h3>
                   &nbsp;&nbsp;&nbsp;
-                  <FontAwesomeIcon icon={faInstagram} />
+                  <h3>
+                    <FontAwesomeIcon icon={faInstagram} />
+                  </h3>
                 </div>
 
                 <div className="section-one-part2-links-join">
@@ -67,6 +71,26 @@ const ShopPage = () => {
                     Join Little Leaf for workshops and other<br></br>events at
                     littleleafshop.com/pages/events!
                   </p>
+                </div>
+                <div className="section-one-part2-links-button">
+                  <h5>IMPACT</h5>
+                  <div className="section-one-part2-links-button-btn">
+                    <div className="impact-buttons">
+                      <button>Women-owned</button>
+                    </div>
+                    <div className="impact-buttons">
+                      <button>Gives Back</button>
+                    </div>
+                    <div className="impact-buttons">
+                      <button>Gives Back</button>
+                    </div>
+                    <div className="impact-buttons">
+                      <button>Gives Back</button>
+                    </div>
+                    <div className="impact-buttons">
+                      <button>Gives Back</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
