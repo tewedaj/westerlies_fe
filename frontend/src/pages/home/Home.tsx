@@ -16,17 +16,27 @@ import blog3 from "../../assets/home/blog3.png";
 import arrowbutton from "../../assets/home/arrow_in_circle.svg";
 import Footer from "../../components/footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
-import { discoverNow } from "./controller.home";
-import { useState } from "react";
+import { discoverNow, getRandomStores } from "./controller.home";
+import { useEffect, useState } from "react";
 import { Loading } from "../../components/loading/loading";
 import LocationInput from "../../components/locationInput/locationInput";
+import Slideshow from "../../components/slideShow/slideshow";
+import HeroImage from "../../components/heroImage/HeroImage";
 const Home = () => {
   const [tobeDiscovered, setTobeDiscovered] = useState("");
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  const [randomStores, setRandomStores] = useState<any[]>([]);
 
-  
+  useEffect(() => {
+    getRandomStores().then((res: any) => {
+      setRandomStores(res.data);
+    }
+    );
+
+  },[]);
+
 
   const navigator = useNavigate();
   return (
@@ -42,7 +52,8 @@ const Home = () => {
       <div className="content">
         <div className="hero-section">
           <div className="hero">
-            <img src={hero} alt="Hero" />
+            {/* <img src={hero} alt="Hero" /> */}
+            <HeroImage urls={randomStores}/>
           </div>
 
           <div className="hero-text-section">
@@ -114,7 +125,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="learn-more">
+        {/* <div className="learn-more">
           <img className="arrowbutton" src={arrowbutton} />
           <div className="store-description">
             <h1>Salt & Honey Market</h1>
@@ -131,7 +142,10 @@ const Home = () => {
             <img className="store-img" src={storeImage} />
           </div>
           <img className="arrowbutton" src={arrowbutton} />
-        </div>
+        </div> */}
+
+        <Slideshow slides={randomStores} navigator={navigator} />
+
 
         <div className="learn-more-mobile">
           <img src={storeImage} />
@@ -143,7 +157,9 @@ const Home = () => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
               carry, etc.
             </p>
-            <button type="button">LEARN MORE</button>
+            <button 
+            
+            type="button">LEARN MORE</button>
           </div>
           <div></div>
         </div>
@@ -153,28 +169,28 @@ const Home = () => {
           <div className="images-section">
             <div className="first">
               <img src={blog1} />
-              <h2>BLOG POST TITLE HERE</h2>
+              {/* <h2>BLOG POST TITLE HERE</h2>
               <p>
                 Have something specific in mind? Discover the <br></br>latest
                 from local artisans & small shops.
-              </p>
+              </p> */}
             </div>
             <div className="first">
               <img src={blog2} />
-              <h2>BLOG POST TITLE HERE</h2>
+              {/* <h2>BLOG POST TITLE HERE</h2>
               <p>
                 Have something specific in mind? Discover the<br></br> latest
                 from local artisans & small shops.
-              </p>
+              </p> */}
             </div>
 
               <div className="first">
                 <img src={blog3} />
-                <h2>BLOG POST TITLE HERE</h2>
+                {/* <h2>BLOG POST TITLE HERE</h2>
                 <p>
                   Have something specific in mind? Discover the <br></br>latest
                   from local artisans & small shops.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -190,6 +206,7 @@ const Home = () => {
               <button>MORE ABOUT US</button>
             </Link>
           </div>
+     
           <Footer />
         </div>
       

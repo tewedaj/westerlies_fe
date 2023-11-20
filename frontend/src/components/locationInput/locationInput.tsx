@@ -8,6 +8,7 @@ interface LocationInputProps {
 function LocationInput({ callBack }: LocationInputProps) {
   const [city, setCity] = useState('');
   const [locations, setLocations] = useState([]);
+  const [selected,setSelected ] = useState(false);
   const [apiKey] = useState('AIzaSyBXKcXjKnsuqS48iQOuXc-ruvr0vV8iCLs'); // Replace with your actual Google API key
 
   const handleCityChange = (e:any) => {
@@ -41,7 +42,7 @@ function LocationInput({ callBack }: LocationInputProps) {
 
   useEffect(() => {
     
-if (city) {
+if (city && !selected ) {
   // Use the Google Places API to fetch location predictions
   axios
     .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json`, {
@@ -57,7 +58,6 @@ if (city) {
     .then((response) => {
       const data = response.data;
       if (data.status === 'OK') {
-        console.log('DARAAAA: ', data);
         setLocations(data.predictions);
       } else {
         setLocations([]);
@@ -66,6 +66,9 @@ if (city) {
     .catch((error) => {
       console.error('Error fetching location predictions:', error);
     });
+}else{
+  setSelected(false);
+
 }
   }, [city, apiKey]);
 
@@ -75,15 +78,19 @@ if (city) {
   console.log("MESSAGE: ",message);
   callBack(message?.city,message?.country)
 
+
     setCity(location.description);
+    setSelected(true);
     setLocations([]);
+
   };
 
   return (
-    <div>
+    <div className={"locationSuggetion"}>
       <input
+      className="locationInput"
         type="text"
-        placeholder="Enter a city"
+        placeholder="ENTER LOCATION (e.g. city name, zip code)"
         value={city}
         onChange={handleCityChange}
       />

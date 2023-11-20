@@ -16,6 +16,7 @@ const FindAshop = () => {
   const [country,setCountry] = useState(param?.country);
   const [shopList, setShopList] = useState<any[]>([]);
   const [page, setPage] = useState<number>(0);
+  const [hasClasses, setHasClasses] = useState(true);
 
 
   useEffect(() => {
@@ -88,7 +89,9 @@ const FindAshop = () => {
             PRODUCT
           </a>
           <a onClick={() => setShowFilter(true)}>SOCIAL IMPACT</a>
-          <a onClick={() => setShowFilter(true)}>OFFERS CLASSES</a>
+          <a style={{background: hasClasses? 'gray' : 'transparent'}} onClick={() => {
+              setHasClasses(!hasClasses)
+          }}>OFFERS CLASSES</a>
         </div>
         <Filterlist
           isOpen={showFilter}
@@ -106,7 +109,7 @@ const FindAshop = () => {
           <div className="result-container">
       
           {shopList.length > 0 && page >= 0 &&  shopList?.map((shop:any,index) => {
-              if(index > page && index <= page+10){
+              if((index > page && index <= page+10) && shop.hasClass == hasClasses ){
               return (
               <Shope name={shop.name} image={shop.profilePicture?.replace("api.westerlies.io","apibeta.westerlies.com") } primaryKey={shop.primaryKey} address={""} phone={""} email={""} status={0} />
               );

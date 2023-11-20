@@ -1,0 +1,414 @@
+.slideshow-container {
+    overflow: hidden;
+  }
+  
+  .learn-more.hide {
+    display: none;
+    transition: transform 5s ease-in-out; /* Adjust the duration and easing as needed */
+  }
+  
+
+  
+  /* Additional styles for each slide, such as width and positioning */
+  
+  
+  /* Add styles for other transitions, such as opacity, if desired */
+  @import url("https://use.typekit.net/yfs0bso.css");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+:root {
+  --background-color1:#FDF4ED;
+  --color1:#202D3F;
+  --color2:#3779A6;
+  --color3:#FFF8F2;
+  --color4:#FBF3EC;
+  --color5:hwb(24 56% 14%);
+  --color6:#B3553D;
+}
+
+.learn-more-mobile{
+  display: none;
+}
+.container-abc {
+  position: absolute;
+  display: flex;
+  max-width: 100%;
+  top:0px;
+  left:0px;
+  min-height: 100%;
+  display:flex;
+  flex-direction: column;
+  background-color: white;
+  /* overflow-y: scroll; */
+}
+
+.content {
+  background-color: var(--background-color1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section {
+  background-image: url('../../assets/home/homebg1.png');
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  
+ 
+}
+
+a{
+  color:white;
+  text-decoration: none;
+}
+
+.hero-section .hero {
+  margin-top: 100px;
+  position: relative;
+  width: 50%;
+  margin-bottom: 10%;
+}
+.hero img{
+  width: 100%;
+  height: auto;
+}
+
+
+
+ .hero-section .hero-text-section {
+  color: #FBF3EC;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;  
+  width: 50%;
+  margin-left: 5%;
+}
+.hero-section .hero-text-section h1 {
+  font-family: "brandon-grotesque", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 44px;
+  letter-spacing:2px;
+  line-height: 1.15;
+}
+.hero-section .hero-text-section h3 {
+  margin-top: -15px;
+  letter-spacing: 2px;
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color:  rgb(208, 206, 206);
+}
+.hero-section .hero-text-section p {
+  margin-top: 7px;
+  font-family: 'Alegreya', serif;
+  font-weight: 100;
+  font-size: 20px;
+  color: rgb(208, 206, 206)
+  
+}
+.hero-section .hero-text-section .search{
+  display: flex;
+  flex-direction: row;
+}
+
+.hero-section .hero-text-section .search input {
+  height: 55px;
+  width: 370px;
+  border: 1px solid rgba(251, 243, 236, 0.8) ;
+  background-color: rgb(96,96,96, 0.5);
+  margin-top: 10px;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+
+
+#heroo::placeholder {
+  color: #a2a2a1;
+  font-family: cursive;
+}
+.hero-section .hero-text-section .search button {
+  position: relative;
+  margin-left: 10px;
+  height: 55px;
+  width: 200px;
+  color:#202D3F;
+  border: 1px solid rgb(219, 174, 143);
+  background-color:var(--color5);
+  margin-top: 10px;
+  font-size: 15px;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.hero-section .hero-text-section button:hover {
+  opacity: 0.7;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+
+
+.start-exploring {
+  background-color:#FBF3EC;
+  position: relative;
+  display: flex;
+  width:100%;
+  flex-direction: column; 
+}
+.start-exploring h1 {
+  position: relative;
+  margin-top: 80px;
+  text-align: center; /* Center the text */
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 43px;
+  color: #202D3F;
+}
+
+.start-exploring .images-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:50px;
+}
+.start-exploring .images-section .first,
+.start-exploring .images-section .second,
+.start-exploring .images-section .third {
+  padding: 50px;
+  text-align: center;
+}
+
+.start-exploring .images-section img {
+  width: 300px;
+
+}
+.start-exploring .images-section h2 {
+  position: relative;
+  margin-left: 0; /* Remove margin */
+  margin-top: 30px;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+.start-exploring .images-section p{
+  font-family: 'Alegreya', serif;
+  font-weight: 100;
+  font-size: 20px;
+}
+.start-exploring .images-section button{
+  position: relative;
+  height: 55px;
+  width: 200px;
+  color: #FDF4ED;
+  background-color:var(--color2);
+  border: none;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  letter-spacing: 2px;
+}
+ .learn-more {
+  background-color: var(--color5);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width:100%;
+  height: 100dvh;
+  transition: transform 5s ease-in-out; /* Adjust the duration and easing as needed */
+
+}
+.learn-more .store-description{
+  text-align: center;
+  margin-top: 300px;
+  position: relative;
+  width: 40%;
+}
+
+.learn-more-images{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+}
+.learn-more .store-description h1 {
+  color: var(--color1);
+  font-family:"brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 43px;
+}
+.learn-more .store-description h3 {
+  color: var(--color1);
+  font-family: "brandon-grotesque", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+.learn-more .store-description p{
+  color: var(--color1);
+  font-family:  'Alegreya', serif;;
+  font-weight: 500;
+  font-size: 20px;
+}
+.learn-more .store-description button{
+    position: relative;
+    height: 55px;
+    width: 200px;
+    color:rgba(253, 244, 237, 0.8);
+    background-color:var(--color6);
+    border: none;
+    font-size: 15px;
+   font-family:'Freight Sans Pro Medium', sans-serif;
+   font-weight: 500;
+   letter-spacing: 2px;
+   margin-top: 15px;
+  }
+
+.learn-more .store-img{
+  height: 100dvh; /* Maintain aspect ratio */
+  /* margin-right: -88px; */
+}
+
+.learn-more .featured{
+  width: 100dvh; 
+  position: relative;
+  width:100px;
+  right:-40px;
+}
+.learn-more .arrowbutton{
+  margin-top: 350px;
+  width: 90px;
+  height: 100px;
+  opacity: 0.75;
+}
+  .blog-section {
+    background-color:  #FBF3EC;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+  }
+   .blog-section h1 {
+    color: var(--color1);
+    position: relative;
+    margin-top: 100px;
+    text-align: center; /* Center the text */
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-weight: 500;
+    font-size: 28px;
+    font-weight: 500;
+    font-style: normal;
+    margin:80px;
+    letter-spacing: 5px;
+  }
+   .blog-section .images-section {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width:100%;
+    flex-wrap: wrap;
+
+  }
+   .blog-section .images-section .first,
+   .blog-section .images-section .second,
+   .blog-section .images-section .third {
+     /* Add spacing between divs */
+    
+  }
+  
+   .blog-section .images-section img {
+  
+    height: 400px;
+  }
+   .blog-section .images-section h2 {
+    color: var(--color1);
+    position: relative;
+    margin-top: 20px;
+    text-align: left; /* Center the text */
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+   .blog-section .images-section p{
+    color: var(--color1);
+    font-family: 'Alegreya', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 5px;
+    text-align: justify;
+  }
+   .mission-section {
+    background-image: url('../../assets/home/ourmissionbg.png');
+    background-color: #FBF3EC;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the items horizontally */
+    text-align: center;
+  }
+   .mission-section h1{
+    color: var(--color1);
+    position: relative;
+    margin-top: 250px;
+    text-align: center; /* Center the text */
+    font-family:"brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-size: 43px;
+    font-style: normal;
+    letter-spacing: 7px;
+  }
+.mission-section p{
+    color: var(--color1);
+    font-family: 'Alegreya', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .mission-section button{
+    color:#202D3F;
+    position: relative;
+   height: 55px;
+   width: 200px;
+  background-color:var(--color5);
+  margin-top: 35px;
+  font-size: 15px;
+  font-family: 'Freight Sans Pro Medium', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 2px;
+  margin-bottom: 150px;
+  border: none;
+  }
