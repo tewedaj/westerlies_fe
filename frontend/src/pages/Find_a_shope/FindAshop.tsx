@@ -8,6 +8,7 @@ import { discoverNow } from "../home/controller.home";
 import Shope from "../../components/shope/shope";
 import Filterlist from "../../components/findashop/Filterlist";
 import GoogleMap from "../../components/mapComponent/mapComponent";
+import logo from "../../assets/logo.png";
 
 const FindAshop = () => {
   const param: any = useParams();
@@ -150,7 +151,7 @@ const FindAshop = () => {
                     }
                   }}
                 >
-                  <p className="page-link" href="" aria-label="Previous">
+                  <p className="page-link" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </p>
                 </li>

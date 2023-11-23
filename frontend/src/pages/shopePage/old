@@ -1,0 +1,18 @@
+ <div className="section-two-part1-infoloc">
+              <div className="section-two-part1-info">
+                <div className="section-two-part1-working-days">
+                  <p>MONDAY</p>
+                  <p>TUESDAY</p>
+                  <p>WEDNESDAY</p>
+                  <p>MONDAY</p>
+                  <p>MONDAY</p>
+                </div>
+                <div className="section-two-part1-working-hours">
+                  <p>12pm - 6pm</p>
+                  <p>12pm - 6pm</p>
+                  <p>12pm - 6pm</p>
+                  <p>12pm - 6pm</p>
+                  <p>12pm - 6pm</p>
+                </div>
+              </div>
+              <div className="section-two-part1-loc">

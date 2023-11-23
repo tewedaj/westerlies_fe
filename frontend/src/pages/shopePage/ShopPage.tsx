@@ -6,23 +6,15 @@ import storeimg from "../../assets/footer3.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import Footer from "../../components/footer/Footer";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { useEffect, useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import Footer from "../../components/footer/Footer";
 import { useParams } from "react-router-dom";
 import { getStoreDetailInfo } from "./shopeController";
 import GoogleMap from "../../components/mapComponent/mapComponent";
 
 const ShopPage = () => {
-  const [isNavbarVisibletwo] = useState(true);
-  const [navbarcolor] = useState(false);
-  const [shopePage] = useState(true);
   const [isNavbarVisibletwo] = useState(true);
   const [navbarcolor] = useState(false);
   const [shopePage] = useState(true);
@@ -55,13 +47,7 @@ const ShopPage = () => {
         navbarcolor={navbarcolor}
         shopePage={shopePage}
       />
-      <Header
-        headerBg={bg1}
-        logo={logo}
-        navbartwo={isNavbarVisibletwo}
-        navbarcolor={navbarcolor}
-        shopePage={shopePage}
-      />
+
       <div className="container-3">
         <div className="section-one">
           <div className="section-one-part1">
@@ -116,15 +102,17 @@ const ShopPage = () => {
               <div className="section-two-part1-info">
                 <div className="section-two-part1-working-days">
                   {storeInfo?.addresses[0]?.businessHours?.map((item: any) => {
+                    return <p>{item?.day}</p>;
+                  })}{" "}
+                </div>
+                <div className="section-two-part1-working-hours">
+                  {storeInfo?.addresses[0]?.businessHours?.map((item: any) => {
                     return (
-                      <>
-                        <p>{item?.day}</p>
-                        <p>
-                          {item?.startTime} - {item?.closingTime}
-                        </p>
-                      </>
+                      <p>
+                        {item?.startTime} - {item?.closingTime}
+                      </p>
                     );
-                  })}
+                  })}{" "}
                 </div>
               </div>
               <div className="section-two-part1-loc">
