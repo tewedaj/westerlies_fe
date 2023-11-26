@@ -1,18 +1,45 @@
- <div className="section-two-part1-infoloc">
-              <div className="section-two-part1-info">
-                <div className="section-two-part1-working-days">
-                  <p>MONDAY</p>
-                  <p>TUESDAY</p>
-                  <p>WEDNESDAY</p>
-                  <p>MONDAY</p>
-                  <p>MONDAY</p>
-                </div>
-                <div className="section-two-part1-working-hours">
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                  <p>12pm - 6pm</p>
-                </div>
-              </div>
-              <div className="section-two-part1-loc">
+<div className="section-one">
+  <div className="section-one-part1">
+    <div className="section-one-part1-link">
+      <a>
+        <IoIosArrowBack /> Back to Directory
+      </a>
+    </div>
+
+    <div className="section-one-part1-image">
+      <img
+        src={storeInfo?.profilePicture
+          .replace("http://", "https://")
+          .replace("api.westerlies.io", "apibeta.westerlies.com")}
+      />
+    </div>
+  </div>
+
+  <div className="section-one-part2">
+    <div className="section-one-part2-text-section">
+      <h1>{storeInfo?.name} </h1>
+      <p>{storeInfo?.description}</p>
+    </div>
+    <div className="section-one-part2-link-section">
+      <p>
+        Also visit their sister store Little Leaf at littleleafshop.com!
+      </p>
+      <div className="section-one-part2-links">
+        <div className="section-one-part2-links-social">
+          <h5>SOCIAL</h5>
+          <FontAwesomeIcon icon={faFacebookF} />
+          &nbsp;&nbsp;&nbsp;
+          <FontAwesomeIcon icon={faInstagram} />
+        </div>
+
+        <div className="section-one-part2-links-join">
+          <h5>JOIN IN</h5>
+          <p className="description">
+            Join Little Leaf for workshops and other<br></br>events at
+            littleleafshop.com/pages/events!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

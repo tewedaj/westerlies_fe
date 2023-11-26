@@ -1,6 +1,5 @@
 
 
-
 export interface ShopeProp {
     name: string;
     primaryKey: string;
@@ -9,4 +8,5 @@ export interface ShopeProp {
     email: string;
     image: string;
     status: number;
+    callBack: Function;
 }

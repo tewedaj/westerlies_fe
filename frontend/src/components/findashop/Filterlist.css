@@ -14,7 +14,7 @@
 }
 .checklist{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 2vh;
     margin-left: 2vw;
     background-color: transparent;

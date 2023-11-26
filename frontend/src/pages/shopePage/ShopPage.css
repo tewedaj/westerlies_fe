@@ -72,7 +72,7 @@
 }
 .section-one-part1 img{
     width: 90%;
-    height: 55%;
+    height: 70dvh;
 }
 .section-one-part2-text-section{
     position: relative;
@@ -200,6 +200,7 @@
     flex-direction: row;
     border-right: 2px solid rgb(196, 196, 196);
     padding: 20px;
+    margin-left: 5%;
 }
 .section-two-part1-loc{
     display: flex;

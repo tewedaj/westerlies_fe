@@ -3,7 +3,7 @@ import Footer from "../../components/footer/Footer";
 import img from "../../assets/footer1.png";
 import "./FindAshop.css";
 import Header from "../../components/header/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { discoverNow } from "../home/controller.home";
 import Shope from "../../components/shope/shope";
 import Filterlist from "../../components/findashop/Filterlist";
@@ -17,6 +17,7 @@ const FindAshop = () => {
   const [shopList, setShopList] = useState<any[]>([]);
   const [page, setPage] = useState<number>(0);
   const [hasClasses, setHasClasses] = useState(true);
+  const navigator = useNavigate();
 
   useEffect(() => {
     // get item list from here and set it to shopList
@@ -90,11 +91,19 @@ const FindAshop = () => {
           >
             PRODUCT
           </a>
-          <a onClick={() => setShowFilter(true)}>SOCIAL IMPACT</a>
           <a
-            style={{ background: hasClasses ? "gray" : "transparent" }}
+            onClick={() => {
+              setShowFilter(!showFilter);
+              setSelectedFilter("SOCIAL IMPACT");
+            }}
+          >
+            SOCIAL IMPACT
+          </a>
+          <a
             onClick={() => {
               setHasClasses(!hasClasses);
+              setShowFilter(!showFilter);
+              setSelectedFilter(" OFFERS CLASSES");
             }}
           >
             OFFERS CLASSES
@@ -129,6 +138,9 @@ const FindAshop = () => {
                           "api.westerlies.io",
                           "apibeta.westerlies.com"
                         )}
+                        callBack={() => {
+                          navigator("/shop_page/" + shop.storeId);
+                        }}
                         primaryKey={shop.primaryKey}
                         address={""}
                         phone={""}
