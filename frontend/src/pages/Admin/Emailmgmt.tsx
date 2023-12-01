@@ -4,11 +4,12 @@ import "./responsive.css";
 import "./style.css";
 import DataTable from "react-data-table-component";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiExport } from "react-icons/bi";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { FcSearch } from "react-icons/fc";
 import EmailForm from "../../components/admincomponents/EmailForm";
+import { useNavigate } from "react-router-dom";
 // Define the type for your data object
 interface EmailData {
   email: string;
@@ -75,6 +76,16 @@ const Emailmgmt = () => {
   const filteredData = data.filter((item) =>
     item.email.toLowerCase().includes(searchText.toLowerCase())
   );
+  const navigate = useNavigate();
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+    if (!isAuthenticated) {
+      navigate("/login");
+    } else {
+      navigate("/email mgmt");
+    }
+  }, []);
   return (
     <>
       <Aheader></Aheader>

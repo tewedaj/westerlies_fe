@@ -42,8 +42,8 @@
     font-family: "brandon-grotesque", sans-serif;
     font-weight: 500;
     font-size: 20px;
-    margin-bottom: -30px;
-    margin-top: 7px;
+    margin-bottom: 3vh;
+    margin-top: 1vh;
     line-height: 1.15;
 }
 
@@ -55,13 +55,14 @@
     font-family:  'Alegreya', sans-serif;
     margin-left: 50px;
     margin-right: 50px;
-    margin-top: 10px;
+    margin-top: 1.5vh;
     
 }
 .section-1 .text-section .description p{
     text-align: center;
     justify-content: center;
-    margin-bottom: -30px;
+    margin-bottom: 3vh;
+    line-height: 1.35;
 }
 
 .section-1 .image-section{

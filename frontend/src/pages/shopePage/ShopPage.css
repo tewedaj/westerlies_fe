@@ -26,7 +26,6 @@
 
 .section-one{
     color: var(--color1);
-    color: var(--color1);
     display: flex;
     position:relative;
     flex-direction: row;
@@ -35,12 +34,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 120vh;
-    background-image: url('../../assets/shopPage/bg1.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 120vh;
+    height:150vh;
 }
 .section-one-part1{
     display: flex;
@@ -74,6 +68,7 @@
     width: 90%;
     height: 70dvh;
 }
+
 .section-one-part2-text-section{
     position: relative;
     margin-top: 15%;
@@ -85,6 +80,7 @@
     font-size: 50px;
     letter-spacing:2px;
     line-height: 1.15;
+    
 }
 .section-one-part2-text-section p{
     position: relative;
@@ -92,6 +88,7 @@
     font-family: 'Alegreya', serif;
   font-weight: 100;
   font-size: 20px;
+  
 }
 .section-one-part2-link-section{
     display: flex;
@@ -133,13 +130,14 @@
     
 }
 .section-one-part2-links-button .impact-buttons{
-    
+  
     padding: 2%;
 }
 .section-one-part2-links-button .section-one-part2-links-button-btn{
     display: flex;
     flex-wrap: wrap;
     margin-top: -2%;
+   
 }
 
 .section-one-part2-links-social, 

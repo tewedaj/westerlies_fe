@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LuMailCheck } from "react-icons/lu";
 import { LiaStoreSolid } from "react-icons/lia";
 import { BiLogOutCircle } from "react-icons/bi";
@@ -6,7 +6,16 @@ import { FiSettings } from "react-icons/fi";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import { PiArticleNyTimes } from "react-icons/pi";
 import { ImBlog } from "react-icons/im";
+
 const Anavbar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("authToken");
+    // Add any other cleanup logic here
+
+    navigate("/login");
+  };
   return (
     <div className="navcontainer">
       <nav className="nav">
@@ -63,7 +72,7 @@ const Anavbar = () => {
             <h3>
               <BiLogOutCircle />
             </h3>
-            <Link to="/admin">Logout</Link>
+            <button onClick={handleLogout}>Logout</button>
           </div>
         </div>
       </nav>

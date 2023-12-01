@@ -7,7 +7,8 @@ import ShopPage from "./pages/shopePage/ShopPage";
 import Main from "./pages/Admin/Main";
 import Storemgmt from "./pages/Admin/Storemgmt";
 import Emailmgmt from "./pages/Admin/Emailmgmt";
-import StoreForm from "./components/admincomponents/StoreForm";
+import { LoginPage } from "./pages/Admin/login/LoginPage";
+
 function App() {
   return (
     <>
@@ -24,7 +25,7 @@ function App() {
           <Route path="/Admin" element={<Main />} />
           <Route path="/store mgmt" element={<Storemgmt />} />
           <Route path="/email mgmt" element={<Emailmgmt />} />
-          <Route path="/form" element={<StoreForm />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </Router>
     </>

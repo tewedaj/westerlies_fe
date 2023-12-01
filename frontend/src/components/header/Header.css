@@ -31,7 +31,8 @@ header .logo{
     justify-content: center;
 }
 header .logo img{
-width: 40%;
+width: 30%;
+
     
 }
 header .navbar{
@@ -50,15 +51,16 @@ header .navbar{
 header .navbar ul{
     list-style-type: none;
     display: flex;
+    margin-top: 2vh;
 }
 header .navbar ul li a{
-    padding: 20px;
+    padding: 15px;
     text-transform: uppercase; 
     text-decoration: none;
     font-family:  "brandon-grotesque", sans-serif;
     font-size: 14px;
-  
     letter-spacing: 2px;
+    font-weight: 600;
 }
 .navbarcolor1 li a{
     color: var(--color4);

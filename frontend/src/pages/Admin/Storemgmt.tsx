@@ -5,45 +5,37 @@ import Anavbar from "../../components/admincomponents/Anavbar";
 import plus from "../../assets/admin/plus.png";
 import { useEffect, useState } from "react";
 import StoreForm from "../../components/admincomponents/StoreForm";
-import getAdminStores from "./controller.admin";
+import { getStore, StoreData } from "./controller.admin";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { FcSearch } from "react-icons/fc";
-
-// Define the type for your data object
-interface StoreData {
-  storeName: string;
-  city: string;
-  country: string;
-}
+import { useNavigate } from "react-router-dom";
 
 const Storemgmt = () => {
   const [searchText, setSearchText] = useState("");
-  // const [data, setData] = useState<StoreData[]>([]); // Define the setData function
-
-  // useEffect(() => {
-  //   getAdminStores(1, 10) // Replace page and size with the values you want
-  //     .then((data) => {
-  //       setData(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-  };
+  const [storeData, setStoreData] = useState<StoreData[]>([]);
+  const [addStore, setAddstore] = useState<boolean>(false);
   const columns = [
     {
       name: "Store Name",
-      selector: (row: StoreData) => row.storeName,
+      selector: (row: StoreData): string => row.name,
     },
     {
       name: "City",
-      selector: (row: StoreData) => row.city,
+      selector: (row: StoreData): string => {
+        const firstAddress = row.addresses[0];
+        return firstAddress && firstAddress.location
+          ? firstAddress.location.city.mapAttribute.name
+          : "";
+      },
     },
     {
       name: "Country",
-      selector: (row: StoreData) => row.country,
+      selector: (row: StoreData): string => {
+        const firstAddress = row.addresses[0];
+        return firstAddress && firstAddress.location
+          ? firstAddress.location.city.countryName
+          : "";
+      },
     },
     {
       name: "Manage",
@@ -53,14 +45,12 @@ const Storemgmt = () => {
             className="btn btn-sm btn-primary"
             onClick={() => handleEdit(row)}
           >
-            {" "}
             Edit
           </button>{" "}
           <button
             className="btn btn-sm btn-danger"
             onClick={() => handleDelete(row)}
           >
-            {" "}
             Delete
           </button>
         </div>
@@ -77,51 +67,46 @@ const Storemgmt = () => {
     console.log("Delete clicked for row:", row);
     // Add your delete logic here
   };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+    // Debugging
+    console.log("Search Text:", e.target.value);
+    console.log("Filtered Data:", storeData);
+  };
+  const navigate = useNavigate();
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
 
-  const data: StoreData[] = [
-    // Your data array goes here, each object should have storeName, city, and country properties
-    // Add your data
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-    {
-      storeName: "hsafg",
-      city: "aa",
-      country: "jhas",
-    },
-  ];
-  const filteredData = data.filter((item) => {
-    const rowValues = Object.values(item).join(" ").toLowerCase();
-    return rowValues.includes(searchText.toLowerCase());
+    if (isAuthenticated !== null && isAuthenticated !== "false") {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        getStore(authToken)
+          .then((response: any) => {
+            const responseData = response.data as unknown as StoreData[];
+            setStoreData(responseData);
+          })
+          .catch((error) => {
+            console.error("Error fetching store data:", error);
+          });
+      }
+    } else {
+      navigate("/login");
+    }
+  }, []);
+
+  const filteredData = storeData.filter((row) => {
+    const lowerCaseSearchText = searchText.toLowerCase();
+
+    return (
+      row.name.toLowerCase().includes(lowerCaseSearchText) ||
+      row.addresses[0]?.location?.city.mapAttribute.name
+        .toLowerCase()
+        .includes(lowerCaseSearchText) ||
+      row.addresses[0]?.location?.city.countryName
+        .toLowerCase()
+        .includes(lowerCaseSearchText)
+    );
   });
-  const [addStore, setAddstore] = useState<boolean>(false);
   return (
     <>
       <Aheader />

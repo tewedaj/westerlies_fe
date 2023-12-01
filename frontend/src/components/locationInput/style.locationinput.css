@@ -15,7 +15,8 @@
     }
 
     .locationInput::placeholder{
-        
+        color: #a2a2a1;
+        font-family: cursive;
     }
 
 .locationSuggetion li{
@@ -35,6 +36,6 @@ input{
 }
 
 .locationSuggetion{
-   width: 40dvh;
+   width: 45dvh;
    overflow-x: hidden;
 }

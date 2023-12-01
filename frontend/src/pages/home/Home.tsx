@@ -56,7 +56,7 @@ const Home = () => {
 
           <div className="hero-text-section">
             <h1>
-              Find and Support<br></br>Independent Shop + Makers
+              Find and Support<br></br>Independent Shops + Makers
             </h1>
             <h3>
               <br></br>AROUND THE CORNER OR ACROSS THE WORLD.

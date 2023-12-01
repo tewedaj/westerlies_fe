@@ -7,8 +7,20 @@ import like from "../../assets/admin/like-removebg-preview.png";
 import "./responsive.css";
 import "./style.css";
 import { FcSearch } from "react-icons/fc";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+    if (!isAuthenticated) {
+      navigate("/login");
+    } else {
+      navigate("/Admin");
+    }
+  }, []);
   return (
     <>
       <Aheader></Aheader>
