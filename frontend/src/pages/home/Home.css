@@ -56,7 +56,7 @@ a{
 .hero-section .hero {
   margin-top: 100px;
   position: relative;
-  width: 50%;
+  width: 52%;
   margin-bottom: 10%;
 }
 .hero img{
@@ -73,14 +73,14 @@ a{
   flex-direction: column;
   display: flex;
   justify-content: center;  
-  width: 50%;
+  width: 48%;
   margin-left: 5%;
 }
 .hero-section .hero-text-section h1 {
   font-family: "brandon-grotesque", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 44px;
+  font-size: 5dvh;
   letter-spacing:2px;
   line-height: 1.15;
 }
@@ -89,7 +89,7 @@ a{
   letter-spacing: 2px;
   font-family: "brandon-grotesque", sans-serif;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 2dvh;
   color:  rgb(208, 206, 206);
 }
 .hero-section .hero-text-section p {

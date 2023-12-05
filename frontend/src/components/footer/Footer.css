@@ -81,16 +81,17 @@ footer{
     position: relative;
     display: flex;
     width: 100%;
+    height: 18vh;
     flex-wrap: wrap;
     justify-content: space-between;
     justify-content: flex-start;
-
     flex-direction: row;
     border-bottom: 2px solid rgb(145, 147, 159); /* Use a different color */
 }
 .email-collection .logo{
     display: flex;
     border-right: 2px solid rgb(145, 147, 159); /* Use a different color */
+    width: 30%;
 }
 
 
@@ -100,8 +101,7 @@ footer{
     margin-left: 50px;
     margin-right: 50px;
     opacity: 0.9;
-    width: 394px;
-    height: 190px;
+    width: 80%;
 }
 .email-collection .email{
     display: flex;
@@ -109,28 +109,37 @@ footer{
     overflow: hidden;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    padding:0px;
-    margin:20px;
-}
-.email-collection .email h3{
+    width: 70%;
+    margin-top: 0%;
+   }
+   .explorewithus{
+    width: 35%;
+    margin-left: 5%;
+   }
+   .explorewithus-input{
+    width: 50%;
+   }
+   .explorewithus-button{
+    width: 20%;
+   }
+   
+.email-collection .email .explorewithus h3{
     color:#FBF3EC ;
     font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-size: 3dvh;
-    font-weight: 100;
+    font-size: 22px;
+    font-weight: 500;
     letter-spacing:4px;
     font-style: normal;
     position: relative;
-    margin:15px;
-  
+    margin-left: 7%;
 }
 .email-collection .email input{
     display: inline;
-    height: 55px;
-    width: 60dvh;
     border:  1px solid rgba(251, 243, 236, 0.8) ;
     background-color: rgb(96, 96,  96, 0.5);
-  
+    height: 55px;
+    width: 100%;
+    letter-spacing: 2px;
     font-size: 15px;
     font-family: 'Alegreya', serif;;
 }
@@ -140,7 +149,7 @@ footer{
 .email-collection .email button{
     position: relative;
     height: 55px;
-    width: 150px;
+    width: 80%;
     margin:10px;
     color:#202D;
     border:  1px solid var(--color5);
@@ -161,7 +170,7 @@ footer{
     justify-content: center;
     align-items: center;
     padding:20px;
-
+    width: 100%;
 }
 .copyrightInner{
     display: flex;
@@ -171,12 +180,19 @@ footer{
     flex-wrap: wrap;
     padding:0px;
     margin:20px;
-    width:90%;
-    height:70px;
+    width:60%;
+    color:#FBF3EC ;
 }
-.copyright  p{
+.acknowledgments{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.copyright .acknowledgments a{
     position: relative;
-  
+    text-align: right;
+    color:#FBF3EC ;
+    text-decoration: none;
 }
 .copyright p:nth-child(2) {
     position: relative;

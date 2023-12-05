@@ -61,22 +61,27 @@ const Footer = () => {
           <img src={logo} />
         </div>
         <div className="email">
-          <h3>EXPLORE WITH US</h3>
-          <input
+          <div className="explorewithus"><h3>EXPLORE WITH US</h3></div>
+          
+          <div className="explorewithus-input"><input
             type="text"
             name="signup"
             id="signup"
-            placeholder="       Sign up and explore (signup feature coming soon)"
-          />
-          <button>SIGN UP</button>
+            placeholder="  Sign up and explore (signup feature coming soon)"
+          /></div>
+          
+           <div className="explorewithus-button"><button>SIGN UP</button></div>
+          
         </div>
       </div>
       <div className="copyright">
         <div className="copyrightInner">
           <p>Copyright Westerlies 2023</p>
-
-          <p>Web Design by MARA</p>
-        </div>
+          </div>
+          <div className="acknowledgments"><a>Web Design by MARA</a>
+          <a href="https://www.sidewaysgravity.com/" target="_blank">Web Design Support by Sideways Gravity</a><a href="https://joynevada.com/" target="_blank">Logo Design by joy Nevada</a></div>
+          
+        
       </div>
     </footer>
   );
