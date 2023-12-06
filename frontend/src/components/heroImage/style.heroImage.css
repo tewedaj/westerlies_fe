@@ -22,3 +22,19 @@
     animation-play-state: running;
 
 }
+.heroimgtxt{
+    color: #FBF3EC;
+    position: relative;
+    top: -8vh;
+}
+.heroimagename{
+    text-align: right;
+    color: #202D3F;
+    position: relative;
+    top: -10vh;
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 5dvh;
+    margin-right: 2%;
+}

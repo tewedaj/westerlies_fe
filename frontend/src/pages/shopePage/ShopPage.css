@@ -62,7 +62,7 @@
 }
 .section-one-part1-image{
     position: relative;
-    margin-top: 3%;
+    margin-top: 5%;
 }
 .section-one-part1 img{
     width: 90%;
@@ -326,6 +326,7 @@ margin-top: 1%;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 5%;
+    margin-top: 3%;
 }
 .section-five{
     display: flex;

@@ -9,6 +9,7 @@ import Shope from "../../components/shope/shope";
 import Filterlist from "../../components/findashop/Filterlist";
 import GoogleMap from "../../components/mapComponent/mapComponent";
 import logo from "../../assets/logo.png";
+import LocationInput from "../../components/locationInput/locationInput";
 
 const FindAshop = () => {
   const param: any = useParams();
@@ -65,7 +66,7 @@ const FindAshop = () => {
   }, []);
   const [showFilter, setShowFilter] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<string>("");
-  const [isNavbarVisibletwo] = useState(true);
+  const [isNavbarVisibletwo] = useState(false);
   const [navbar2] = useState(false);
   return (
     <>
@@ -79,7 +80,14 @@ const FindAshop = () => {
         />
         <div className="title">
           <h1>Find a Shop &nbsp;&nbsp;|</h1>
-          <h1>&nbsp;&nbsp;{city ? city : "No City selected"}</h1>
+
+          <input
+            type="text"
+            name="signup"
+            id="search"
+            placeholder={city ? city : "No City selected"}
+            // value={city ? city : "No City selected"}
+          />
         </div>
         <div className="filter-navbar">
           <h2>FILTER BY:</h2>

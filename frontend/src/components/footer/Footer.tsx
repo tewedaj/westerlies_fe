@@ -61,27 +61,39 @@ const Footer = () => {
           <img src={logo} />
         </div>
         <div className="email">
-          <div className="explorewithus"><h3>EXPLORE WITH US</h3></div>
-          
-          <div className="explorewithus-input"><input
-            type="text"
-            name="signup"
-            id="signup"
-            placeholder="  Sign up and explore (signup feature coming soon)"
-          /></div>
-          
-           <div className="explorewithus-button"><button>SIGN UP</button></div>
-          
+          <div className="explorewithus">
+            <h3>EXPLORE WITH US</h3>
+          </div>
+
+          <div className="explorewithus-input">
+            <input
+              type="text"
+              name="signup"
+              id="signup"
+              placeholder="  Sign up and explore (sign up feature coming soon)"
+            />
+          </div>
+
+          <div className="explorewithus-button">
+            <button>SIGN UP</button>
+          </div>
         </div>
       </div>
       <div className="copyright">
         <div className="copyrightInner">
           <p>Copyright Westerlies 2023</p>
-          </div>
-          <div className="acknowledgments"><a>Web Design by MARA</a>
-          <a href="https://www.sidewaysgravity.com/" target="_blank">Web Design Support by Sideways Gravity</a><a href="https://joynevada.com/" target="_blank">Logo Design by joy Nevada</a></div>
-          
-        
+        </div>
+        <div className="acknowledgments">
+          <a href="https://maradesignco.com/" target="_blank">
+            Web Design by MARA
+          </a>
+          <a href="https://www.sidewaysgravity.com/" target="_blank">
+            Web Design Support by Sideways Gravity
+          </a>
+          <a href="https://joynevada.com/" target="_blank">
+            Logo Design by Joy Nevada
+          </a>
+        </div>
       </div>
     </footer>
   );
