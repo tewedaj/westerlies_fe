@@ -26,7 +26,7 @@ function LocationInput({ callBack }: LocationInputProps) {
 
       const response = await axios.get(endpoint, { params });
       const data = response.data;
-      var resData = {};
+      var resData: any = {};
       console.log("RRRRR: ", response);
       for(var i = 0; i < data.result.address_components.length; i++) {
         if(data.result.address_components[i].types.includes('country')){

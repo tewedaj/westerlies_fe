@@ -23,7 +23,7 @@ const GoogleMap = (props: any,locations : LocationMap[]) => {
 
   const onClose = () => {
     if (showingInfoWindow) {
-      setActiveMarker(null);
+      setActiveMarker({});
       setShowingInfoWindow(false);
     }
   };

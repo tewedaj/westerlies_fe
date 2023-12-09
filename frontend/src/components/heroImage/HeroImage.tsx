@@ -5,10 +5,10 @@ import { getStoreDetailInfo } from "../../pages/shopePage/shopeController";
 import { useParams } from "react-router-dom";
 
 export default function HeroImage({ urls }: any) {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentIndex] = useState<number>(0);
   const param = useParams();
-  const [storeInfo, setStoreInfo] = useState<any>();
-  const [storeId, setStoreId] = useState<any>(param.id);
+  const [, setStoreInfo] = useState<any>();
+  const [storeId] = useState<any>(param.id);
   // useEffect(() => {
   //   const intervalId = setInterval(() => {
   //     // Increment the current index, and loop back to 0 if it exceeds the length

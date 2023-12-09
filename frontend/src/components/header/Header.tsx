@@ -21,7 +21,7 @@ const Header = ({
   type,
   shopePage,
 }: HeaderProps) => {
-  const [isNavbarVisible, setNavbarVisibility] = useState(false);
+  const [isNavbarVisible] = useState(false);
   const headerStyle = {
     backgroundImage: `url(${headerBg})`,
     width: "100%",

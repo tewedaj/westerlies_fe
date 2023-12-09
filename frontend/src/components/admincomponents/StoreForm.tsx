@@ -31,7 +31,7 @@ const StoreForm = (StoreForm: StoreForm) => {
     offerClasses: "yes", // or "no"
   });
   const steps = ["Store Info", "Address", "Working Hours", "Tags"];
-  const handleAddressChange = (index: number, field: string, value: string) => {
+  const handleAddressChange = (_index: number, _field: string, _value: string) => {
     const updatedAddresses = [...formData.address];
     // updatedAddresses[index][field] = value;
 
