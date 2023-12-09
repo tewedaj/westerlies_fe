@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './style.locationinput.css';
 interface LocationInputProps {
   callBack: (param: string, param2: string) => void;
