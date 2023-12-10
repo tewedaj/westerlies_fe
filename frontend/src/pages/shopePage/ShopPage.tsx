@@ -15,9 +15,9 @@ import { getStoreDetailInfo } from "./shopeController";
 import GoogleMap from "../../components/mapComponent/mapComponent";
 
 const ShopPage = () => {
-  const [isNavbarVisibletwo] = useState(true);
+  const [isNavbarVisibletwo] = useState(false);
   const [navbarcolor] = useState(false);
-  const [shopePage] = useState(true);
+  const [shopePage] = useState(false);
   const param = useParams();
   const [storeId, setStoreId] = useState<any>(param.id);
   const [storeInfo, setStoreInfo] = useState<any>();
@@ -52,9 +52,7 @@ const ShopPage = () => {
         <div className="section-one">
           <div className="section-one-part1">
             <div className="section-one-part1-link">
-              <a>
-                <IoIosArrowBack /> Back to Directory
-              </a>
+              <a>{/* <IoIosArrowBack /> Back to Directory */}</a>
             </div>
 
             <div className="section-one-part1-image">
@@ -63,6 +61,7 @@ const ShopPage = () => {
                   .replace("http://", "https://")
                   .replace("api.westerlies.io", "apibeta.westerlies.com")}
               />
+              <p> This image belongs to this shop.</p>
             </div>
           </div>
 
@@ -177,7 +176,7 @@ const ShopPage = () => {
           <div className="section-four-header">
             <h1>Store reviews</h1>
           </div>
-          <div className="section-four-text">
+          {/* <div className="section-four-text">
             <div className="s-4arrow">
               <h1>
                 <IoIosArrowBack />
@@ -212,9 +211,9 @@ const ShopPage = () => {
                 <IoIosArrowForward />
               </h1>
             </div>
-          </div>
+          </div> */}
           <div>
-            <button> read more on google</button>
+            <button> read reviews on google</button>
           </div>
         </div>
         <div className="section-five">

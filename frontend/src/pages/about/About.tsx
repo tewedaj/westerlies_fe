@@ -4,6 +4,7 @@ import image from "../../assets/about/image.png";
 import Header from "../../components/header/Header";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const About = () => {
   const [navbarcolor] = useState(false);
   return (
@@ -36,6 +37,10 @@ const About = () => {
                   Westerlies is on a mission to connect you with independent
                   shop owners and makers – both near and far – who sell goods
                   that make the world a more beautiful, thoughtful place.
+                </p>
+                <p>
+                  Please reach out to us learn more, share a favorite store, or
+                  for anything else at hellowesterlies@gmail.com.
                 </p>
               </div>
             </div>
@@ -80,7 +85,9 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <button>EXPLORE NEW SHOPS NOW</button>
+            <Link to="/">
+              <button>EXPLORE NEW SHOPS NOW</button>
+            </Link>
           </div>
         </div>
       </div>
