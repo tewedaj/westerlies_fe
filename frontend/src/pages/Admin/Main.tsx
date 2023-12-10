@@ -2,11 +2,9 @@ import Aheader from "../../components/admincomponents/Aheader";
 import Anavbar from "../../components/admincomponents/Anavbar";
 import article from "../../assets/admin/articles.jpg";
 import views from "../../assets/admin/view-removebg-preview.png";
-import search from "../../assets/admin/search.png";
 import like from "../../assets/admin/like-removebg-preview.png";
 import "./responsive.css";
 import "./style.css";
-import { FcSearch } from "react-icons/fc";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

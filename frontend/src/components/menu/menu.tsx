@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+
 import './style.menu.css';
 import { menuInfo } from './prop.menu';
 import { AiFillForward } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { getLinkClass } from '../header/controller.header';
 const Menu = (isOpenProp: menuInfo) => {
-  const [isOpen, setIsOpen] = useState(isOpenProp.isOpen);
 
   const toggleMenu = () => {
     isOpenProp.callBack();

@@ -1,8 +1,8 @@
 // GoogleMap.js
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
-const GoogleMap = (props: any,locations : LocationMap[]) => {
+const GoogleMap = (props: any,_locations : LocationMap[]) => {
   const [activeMarker, setActiveMarker] = useState({});
   const [selectedPlace, setSelectedPlace] = useState({});
   const [showingInfoWindow, setShowingInfoWindow] = useState(false);
@@ -14,7 +14,7 @@ const GoogleMap = (props: any,locations : LocationMap[]) => {
   },[])
 
 
-  const onMarkerClick = (props: any, marker:any, e:any,profilePicture: any) => {
+  const onMarkerClick = (props: any, marker:any, _e:any,profilePicture: any) => {
     setActiveMarker(marker);
     setSelectedPlaceImage(profilePicture.profilePicture?.replace("api.westerlies.io","apibeta.westerlies.com").replace("http://","https://"));
     setSelectedPlace(props);

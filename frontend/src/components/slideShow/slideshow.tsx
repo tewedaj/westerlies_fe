@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import "./style.slideShow.css";
 import feature from "../../assets/home/featured2.png";
-import blog1 from "../../assets/home/blog1.png";
-import blog2 from "../../assets/home/blog2.png";
-import blog3 from "../../assets/home/blog3.png";
 import arrowbutton from "../../assets/home/arrow_in_circle.svg";
 
 const Slideshow = ({ slides, navigator }: any) => {

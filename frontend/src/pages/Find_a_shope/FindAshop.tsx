@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Footer from "../../components/footer/Footer";
-import img from "../../assets/footer1.png";
 import "./FindAshop.css";
 import Header from "../../components/header/Header";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,12 +8,11 @@ import Shope from "../../components/shope/shope";
 import Filterlist from "../../components/findashop/Filterlist";
 import GoogleMap from "../../components/mapComponent/mapComponent";
 import logo from "../../assets/logo.png";
-import LocationInput from "../../components/locationInput/locationInput";
 
 const FindAshop = () => {
   const param: any = useParams();
-  const [city, setCity] = useState(param?.city);
-  const [country, setCountry] = useState(param?.country);
+  const [city] = useState(param?.city);
+  const [country] = useState(param?.country);
   const [shopList, setShopList] = useState<any[]>([]);
   const [page, setPage] = useState<number>(0);
   const [hasClasses, setHasClasses] = useState(true);

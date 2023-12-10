@@ -5,7 +5,7 @@ export interface LoginData {
     password: string;
   }
   export function login(data: LoginData) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       axios
         .post(url + "api/token", data)
         .then(function (response: any) {
