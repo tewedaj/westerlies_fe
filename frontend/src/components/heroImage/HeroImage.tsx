@@ -41,8 +41,8 @@ export default function HeroImage({ urls }: any) {
           .replace("api.westerlies.io", "apibeta.westerlies.com")}
         alt="Hero"
       />
-      <p className="heroimagename">shop name</p>
-      <p className="heroimgtxt"> This image belongs to this shop.</p>
+      <p className="heroimagename">{urls[currentIndex]?.name }</p>
+      <p className="heroimgtxt"> This image belongs to {urls[currentIndex]?.name}</p>
     </>
   );
 }
