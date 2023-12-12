@@ -29,7 +29,7 @@
   
   
   .filter-form {
-    background-color: white;
+    background-color: #FBF3EC;
     padding: 20px; /* Adjust the padding as needed */
     border-radius: 8px; /* Add border-radius for rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
@@ -57,6 +57,7 @@
     font-style: normal;
     font-size: 33px;
     color: #202D3F;
+    text-transform: uppercase;
   }
   .dark-button{
     display: flex;

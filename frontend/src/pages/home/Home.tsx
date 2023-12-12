@@ -155,11 +155,7 @@ const Home = () => {
           <div className="store-description">
             <h1>Salt & Honey Market</h1>
             <h3>SALT LAKE CITY, UT</h3>
-            <p>
-              A little spot goes here to tell a bit about the shop & &nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; more about their story, what they
-              carry, etc.
-            </p>
+
             <button type="button">LEARN MORE</button>
           </div>
           <div></div>

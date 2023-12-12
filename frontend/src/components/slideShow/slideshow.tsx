@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./style.slideShow.css";
 import feature from "../../assets/home/featured2.png";
-import blog1 from "../../assets/home/blog1.png";
-import blog2 from "../../assets/home/blog2.png";
-import blog3 from "../../assets/home/blog3.png";
 import arrowbutton from "../../assets/home/arrow_in_circle.svg";
+import arrowbutton2 from "../../assets/home/arrow_in_circle.png";
 
 const Slideshow = ({ slides, navigator }: any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,7 +26,7 @@ const Slideshow = ({ slides, navigator }: any) => {
           key={index}
           className={`learn-more ${index === currentIndex ? "" : "hide"}`}
         >
-          <img className="arrowbutton" src={arrowbutton} />
+          {/* <img className="arrowbutton" src={arrowbutton} /> */}
           <div className="store-description">
             <h1>{slide.name}</h1>
             <h3>{slide.location}</h3>
@@ -52,7 +50,7 @@ const Slideshow = ({ slides, navigator }: any) => {
                 .replace("api.westerlies.io", "apibeta.westerlies.com")}
             />
           </div>
-          <img className="arrowbutton" src={arrowbutton} />
+          {/* <img className="arrowbutton" src={arrowbutton2} /> */}
         </div>
       ))}
     </>

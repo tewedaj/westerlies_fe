@@ -13,7 +13,6 @@ footer{
     margin: 0;
     padding: 0;
     position: relative;
-    bottom:0px;
     width:100%;
     height: 300px;
     z-index: 500;
@@ -28,33 +27,35 @@ footer{
     background-repeat: no-repeat;
     position: relative;
     display: flex;
-    height: 300px;
     justify-content: center;
+    width: 100%;
 }
 .connect .ftext-section{
     display: flex;
     flex-direction: column;
     position: relative;
-    display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--color4);
     font-family: 'Freight Sans Pro Medium', sans-serif;
     font-style: normal;
+    width: 15%;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 .connect .ftext-section h1{
     font-weight: 100;
-    font-size: 27px;
+    font-size: 3vh;
     letter-spacing: 5px;
     line-height: 1.5;
    
 }
 .connect .ftext-section a{
     font-family: 'Alegreya', serif;
-    margin-top: 10px;
     font-weight: 100;
-    font-size: 18px;
+    font-size: 1vh;
     letter-spacing: 1.2px;
     text-decoration: none;
     color: white;
@@ -67,13 +68,17 @@ footer{
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-    padding:40px;
-    margin:20px;
+    width: 85%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
 }
-.connect .fimage-section img{   
-    width: 230px;
-    height: 180px;
-    padding-left: 50px;
+.connect .fimage-section-img{   
+    width: 18%;
+}
+.connect .fimage-section-img img{
+    width: 100%;
+    height: 20vh;
 }
 
 .email-collection{
@@ -97,7 +102,6 @@ footer{
 .email-collection .logo img{
     position: relative;
     margin-left: 12%;
-    margin-top: -2%;
     opacity: 0.9;
     width: 68%;
     height: 82%;
@@ -127,12 +131,11 @@ footer{
 .email-collection .email .explorewithus h3{
     color:#FBF3EC ;
     font-family: 'Freight Sans Pro Medium', sans-serif;
-    font-size: 22px;
+    font-size: 2.4vh;
     font-weight: 500;
     letter-spacing:4px;
     font-style: normal;
     position: relative;
-    margin-left: 7%;
 }
 .email-collection .email input{
     display: inline;
