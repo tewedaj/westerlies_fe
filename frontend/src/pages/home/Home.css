@@ -317,13 +317,13 @@ a{
     width:95%;
     flex-wrap: wrap;
 
-  }
+  /* }
    .blog-section .images-section .first,
    .blog-section .images-section .second,
    .blog-section .images-section .third {
      /* Add spacing between divs */
     
-  }
+  } */
   
    .blog-section .images-section img {
   
