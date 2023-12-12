@@ -16,14 +16,14 @@ const About = () => {
         headerBgColor="#FBF3EC"
       />
       <div className="container-2">
-        <div className="content-2">
           <div className="section-1">
             <div className="text-section">
-              <h1>
+              <div className="description1"><h1>
                 “Every time you spend <br></br>money, you're casting a vote for
                 the kind of world you want.”
               </h1>{" "}
-              <h3>-ANNA LAPPE</h3>
+              <h3>-ANNA LAPPE</h3></div>
+              
               <div className="description">
                 <p>
                   Hundreds of years ago ships set sail in search of fortune,
@@ -90,7 +90,6 @@ const About = () => {
             </Link>
           </div>
         </div>
-      </div>
       <Footer />
     </>
   );
