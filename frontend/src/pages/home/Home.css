@@ -33,7 +33,7 @@
 }
 
 .hero-section {
-  background-image: url('../../assets/home/homebg1.png');
+  background-image: url('../../assets/home/homebg1Cp.png');
   background-position:center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -317,16 +317,16 @@ a{
     width:95%;
     flex-wrap: wrap;
 
-  /* }
+  }
    .blog-section .images-section .first,
    .blog-section .images-section .second,
    .blog-section .images-section .third {
-     /* Add spacing between divs */
+    width: 26%;
     
-  } */
+  }
   
    .blog-section .images-section img {
-  
+    width: 100%;
     height: 50vh;
   }
    .blog-section .images-section h2 {
