@@ -1,0 +1,141 @@
+
+@import url("https://use.typekit.net/yfs0bso.css");
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+:root {
+    --background-color1:#FDF4ED;
+    --color1:#202D3F;
+    --color2:#3779A6;
+    --color3:#FFF8F2;
+    --color4:#FBF3EC;
+    --color5:#DBAE8F;
+    --color6:#B3553D;
+  }
+
+header{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 1.4px solid rgb(145, 147, 159); /* Use a different color */
+    z-index: 1;
+    width: 100%;
+}
+header .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+}
+header .logo img{
+width: 33%;
+
+    
+}
+header .navbar{
+    transition: 0.3s linear;
+    z-index: 1;
+    white-space: nowrap; 
+    position: relative;
+}
+.navbar-two-hidden{
+    display: none;
+}
+.extra-disable{
+  display: none;
+}
+
+header .navbar ul{
+    list-style-type: none;
+    display: flex;
+    margin-top: 2vh;
+}
+header .navbar ul li a{
+    padding: 15px;
+    text-transform: uppercase; 
+    text-decoration: none;
+    font-family:  "brandon-grotesque", sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+.navbarcolor1 li a{
+    color: var(--color4);
+    font-weight: 100;
+}
+.navbarcolor2 li a{
+    color: black;
+    font-weight: 500;
+}
+header .navbar ul li:hover{
+    color:var(--color4);
+    cursor:pointer;
+}
+header input{
+    display:none;
+}
+header label{
+    z-index: 2;
+    position: absolute;
+    top:30px; right: 10px;
+    cursor: pointer;
+    display: none;
+}
+header span{
+    display: block;
+    height: 3px;
+    width: 30px;
+    background:rgba(255, 255, 255, 0.9);
+    margin:5px 0;
+    transition: .3s;
+}
+
+@media (max-width:978px){
+    header label{
+        display: block;
+    }
+    header .navbar{
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top:100px; left:0;
+        display:flex;
+        align-items: center;
+        background-color: red;
+        justify-content: center;
+        z-index: 1;
+
+    }
+    header .navbar ul{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column wrap;
+        z-index: 2;
+
+    }
+    header .navbar ul li{
+       margin:10px 0;
+       font-size: 35px;
+       color: white;
+       z-index: 3;
+        
+    }
+    header .navbar ul li:hover{
+        background:var(--color2);
+        border-radius: 50px;
+        padding:0 50px;
+        transition:0.3s;
+        color: var(--background-color2);
+    }
+     header .navbar-hidden {
+        display: none;
+      }
+    
+    
+}

@@ -1,0 +1,40 @@
+
+
+
+@keyframes slide {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.heroHeaderImg{
+    transition: transform 5s ease-in-out; /* Adjust the duration and easing as needed */
+    animation-name:slide;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: 1s ease-in-out;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-play-state: running;
+
+}
+.heroimgtxt{
+    color: #FBF3EC;
+    position: relative;
+    top: -8vh;
+}
+.heroimagename{
+    text-align: right;
+    color: #202D3F;
+    position: relative;
+    top: -7vh;
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 4vh;
+    margin-right: 2%;
+}

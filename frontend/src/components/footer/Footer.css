@@ -1,0 +1,215 @@
+
+:root {
+    --background-color1:#FDF4ED;
+    --color1:#202D3F;
+    --color2:#3779A6;
+    --color3:#FFF8F2;
+    --color4:#FBF3EC;
+    --color5:#DBAE8F;
+    --color6:#B3553D;
+  }
+
+footer{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width:100%;
+    height: 300px;
+    z-index: 500;
+    overflow:visible;
+    display:flex;
+    flex-direction: column;
+}
+.connect{
+    background-image: url("../../assets/footerbg.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.connect .ftext-section{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color4);
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-style: normal;
+    width: 15%;
+    margin-left: 5%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.connect .ftext-section h1{
+    font-weight: 100;
+    font-size: 3vh;
+    letter-spacing: 5px;
+    line-height: 1.5;
+   
+}
+.connect .ftext-section a{
+    font-family: 'Alegreya', serif;
+    font-weight: 100;
+    font-size: 1vh;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.fimage-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 85%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+.connect .fimage-section-img{   
+    width: 18%;
+}
+.connect .fimage-section-img img{
+    width: 100%;
+    height: 20vh;
+}
+
+.email-collection{
+    background-color: var(--color1);
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 18vh;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: flex-start;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(145, 147, 159); /* Use a different color */
+}
+.email-collection .logo{
+    display: flex;
+    border-right: 2px solid rgb(145, 147, 159); /* Use a different color */
+    width: 30%;
+}
+
+.email-collection .logo img{
+    position: relative;
+    margin-left: 12%;
+    opacity: 0.9;
+    width: 68%;
+    height: 82%;
+}
+.email-collection .email{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+   }
+   .explorewithus{
+    width: 35%;
+    margin-left: 5%;
+    margin-top: 0%;
+   }
+   .explorewithus-input{
+    width: 50%;
+   }
+   .explorewithus-button{
+    width: 20%;
+   }
+   
+.email-collection .email .explorewithus h3{
+    color:#FBF3EC ;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-size: 2.4vh;
+    font-weight: 500;
+    letter-spacing:4px;
+    font-style: normal;
+    position: relative;
+}
+.email-collection .email input{
+    display: inline;
+    border:  1px solid rgba(251, 243, 236, 0.8) ;
+    background-color: rgb(96, 96,  96, 0.5);
+    height: 55px;
+    width: 100%;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-family: 'Alegreya', serif;;
+}
+#signup::placeholder {
+    color: rgb(251, 243, 236, 0.75);
+  }
+.email-collection .email button{
+    position: relative;
+    height: 55px;
+    width: 80%;
+    margin:10px;
+    color:#202D;
+    border:  1px solid var(--color5);
+    background-color:var(--color5);
+    font-size: 15px;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    font-weight: 600;
+}
+.copyright{
+    background-color: var(--color1);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    color: var(--color3);
+    font-family: 'Alegreya', serif;
+    font-size: 20px;
+    font-weight: 500;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    width: 100%;
+}
+.copyrightInner{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding:0px;
+    margin-left: 3%;
+    width:60%;
+    color:#FBF3EC ;
+}
+.acknowledgments{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+.copyright .acknowledgments a{
+    position: relative;
+    text-align: right;
+    color:#FBF3EC ;
+    text-decoration: none;
+}
+.copyright p:nth-child(2) {
+    position: relative;
+
+  }
+
+
+ .connect .ftext-section a{
+    font-family: 'Alegreya', serif;
+    margin-top: 10px;
+    font-weight: 100;
+    font-size: 18px;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    color: white;
+  }

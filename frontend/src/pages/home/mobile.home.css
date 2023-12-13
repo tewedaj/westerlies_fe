@@ -1,0 +1,280 @@
+@media screen and (max-width: 768px) {
+  .learn-more .store-description{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+ 
+  }
+  .learn-more{
+    display: flex;
+    flex-direction: column;
+  }
+  .learn-more .store-description h1 {
+    font-size: 30px;
+  }
+  .learn-more .store-description h3 {
+    font-size: 15px;
+  }
+  .learn-more .store-description p{
+    font-size: 15px;
+  }
+  .learn-more .store-description button{
+    height: 40px;
+    width: 150px;
+    font-size: 10px;
+  }
+  .learn-more .store-img{
+    width: 100%;
+  }
+  .start-exploring .images-section {
+    background-color:#FBF3EC;
+    position: relative;
+    display: flex;
+    width:100%;
+    flex-direction: column; 
+
+  }
+  .start-exploring{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .learn-more{
+    display: none;
+  }
+
+  .wavy-section{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width:100%;
+      overflow: hidden;
+      margin-top: 50px;
+      color: var(--color1);
+      font-family:"brandon-grotesque", sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      font-size: 43px;
+  }
+
+  .learn-more-mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+  }
+  .learn-more-mobile .store-description{
+    background-color: #DBAE8F;
+    padding:50px;
+    align-items: center;
+    display: center;
+    padding-left: 0px;
+    margin-top:-30px;
+    padding-right:0px;
+    color: var(--color1);
+    font-family:"brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 13px;
+  }
+
+  .learn-more-mobile img{
+    width:100%
+  }
+
+  .content{}
+  
+.hero-section {
+    background-image: url('../../assets/home/homebg1.png');
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    
+    width:100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+
+    height: 140dvh;
+    flex-direction: column;
+
+  }
+  
+  .hero-section .hero {
+    position: relative;
+   
+    height: auto;
+    width: 46dvh;
+    margin-top:50px;
+   
+  }
+
+  .blog-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    overflow: hidden;
+    margin-top: 50px;
+  }
+
+  .blog-section .images-section
+  .first{
+    width:80%;
+    overflow: hidden;
+    margin-top: 50px;
+  }
+
+  
+
+    .blog-section .images-section
+  .first p{
+    text-align: start;
+  }
+
+  .blog-section .images-section{
+    width:100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+   .hero-section .text-section {
+    color: #FBF3EC;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+   align-self: center;
+   width:90%;
+   overflow: hidden   ;
+   justify-content: center;
+   margin:110px;
+   align-items: center;
+    
+  }
+
+  .content{}
+  .hero-section .text-section h1 {
+    font-family: "brandon-grotesque", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 35px;
+    letter-spacing:2px;
+    line-height: 1.15;
+  }
+  .hero-section .text-section h3 {
+    margin-top: -15px;
+    letter-spacing: 3px;
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color:  rgb(208, 206, 206);
+  }
+  .hero-section .text-section p {
+    margin-top: 7px;
+    font-family: 'Alegreya', serif;
+    font-weight: 100;
+    font-size: 17px;
+    color: rgb(208, 206, 206)
+    
+  }
+  .hero-section .text-section .search{
+    display: flex;
+    flex-direction: row;
+    width:100%;
+    justify-content: center;
+  }
+  
+  .hero-section .text-section .search input {
+    height: 55px;
+    width: 42dvh;
+    border: 1px solid rgba(251, 243, 236, 0.8) ;
+    background-color: rgb(96,96,96, 0.5);
+   
+    text-align: left;
+    font-size: 11px;
+  }
+  .hero-section .text-section .search{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: space-between;
+    align-content: space-between;
+
+
+  }
+
+  .hero-section .text-section .search button{
+    width: 42dvh;
+
+
+    margin:0px;
+    margin-top: 10px;;
+  }
+    
+.learn-more-mobile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.learn-more-mobile .store-description{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+  .learn-more-mobile .store-description h1 {
+    color: var(--color1);
+    font-family:"brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 43px;
+  }
+  .learn-more-mobile .store-description h3 {
+    color: var(--color1);
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+  .learn-more-mobile .store-description p{
+    color: var(--color1);
+    font-family:  'Alegreya', serif;;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  .learn-more-mobile .store-description button{
+      position: relative;
+      height: 55px;
+      width: 200px;
+      color:rgba(253, 244, 237, 0.8);
+      background-color:var(--color6);
+      border: none;
+      font-size: 15px;
+     font-family:'Freight Sans Pro Medium', sans-serif;
+     font-weight: 500;
+     letter-spacing: 2px;
+     align-self: center;
+     margin-top: 15px;
+    }
+
+
+}
+
+
+

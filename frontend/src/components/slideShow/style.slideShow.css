@@ -1,0 +1,14 @@
+.slideshow-container {
+    overflow: hidden;
+  }
+  
+  .learn-more.hide {
+    display: none;
+    transition: transform 5s ease-in-out; /* Adjust the duration and easing as needed */
+  }
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+
+
+.learn-more-mobile{
+  display: none;
+}
