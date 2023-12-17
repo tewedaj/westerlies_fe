@@ -89,7 +89,7 @@ export interface WebPresence {
 export function getStore(authToken: string) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await axios.get(url + "api/store/?page=10&size=10", {
+      const response = await axios.get(url + "api/store/?page=2&size=70", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

@@ -20,6 +20,10 @@ const Storemgmt = () => {
       selector: (row: StoreData): string => row.name,
     },
     {
+      id: "Store id",
+      selector: (row: StoreData): number => row.id,
+    },
+    {
       name: "City",
       selector: (row: StoreData): string => {
         const firstAddress = row.addresses[0];

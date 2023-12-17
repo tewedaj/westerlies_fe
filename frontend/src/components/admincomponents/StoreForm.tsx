@@ -10,71 +10,233 @@ import { BsHouseAddFill } from "react-icons/bs";
 const StoreForm = (StoreForm: StoreForm) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
-    storeName: "",
-    email: "",
-    phone: "",
-    about: "",
-    eventsClasses: "",
-    address: [{ street: "", city: "", state: "", zip: "" }],
-    website: "",
-    instagram: "",
-    facebook: "",
-    wechat: "",
-    weibo: "",
-    tikTok: "",
-    additionalInfo: "",
-    startTime: "",
-    endTime: "",
-    primaryTag: "1",
-    secondaryTags: [],
-    socialImpactTags: [],
-    offerClasses: "yes", // or "no"
+    
+      "additionalInformation": "",
+      "addresses": [
+        {
+          "businessHours": [
+            {
+              "day": "",
+              "endTime": "",
+              "id": 0,
+              "open": true,
+              "startTime": ""
+            }
+          ],
+          "email": "",
+          "id": 0,
+          "location": {
+            "city": {
+              "countryName": "",
+              "countryShortName": "",
+              "id": 0,
+              "mapAttribute": {
+                "id": 0,
+                "latitude": 0,
+                "longitude": 0,
+                "name": "",
+                "shortName": "",
+                "zoom": 0
+              }
+            },
+            "id": 0,
+            "latitude": 0,
+            "longitude": 0,
+            "route": "",
+            "secondStreet": "",
+            "state": "",
+            "street": "",
+            "tip": "",
+            "zip": ""
+          },
+          "phoneNumber": ""
+        }
+      ],
+      "claimed": true,
+      "currentAddress": {
+        "businessHours": [
+          {
+            "day": "string",
+            "endTime": "string",
+            "id": 0,
+            "open": true,
+            "startTime": "string"
+          }
+        ],
+        "email": "string",
+        "id": 0,
+        "location": {
+          "city": {
+            "countryName": "string",
+            "countryShortName": "string",
+            "id": 0,
+            "mapAttribute": {
+              "id": 0,
+              "latitude": 0,
+              "longitude": 0,
+              "name": "string",
+              "shortName": "string",
+              "zoom": 0
+            }
+          },
+          "id": 0,
+          "latitude": 0,
+          "longitude": 0,
+          "route": "string",
+          "secondStreet": "string",
+          "state": "string",
+          "street": "string",
+          "tip": "string",
+          "zip": "string"
+        },
+        "phoneNumber": "string"
+      },
+      "description": "",
+      "hasClass": false,
+      "id": 0,
+      "learnWithUs": "",
+      "meetUs": "",
+      "name": "",
+      "products": [
+        {
+          "description": "",
+          "label": "",
+          "value": 0
+        }
+      ],
+      "profilePicture": "",
+      "profileVideo": "",
+      "rating": 0,
+      "storeType": "CRAFT_STORE",
+      "story": "",
+      "tags": [
+        {
+          "description": "",
+          "icon": "",
+          "id": 0,
+          "tag": "",
+          "tagType": "PRODUCT"
+        }
+      ],
+      "webPresences": [
+        {
+          "id": 0,
+          "link": "",
+          "order": 0,
+          "webSite": ""
+        }
+      ]
+    
   });
   const steps = ["Store Info", "Address", "Working Hours", "Tags"];
   const handleAddressChange = (index: number, field: string, value: string) => {
-    const updatedAddresses = [...formData.address];
-    // updatedAddresses[index][field] = value;
+    const updatedAddresses = [...formData.addresses];
+    updatedAddresses[index] = {
+      ...updatedAddresses[index],
+      location: {
+        ...updatedAddresses[index].location,
+        city: {
+          ...updatedAddresses[index].location.city,
+          [field]: value,
+        },
+      },
+    };
 
     setFormData({
       ...formData,
-      address: updatedAddresses,
+      addresses: updatedAddresses,
     });
   };
-
+  
   const handleAddAddress = () => {
     setFormData({
       ...formData,
-      address: [
-        ...formData.address,
-        { street: "", city: "", state: "", zip: "" },
+      addresses: [
+        ...formData.addresses,
+        {
+          businessHours: [
+            {
+              day: "string",
+              endTime: "string",
+              id: 0,
+              open: true,
+              startTime: "string",
+            },
+          ],
+          email: "string",
+          id: 0,
+          location: {
+            city: {
+              countryName: "string",
+              countryShortName: "string",
+              id: 0,
+              mapAttribute: {
+                id: 0,
+                latitude: 0,
+                longitude: 0,
+                name: "string",
+                shortName: "string",
+                zoom: 0,
+              },
+            },
+            id: 0,
+            latitude: 0,
+            longitude: 0,
+            route: "string",
+            secondStreet: "string",
+            state: "string",
+            street: "string",
+            tip: "string",
+            zip: "string",
+          },
+          phoneNumber: "string",
+        },
       ],
     });
   };
-
+  
   const handleRemoveAddress = (index: number) => {
-    const updatedAddresses = [...formData.address];
+    const updatedAddresses = [...formData.addresses];
     updatedAddresses.splice(index, 1);
-
+  
     setFormData({
       ...formData,
-      address: updatedAddresses,
+      addresses: updatedAddresses,
     });
   };
 
-  const handleInputChange = (event: { target: { name: any; value: any } }) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  
+    // Check if the property is nested
+    const nestedProperties = name.split('.');
+  
+    if (nestedProperties.length === 1) {
+      // If not nested, update directly
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    } else if (nestedProperties.length === 2) {
+      // If nested, update accordingly
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [nestedProperties[0]]: {
+          ...prevFormData[nestedProperties[0]],
+          [nestedProperties[1]]: value,
+        },
+      }));
+    }
+    // Add more cases as needed for deeper nesting
   };
 
-  const handleRadioChange = (event: { target: { name: any; value: any } }) => {
+  const handleRadioChange = (event: { target: { name: any; value: any; }; }) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value === "true", // Convert "true" to true, "false" to false
+    }));
   };
 
   const handleTagChange = (tags: any, type: any) => {
@@ -83,10 +245,22 @@ const StoreForm = (StoreForm: StoreForm) => {
       [type]: tags,
     });
   };
+  const handleWebPresenceChange = (index: any, field: any, value: any) => {
+    const updatedWebPresences = [...formData.webPresences];
+    updatedWebPresences[index] = {
+      ...updatedWebPresences[index],
+      [field]: value
+    };
+
+    setFormData({
+      ...formData,
+      webPresences: updatedWebPresences
+    });
+  };
 
   const isStepValid = (step: number) => {
     if (step === 0) {
-      return formData.storeName.trim() !== "" && formData.email.trim() !== "";
+      return formData.name.trim() !== "" && formData.addresses.some(address => address.email.trim() !== "");
     }
     if (step === 1) {
       // You can add validation logic for working hours here if needed
@@ -96,26 +270,66 @@ const StoreForm = (StoreForm: StoreForm) => {
   };
 
   const handleNext = (e: { preventDefault: () => void }) => {
-    e.preventDefault(); // Add this line to prevent page refresh
+    e.preventDefault();
+  
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === steps.length - 1) {
-      // Handle the final step (converting text inputs to JSON)
-      const textData = {
-        storeName: formData.storeName,
-        email: formData.email,
-        phone: formData.phone,
-        about: formData.about,
-        // Add other text fields as needed
+      // Extract address data
+      const addressData = formData.addresses.map((address) => ({
+        email: address.email,
+        phoneNumber: address.phoneNumber,
+        // Add other address properties as needed
+        location: {
+          city: {
+            countryName: address.location.city.countryName,
+            // Add other city properties as needed
+          },
+          // Add other location properties as needed
+        },
+      }));
+  
+      // Extract tags data
+      const tagsData = formData.tags.map((tag) => ({
+        description: tag.description,
+        icon: tag.icon,
+        tag: tag.tag,
+        tagType: tag.tagType,
+        // Add other tag properties as needed
+      }));
+      // Extract web data
+      const webPresencesData = formData.webPresences.map((web) => ({
+        id: web.id ,
+          link: web.link,
+          order: web.order,
+          webSite:web.webSite
+        // Add other tag properties as needed
+      }));
+  
+      // Create export data
+      const exportData = {
+        name: formData.name,
+        description: formData.description,
+        additionalInformation: formData.additionalInformation,
+        addresses: addressData,
+        tags: tagsData,
+        webPresences: webPresencesData,
+        // Add other properties as needed
       };
-
-      // Convert textData to JSON
-      const jsonData = JSON.stringify(textData);
-      // Log the JSON data in the browser console
-      console.log("JSON Data:", jsonData);
+  
+      // Convert exportData to JSON
+      const jsonData = JSON.stringify(exportData, null, 2);
+  
+      // Create a Blob from the JSON data
+      const blob = new Blob([jsonData], { type: "application/json" });
+  
+      // Create a download link and trigger a click to download the JSON file
+      const downloadLink = document.createElement("a");
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = "formData.json";
+      downloadLink.click();
     }
   };
-
   const handlePrev = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
@@ -148,26 +362,26 @@ const StoreForm = (StoreForm: StoreForm) => {
                   type="text"
                   className="form-control"
                   placeholder="Store Name"
-                  name="storeName"
-                  value={formData.storeName}
+                  name="name"
                   onChange={handleInputChange}
                 />
-              </div>
+               </div>
               <div className="col-md-6">
                 <input
                   type="file"
                   className="form-control"
                   id="inputGroupFile02"
+                  name="profilePicture"
+                  onChange={handleInputChange}
                 />
               </div>
 
-              <div className="col-md-6">
+             <div className="col-md-6">
                 <span className="input-group-text">About</span>
                 <textarea
                   className="form-control"
                   aria-label="With textarea"
-                  name="about"
-                  value={formData.about}
+                  name="description"
                   onChange={handleInputChange}
                 ></textarea>
               </div>
@@ -176,8 +390,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <textarea
                   className="form-control"
                   aria-label="With textarea"
-                  name="eventsClasses"
-                  value={formData.eventsClasses}
+                  name="additionalInformation"
                   onChange={handleInputChange}
                 ></textarea>
               </div>
@@ -195,113 +408,35 @@ const StoreForm = (StoreForm: StoreForm) => {
                     className="form-control"
                     aria-label="Sizing example input"
                     aria-describedby="inputGroup-sizing-default"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleInputChange}
+                    name="webSite"
+                    onChange={(e) => handleWebPresenceChange(0, "webSite", e.target.value)}
                   />
                 </div>
-              </div>
-              <div className="col-md-6">
-                <div className="input-group mb-3">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Instagram
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="instagram"
-                    value={formData.instagram}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="input-group mb-3">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Facebook
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="website"
-                    value={formData.facebook}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="input-group mb-3">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    TikTok
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="tikTok"
-                    value={formData.tikTok}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="input-group mb-3">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Weibo
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="website"
-                    value={formData.weibo}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="input-group mb-3">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    WeChat
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="website"
-                    value={formData.wechat}
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
+              </div> 
+              {['Facebook', 'Instagram', 'TikTok', 'WeChat','Weibo'].map((linkIndex) => (
+        <div key={linkIndex} className="col-md-6">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id={`link${linkIndex}`}>
+              {linkIndex}
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label={`Sizing example input ${linkIndex}`}
+              aria-describedby={`inputGroup-sizing-default ${linkIndex}`}
+              name="link"
+              onChange={(e) => handleWebPresenceChange(linkIndex, "link", e.target.value)}
+            />
+          </div>
+        </div>
+      ))}
+          
             </>
           )}
           {currentStep === 1 && (
             /* Working Hours */
             <>
-              {formData.address.map((address, index) => (
+              {formData.addresses.map((address, index) => (
                 <div key={index} className="address-section">
                   <div className="address-section-input">
                     <div className="col-12">
@@ -316,7 +451,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                         className="form-control"
                         id={`inputStreet${index}`}
                         placeholder="1234 Main St"
-                        value={address.street}
+                        name="street"
                         onChange={(e) =>
                           handleAddressChange(index, "street", e.target.value)
                         }
@@ -333,7 +468,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                         type="text"
                         className="form-control"
                         id={`inputCity${index}`}
-                        value={address.city}
+                        name="countryShortName"
                         onChange={(e) =>
                           handleAddressChange(index, "city", e.target.value)
                         }
@@ -349,7 +484,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                       <select
                         id={`inputState${index}`}
                         className="form-select"
-                        value={address.state}
+                        name="state"
                         onChange={(e) =>
                           handleAddressChange(index, "state", e.target.value)
                         }
@@ -369,7 +504,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                         type="text"
                         className="form-control"
                         id={`inputZip${index}`}
-                        value={address.zip}
+                        name="zip"
                         onChange={(e) =>
                           handleAddressChange(index, "zip", e.target.value)
                         }
@@ -384,7 +519,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                         className="form-control"
                         id="inputEmail4"
                         name="email"
-                        value={formData.email}
                         onChange={handleInputChange}
                       />
                     </div>
@@ -396,8 +530,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                         type="number"
                         className="form-control"
                         id="inputPhone"
-                        name="phone"
-                        value={formData.phone}
+                        name="phoneNumber"
                         onChange={handleInputChange}
                       />
                     </div>
@@ -408,8 +541,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                       <textarea
                         className="form-control"
                         aria-label="With textarea"
-                        name="additionalIfo"
-                        value={formData.additionalInfo}
+                        name="additionalInformation"
                         onChange={handleInputChange}
                       ></textarea>
                     </div>
@@ -454,6 +586,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                     "Saturday",
                     "Sunday",
                   ]}
+                  
                 />
               </div>
               <div className="col-md">
@@ -464,7 +597,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     id="startTime"
                     placeholder="8:00 AM"
                     name="startTime"
-                    value={formData.startTime}
                     onChange={handleInputChange}
                   />
                   <label htmlFor="startTime">Start Time</label>
@@ -478,7 +610,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     id="endTime"
                     placeholder="8:00 AM"
                     name="endTime"
-                    value={formData.endTime}
                     onChange={handleInputChange}
                   />
                   <label htmlFor="endTime">End Time</label>
@@ -494,8 +625,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <select
                   className="form-select"
                   aria-label="Default select example"
-                  name="primaryTag"
-                  value={formData.primaryTag}
+                  name="description"
                   onChange={handleInputChange}
                 >
                   <option value="1">One</option>
@@ -541,10 +671,10 @@ const StoreForm = (StoreForm: StoreForm) => {
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="offerClasses"
+                    name="hasClass"
                     id="flexRadioDefault1"
-                    value="yes"
-                    checked={formData.offerClasses === "yes"}
+                    value="true"
+                    checked={formData.hasClass== true}
                     onChange={handleRadioChange}
                   />
                   <label
@@ -558,10 +688,10 @@ const StoreForm = (StoreForm: StoreForm) => {
                   <input
                     className="form-check-input"
                     type="radio"
-                    name="offerClasses"
+                    name="hasClass"
                     id="flexRadioDefault2"
-                    value="no"
-                    checked={formData.offerClasses === "no"}
+                    value="false"
+                    checked={formData.hasClass== false}
                     onChange={handleRadioChange}
                   />
                   <label
