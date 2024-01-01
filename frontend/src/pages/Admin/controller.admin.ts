@@ -2,89 +2,92 @@ import axios from "axios";
 
 import { url } from "../../util/constant";
 export interface StoreData {
-  storeType:             string;
-  name:                  string;
+  additionalInformation: string;
   addresses:             Address[];
-  id:                    number;
-  story:                 string;
-  meetUs:                string;
+  claimed:               boolean;
+  currentAddress:        Address;
   description:           string;
+  hasClass:              boolean;
+  id:                    number;
   learnWithUs:           string;
-  webPresences:          WebPresence[];
-  products:              any[];
-  tags:                  Tag[];
+  meetUs:                string;
+  name:                  string;
+  products:              Product[];
   profilePicture:        string;
   profileVideo:          string;
-  additionalInformation: null;
   rating:                number;
-  hasClass:              boolean;
-  currentAddress:        null;
-  claimed:               boolean;
+  storeType:             string;
+  story:                 string;
+  tags:                  Tag[];
+  webPresences:          WebPresence[];
 }
+
 export interface Address {
-  id:            number;
-  phoneNumber:   string;
-  email:         string;
-  location:      Location;
   businessHours: BusinessHour[];
+  email:         string;
+  id:            number;
+  location:      Location;
+  phoneNumber:   string;
 }
 
 export interface BusinessHour {
-  id:        number;
   day:       string;
-  startTime: string;
   endTime:   string;
+  id:        number;
   open:      boolean;
+  startTime: string;
 }
 
 export interface Location {
-  id:           number;
-  longitude:    number;
-  latitude:     number;
   city:         City;
-  street:       string;
-  secondStreet: null;
+  id:           number;
+  latitude:     number;
+  longitude:    number;
+  route:        string;
+  secondStreet: string;
   state:        string;
-  route:        null;
-  zip:          string;
+  street:       string;
   tip:          string;
+  zip:          string;
 }
 
 export interface City {
-  id:               number;
   countryName:      string;
-  countryShortName: null;
+  countryShortName: string;
+  id:               number;
   mapAttribute:     MapAttribute;
 }
 
 export interface MapAttribute {
   id:        number;
+  latitude:  number;
+  longitude: number;
   name:      string;
   shortName: string;
-  longitude: number;
-  latitude:  number;
   zoom:      number;
 }
 
-export interface Tag {
-  id:          number;
-  tag:         string;
-  description: null | string;
-  tagType:     TagType;
-  icon:        null | string;
+export interface Product {
+  description: string;
+  label:       string;
+  value:       number;
 }
 
-export enum TagType {
-  Business = "BUSINESS",
-  Product = "PRODUCT",
+export interface Tag {
+  description: string;
+  icon:        string;
+  id:          number;
+  tag:         string;
+  tagType:     string;
 }
 
 export interface WebPresence {
   id:      number;
-  webSite: string;
   link:    string;
   order:   number;
+  webSite: string;
 }
+
 
 export function getStore(authToken: string) {
   return new Promise(async (resolve, reject) => {
@@ -103,3 +106,55 @@ export function getStore(authToken: string) {
     }
   });
 }
+export async function addStore2(data: StoreData, authToken: string | null) {
+  try {
+    const response = await axios.post(
+      url + "api/store/addStore",
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    if (Response) {
+      console.error('Server responded with non-2xx status', (error as any).response.data);
+    } else if (Request) {
+      console.error('No response received from server');
+    } else {
+      console.error('Error setting up the request', (error as Error).message);
+    }
+
+    throw error;
+  }
+}
+export const addStore = async (data: StoreData , authToken: string) => {
+  try {
+    const response = await fetch('https://apibeta.westerlies.com/api/store/addStore', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+        // Add any other headers if required
+      },
+      body: JSON.stringify(data), 
+    });
+
+    if (!response.ok) {
+      // Handle error responses
+      console.error('Failed to submit the form:', response.statusText);
+      throw new Error('Failed to submit the form');
+    }
+
+    // Handle success responses
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error('An error occurred while submitting the form:', error);
+    throw error;
+  }
+};

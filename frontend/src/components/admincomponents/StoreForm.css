@@ -58,7 +58,7 @@
 .address-section{
   display: flex;
   flex-direction: row;
- 
+  margin: 3%;
 }
 .address-section .address-section-input{
   display: flex;
@@ -75,13 +75,34 @@
   margin-left: 5%;
 }
 .address-section .map-section{
+  position: relative;
   display: flex;
-  width: 50%;
-  height: 70%;
+  width: 60%;
+  height: 100%;
   margin-left: 2%;
+  margin-bottom: 100px;
 }
+/* 
 .address-section .map-section img{
   width: 100%;
+} */
+.businessHours{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.workingHours{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+}
+.form-check{
+  width: 30%;
+}
+.startTime{
+  display: flex;
+  margin-left: 7%;
+ 
 }
 .nxt {
   justify-content: right;

@@ -1,341 +1,224 @@
 import { useState } from "react";
-
-import storeimg from "../../assets/footer3.png";
 import "./StoreForm.css";
 import { StoreForm } from "./prop.StoreForm";
 import Multiselect from "multiselect-react-dropdown";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { BsHouseAddFill } from "react-icons/bs";
-
+import GoogleMap from "../../components/mapComponent/mapComponent";
+import { useForm, Controller } from 'react-hook-form';
+import { StoreData, addStore2 } from "../../pages/Admin/controller.admin";
+import { addStore } from "../../pages/Admin/controller.admin";
+import GoogleMapPicker from "./MapComponentPicker";
 const StoreForm = (StoreForm: StoreForm) => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    
-      "additionalInformation": "",
-      "addresses": [
+  const form = useForm<StoreData>({
+    defaultValues:{
+  "additionalInformation": "",
+  "addresses": [
+    {
+      "businessHours": [
         {
-          "businessHours": [
-            {
-              "day": "",
-              "endTime": "",
-              "id": 0,
-              "open": true,
-              "startTime": ""
-            }
-          ],
-          "email": "",
+          "day": "",
+          "endTime": "",
           "id": 0,
-          "location": {
-            "city": {
-              "countryName": "",
-              "countryShortName": "",
-              "id": 0,
-              "mapAttribute": {
-                "id": 0,
-                "latitude": 0,
-                "longitude": 0,
-                "name": "",
-                "shortName": "",
-                "zoom": 0
-              }
-            },
+          "open": true,
+          "startTime": ""
+        }
+      ],
+      "email": "",
+      "id": 0,
+      "location": {
+        "city": {
+          "countryName": "",
+          "countryShortName": "",
+          "id": 0,
+          "mapAttribute": {
             "id": 0,
             "latitude": 0,
             "longitude": 0,
-            "route": "",
-            "secondStreet": "",
-            "state": "",
-            "street": "",
-            "tip": "",
-            "zip": ""
-          },
-          "phoneNumber": ""
-        }
-      ],
-      "claimed": true,
-      "currentAddress": {
-        "businessHours": [
-          {
-            "day": "string",
-            "endTime": "string",
-            "id": 0,
-            "open": true,
-            "startTime": "string"
+            "name": "",
+            "shortName": "",
+            "zoom": 0
           }
-        ],
-        "email": "string",
+        },
         "id": 0,
-        "location": {
-          "city": {
-            "countryName": "string",
-            "countryShortName": "string",
-            "id": 0,
-            "mapAttribute": {
-              "id": 0,
-              "latitude": 0,
-              "longitude": 0,
-              "name": "string",
-              "shortName": "string",
-              "zoom": 0
-            }
-          },
+        "latitude": 0,
+        "longitude": 0,
+        "route": "",
+        "secondStreet": "",
+        "state": "",
+        "street": "",
+        "tip": "",
+        "zip": ""
+      },
+      "phoneNumber": ""
+    }
+  ],
+  "claimed": true,
+  "currentAddress": {
+    "businessHours": [
+      {
+        "day": "",
+        "endTime": "",
+        "id": 0,
+        "open": true,
+        "startTime": ""
+      }
+    ],
+    "email": "",
+    "id": 0,
+    "location": {
+      "city": {
+        "countryName": "",
+        "countryShortName": "",
+        "id": 0,
+        "mapAttribute": {
           "id": 0,
           "latitude": 0,
           "longitude": 0,
-          "route": "string",
-          "secondStreet": "string",
-          "state": "string",
-          "street": "string",
-          "tip": "string",
-          "zip": "string"
-        },
-        "phoneNumber": "string"
+          "name": "",
+          "shortName": "",
+          "zoom": 0
+        }
       },
-      "description": "",
-      "hasClass": false,
       "id": 0,
-      "learnWithUs": "",
-      "meetUs": "",
-      "name": "",
-      "products": [
-        {
-          "description": "",
-          "label": "",
-          "value": 0
-        }
-      ],
-      "profilePicture": "",
-      "profileVideo": "",
-      "rating": 0,
-      "storeType": "CRAFT_STORE",
-      "story": "",
-      "tags": [
-        {
-          "description": "",
-          "icon": "",
+      "latitude": 0,
+      "longitude": 0,
+      "route": "",
+      "secondStreet": "",
+      "state": "",
+      "street": "",
+      "tip": "",
+      "zip": ""
+    },
+    "phoneNumber": ""
+  },
+  "description": "",
+  "hasClass": false,
+  "id": 0,
+  "learnWithUs": "",
+  "meetUs": "",
+  "name": "",
+  "products": [
+    {
+      "description": "",
+      "label": "",
+      "value": 0
+    }
+  ],
+  "profilePicture": "",
+  "profileVideo": "",
+  "rating": 0,
+  "storeType": "CRAFT_STORE",
+  "story": "",
+  "tags": [
+    {
+      "description": "",
+      "icon": "",
+      "id": 0,
+      "tag": "",
+      "tagType": "PRODUCT"
+    }
+  ],
+  "webPresences": [
+    {
+      "id": 0,
+      "link": "",
+      "order": 0,
+      "webSite": ""
+    }
+  ]
+}});
+const { control, handleSubmit, register, watch, formState, setValue } = form;
+const { errors } = formState;
+const watchAddresses = watch("addresses", []);
+const addAddress = () => {
+  // Clone the current array of addresses
+  const updatedAddresses = [...watchAddresses];
+
+  // Add a new address object to the array
+  updatedAddresses.push({
+    "businessHours": [
+      {
+        "day": "",
+        "endTime": "",
+        "id": 0,
+        "open": true,
+        "startTime": ""
+      }
+    ],
+    "email": "",
+    "id": 0,
+    "location": {
+      "city": {
+        "countryName": "",
+        "countryShortName": "",
+        "id": 0,
+        "mapAttribute": {
           "id": 0,
-          "tag": "",
-          "tagType": "PRODUCT"
+          "latitude": 0,
+          "longitude": 0,
+          "name": "",
+          "shortName": "",
+          "zoom": 0
         }
-      ],
-      "webPresences": [
-        {
-          "id": 0,
-          "link": "",
-          "order": 0,
-          "webSite": ""
-        }
-      ]
-    
-  });
-  const steps = ["Store Info", "Address", "Working Hours", "Tags"];
-  const handleAddressChange = (index: number, field: string, value: string) => {
-    const updatedAddresses = [...formData.addresses];
-    updatedAddresses[index] = {
-      ...updatedAddresses[index],
-      location: {
-        ...updatedAddresses[index].location,
-        city: {
-          ...updatedAddresses[index].location.city,
-          [field]: value,
-        },
       },
-    };
+      "id": 0,
+      "latitude": 0,
+      "longitude": 0,
+      "route": "",
+      "secondStreet": "",
+      "state": "",
+      "street": "",
+      "tip": "",
+      "zip": ""
+    },
+    "phoneNumber": ""
+  });
 
-    setFormData({
-      ...formData,
-      addresses: updatedAddresses,
-    });
-  };
-  
-  const handleAddAddress = () => {
-    setFormData({
-      ...formData,
-      addresses: [
-        ...formData.addresses,
-        {
-          businessHours: [
-            {
-              day: "string",
-              endTime: "string",
-              id: 0,
-              open: true,
-              startTime: "string",
-            },
-          ],
-          email: "string",
-          id: 0,
-          location: {
-            city: {
-              countryName: "string",
-              countryShortName: "string",
-              id: 0,
-              mapAttribute: {
-                id: 0,
-                latitude: 0,
-                longitude: 0,
-                name: "string",
-                shortName: "string",
-                zoom: 0,
-              },
-            },
-            id: 0,
-            latitude: 0,
-            longitude: 0,
-            route: "string",
-            secondStreet: "string",
-            state: "string",
-            street: "string",
-            tip: "string",
-            zip: "string",
-          },
-          phoneNumber: "string",
-        },
-      ],
-    });
-  };
-  
-  const handleRemoveAddress = (index: number) => {
-    const updatedAddresses = [...formData.addresses];
-    updatedAddresses.splice(index, 1);
-  
-    setFormData({
-      ...formData,
-      addresses: updatedAddresses,
-    });
-  };
+  // Update the form state with the new addresses array
+  setValue("addresses", updatedAddresses);
+};
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-  
-    // Check if the property is nested
-    const nestedProperties = name.split('.');
-  
-    if (nestedProperties.length === 1) {
-      // If not nested, update directly
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [name]: value,
-      }));
-    } else if (nestedProperties.length === 2) {
-      // If nested, update accordingly
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [nestedProperties[0]]: {
-          ...prevFormData[nestedProperties[0]],
-          [nestedProperties[1]]: value,
-        },
-      }));
-    }
-    // Add more cases as needed for deeper nesting
-  };
+const removeAddress = (index: number) => {
+  // Clone the current array of addresses
+  const updatedAddresses = [...watchAddresses];
 
-  const handleRadioChange = (event: { target: { name: any; value: any; }; }) => {
-    const { name, value } = event.target;
-  
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value === "true", // Convert "true" to true, "false" to false
-    }));
-  };
+  // Remove the address object at the specified index
+  updatedAddresses.splice(index, 1);
 
-  const handleTagChange = (tags: any, type: any) => {
-    setFormData({
-      ...formData,
-      [type]: tags,
-    });
-  };
-  const handleWebPresenceChange = (index: any, field: any, value: any) => {
-    const updatedWebPresences = [...formData.webPresences];
-    updatedWebPresences[index] = {
-      ...updatedWebPresences[index],
-      [field]: value
-    };
+  // Update the form state with the updated addresses array
+  setValue("addresses", updatedAddresses);
+};
+const onSubmit = async (data: StoreData) => {
+  try {
+  //  // Log the form data to the console
+  //  console.log(data);
 
-    setFormData({
-      ...formData,
-      webPresences: updatedWebPresences
-    });
-  };
+  //  // Call the API function to add store data
+  //  const authToken = localStorage.getItem("authToken");
+  //  const response = await addStore2(data, authToken);
 
-  const isStepValid = (step: number) => {
-    if (step === 0) {
-      return formData.name.trim() !== "" && formData.addresses.some(address => address.email.trim() !== "");
-    }
-    if (step === 1) {
-      // You can add validation logic for working hours here if needed
-      return true;
-    }
-    return true;
-  };
+  // //  // Log the API response
+  //  console.log('API response:', response);
+    // Download the form data in JSON format
+    const jsonData = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'form_data.json';
+    link.click();
 
-  const handleNext = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-  
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    } else if (currentStep === steps.length - 1) {
-      // Extract address data
-      const addressData = formData.addresses.map((address) => ({
-        email: address.email,
-        phoneNumber: address.phoneNumber,
-        // Add other address properties as needed
-        location: {
-          city: {
-            countryName: address.location.city.countryName,
-            // Add other city properties as needed
-          },
-          // Add other location properties as needed
-        },
-      }));
-  
-      // Extract tags data
-      const tagsData = formData.tags.map((tag) => ({
-        description: tag.description,
-        icon: tag.icon,
-        tag: tag.tag,
-        tagType: tag.tagType,
-        // Add other tag properties as needed
-      }));
-      // Extract web data
-      const webPresencesData = formData.webPresences.map((web) => ({
-        id: web.id ,
-          link: web.link,
-          order: web.order,
-          webSite:web.webSite
-        // Add other tag properties as needed
-      }));
-  
-      // Create export data
-      const exportData = {
-        name: formData.name,
-        description: formData.description,
-        additionalInformation: formData.additionalInformation,
-        addresses: addressData,
-        tags: tagsData,
-        webPresences: webPresencesData,
-        // Add other properties as needed
-      };
-  
-      // Convert exportData to JSON
-      const jsonData = JSON.stringify(exportData, null, 2);
-  
-      // Create a Blob from the JSON data
-      const blob = new Blob([jsonData], { type: "application/json" });
-  
-      // Create a download link and trigger a click to download the JSON file
-      const downloadLink = document.createElement("a");
-      downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = "formData.json";
-      downloadLink.click();
-    }
-  };
-  const handlePrev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
+    // Additional actions, if any
 
+  } catch (error) {
+    console.error('An error occurred while handling form submission:', error);
+    console.error('Error details:', JSON.stringify(error, null, 2));
+    // Handle the error, e.g., display an error message to the user
+  }
+};
+  const steps = ["Store Info", "Address", "Working Hours", "Tags"];
+  
   return (
     <>
       <div className={StoreForm.isOpen ? "storeForm" : "storeForm-disabled"}>
@@ -352,7 +235,7 @@ const StoreForm = (StoreForm: StoreForm) => {
             ))}
           </ul>
         </div>
-        <form className="row g-3">
+        <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
           <h1>{steps[currentStep]}</h1>
           {currentStep === 0 && (
             /* Store Info */
@@ -362,17 +245,21 @@ const StoreForm = (StoreForm: StoreForm) => {
                   type="text"
                   className="form-control"
                   placeholder="Store Name"
-                  name="name"
-                  onChange={handleInputChange}
-                />
+                  id="name" {...register("name",
+                  )}
+                required/>
+                
                </div>
               <div className="col-md-6">
                 <input
                   type="file"
                   className="form-control"
-                  id="inputGroupFile02"
-                  name="profilePicture"
-                  onChange={handleInputChange}
+                  id="profilePicture"
+                 
+                   {...register("profilePicture",
+                  )}
+                required
+                  
                 />
               </div>
 
@@ -381,67 +268,122 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <textarea
                   className="form-control"
                   aria-label="With textarea"
-                  name="description"
-                  onChange={handleInputChange}
+                  {...register("description")}
+                 
                 ></textarea>
               </div>
-              <div className="col-md-6">
-                <span className="input-group-text">Event + Classes</span>
-                <textarea
-                  className="form-control"
-                  aria-label="With textarea"
-                  name="additionalInformation"
-                  onChange={handleInputChange}
-                ></textarea>
-              </div>
+                <div className="col-md-6">
+                      <span className="input-group-text">
+                        Additional Information
+                      </span>
+                      <textarea
+                        className="form-control"
+                        aria-label="With textarea"
+                        {...register("additionalInformation")}
 
-              <div className="col-md-6">
-                <div className="input-group mb-3">
-                  <span
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                  >
-                    Website
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                    name="webSite"
-                    onChange={(e) => handleWebPresenceChange(0, "webSite", e.target.value)}
-                  />
-                </div>
-              </div> 
-              {['Facebook', 'Instagram', 'TikTok', 'WeChat','Weibo'].map((linkIndex) => (
-        <div key={linkIndex} className="col-md-6">
+                      ></textarea>
+                    </div>
+          <div className="col">
           <div className="input-group mb-3">
-            <span className="input-group-text" id={`link${linkIndex}`}>
-              {linkIndex}
+            <span className="input-group-text" id="link" >
+              Website 
             </span>
             <input
               type="text"
               className="form-control"
-              aria-label={`Sizing example input ${linkIndex}`}
-              aria-describedby={`inputGroup-sizing-default ${linkIndex}`}
-              name="link"
-              onChange={(e) => handleWebPresenceChange(linkIndex, "link", e.target.value)}
+              aria-label="link"
+              {...register("webPresences.0.link")}
+              {...register("webPresences.0.webSite", { value: "Website" })}
+              
             />
           </div>
         </div>
-      ))}
+              
+        <div className="col-md-6">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="link" {...register("webPresences.0.webSite", { value: "Facebook" })}>
+              Facebook 
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="link"
+              {...register("webPresences.1.link")}
+              
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="link">
+              Instagram
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="link"
+              {...register("webPresences.2.link")}
+              {...register("webPresences.0.webSite", { value: "Instagram" })}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="link">
+              Tik Tok
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="link"
+              // {...register("webPresences.3.link")}
+              // {...register("webPresences.0.webSite", { value: "Instagram" })}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="link">
+              WeChat
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="link"
+              {...register("webPresences.4.link")}
+              {...register("webPresences.0.webSite", { value: "WeChat" })}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="link">
+              Weibo
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              aria-label="link"
+              {...register("webPresences.5.link")}
+              {...register("webPresences.0.webSite", { value: "Weibo" })}
+            />
+          </div>
+        </div>
+   
           
             </>
           )}
           {currentStep === 1 && (
             /* Working Hours */
             <>
-              {formData.addresses.map((address, index) => (
-                <div key={index} className="address-section">
-                  <div className="address-section-input">
+              
+               
+                {watchAddresses.map((address, index) => (
+                 <div  className="address-section"> 
+                 <div key={index} className="address-section-input">
                     <div className="col-12">
                       <label
-                        htmlFor={`inputStreet${index}`}
+                        htmlFor=""
                         className="form-label"
                       >
                         Street
@@ -449,17 +391,13 @@ const StoreForm = (StoreForm: StoreForm) => {
                       <input
                         type="text"
                         className="form-control"
-                        id={`inputStreet${index}`}
+                        id=""
                         placeholder="1234 Main St"
-                        name="street"
-                        onChange={(e) =>
-                          handleAddressChange(index, "street", e.target.value)
-                        }
-                      />
+                        {...register(`addresses.${index}.location.street`)} />
                     </div>
                     <div className="col-md-6">
                       <label
-                        htmlFor={`inputCity${index}`}
+                        htmlFor=""
                         className="form-label"
                       >
                         City
@@ -467,27 +405,21 @@ const StoreForm = (StoreForm: StoreForm) => {
                       <input
                         type="text"
                         className="form-control"
-                        id={`inputCity${index}`}
-                        name="countryShortName"
-                        onChange={(e) =>
-                          handleAddressChange(index, "city", e.target.value)
-                        }
-                      />
+                        id=""
+                        {...register(`addresses.${index}.location.city.mapAttribute.name`)} />
                     </div>
                     <div className="col-md-4">
                       <label
-                        htmlFor={`inputState${index}`}
+                        htmlFor=""
                         className="form-label"
                       >
                         State
                       </label>
                       <select
-                        id={`inputState${index}`}
+                        id=""
                         className="form-select"
-                        name="state"
-                        onChange={(e) =>
-                          handleAddressChange(index, "state", e.target.value)
-                        }
+                        {...register(`addresses.${index}.location.state`)}
+
                       >
                         <option selected>Choose...</option>
                         {/* Add your state options here */}
@@ -495,7 +427,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                     <div className="col-md-2">
                       <label
-                        htmlFor={`inputZip${index}`}
+                        htmlFor=""
                         className="form-label"
                       >
                         Zip
@@ -503,12 +435,8 @@ const StoreForm = (StoreForm: StoreForm) => {
                       <input
                         type="text"
                         className="form-control"
-                        id={`inputZip${index}`}
-                        name="zip"
-                        onChange={(e) =>
-                          handleAddressChange(index, "zip", e.target.value)
-                        }
-                      />
+                        id=""
+                        {...register(`addresses.${index}.location.zip`)} />
                     </div>
                     <div className="col-md-6">
                       <label htmlFor="inputEmail4" className="form-label">
@@ -518,9 +446,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                         type="email"
                         className="form-control"
                         id="inputEmail4"
-                        name="email"
-                        onChange={handleInputChange}
-                      />
+                        {...register(`addresses.${index}.email`)} />
                     </div>
                     <div className="col-md-6">
                       <label htmlFor="inputPhone" className="form-label">
@@ -530,92 +456,282 @@ const StoreForm = (StoreForm: StoreForm) => {
                         type="number"
                         className="form-control"
                         id="inputPhone"
-                        name="phoneNumber"
-                        onChange={handleInputChange}
-                      />
+                        {...register(`addresses.${index}.phoneNumber`)} />
                     </div>
-                    <div className="col-md-6">
-                      <span className="input-group-text">
-                        Additional Information
-                      </span>
-                      <textarea
-                        className="form-control"
-                        aria-label="With textarea"
-                        name="additionalInformation"
-                        onChange={handleInputChange}
-                      ></textarea>
-                    </div>
+                    
                     <div className="add-rmv">
                       <div className="col-md-6">
                         <h2>
-                          <BsHouseAddFill onClick={handleAddAddress} />
+                          <BsHouseAddFill onClick={() => addAddress()} />
                         </h2>
                       </div>
-                      {index > 0 && (
-                        <div className="col-md-6">
+
+                      <div className="col-md-6">
+                        {index > 0 && (
                           <h2>
-                            <IoIosRemoveCircle
-                              onClick={() => handleRemoveAddress(index)}
-                            />
+                            <IoIosRemoveCircle onClick={() => removeAddress(index)} />
                           </h2>
-                        </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    </div>     
                   </div>
                   <div className="map-section">
-                    <img src={storeimg}></img>
+                    <GoogleMapPicker callBack={(lat: any,lng: any)=>{}} />
                   </div>
-                </div>
-              ))}
+                  </div>
+                ))}                
+                
+              
             </>
           )}
 
           {currentStep === 2 && (
             /* Working Hours */
+            
             <>
-              <div className="col-md-6">
-                <span className="input-group-text">Working Days</span>
-                <Multiselect
-                  isObject={false}
-                  options={[
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday",
-                  ]}
-                  
-                />
-              </div>
-              <div className="col-md">
-                <div className="form-floating">
-                  <input
-                    type="time"
-                    className="form-control"
-                    id="startTime"
-                    placeholder="8:00 AM"
-                    name="startTime"
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="startTime">Start Time</label>
+       {watchAddresses.map((address, index) => (
+             <div key={index} className="businessHours">
+                     <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Monday"
+                 {...register(`addresses.${index}.businessHours.0.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Monday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.0.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.${index}.businessHours.0.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
                 </div>
-              </div>
-              <div className="col-md">
-                <div className="form-floating">
-                  <input
-                    type="time"
-                    className="form-control"
-                    id="endTime"
-                    placeholder="8:00 AM"
-                    name="endTime"
-                    onChange={handleInputChange}
-                  />
-                  <label htmlFor="endTime">End Time</label>
+                
+                      </div>
+                      <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Tuesday"
+                 {...register(`addresses.${index}.businessHours.1.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Tuesday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.1.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.1.businessHours.${index}.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
                 </div>
-              </div>
+                
+                      </div>
+                      <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Wednesday"
+                 {...register(`addresses.${index}.businessHours.2.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Wednesday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.2.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.${index}.businessHours.2.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
+                </div>
+                
+                      </div>
+                      <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Thursday"
+                 {...register(`addresses.${index}.businessHours.3.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Thursday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.3.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.${index}.businessHours.3.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
+                </div>
+                
+                      </div>
+                      <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Friday"
+                 {...register(`addresses.${index}.businessHours.4.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Friday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.4.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.${index}.businessHours.4.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
+                </div>
+                
+                      </div>
+                      <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Saturday"
+                 {...register(`addresses.${index}.businessHours.5.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Saturday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.5.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.${index}.businessHours.5.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
+                </div>
+                
+                      </div>
+                      <div className="workingHours">
+                <div className="form-check">
+                 <input className="form-check-input" type="checkbox"  id="flexRadioDefault1" value="Sunday"
+                 {...register(`addresses.${index}.businessHours.6.day`)}/>
+                   <label className="form-check-label" htmlFor="flexRadioDefault1">
+                   Sunday
+                   </label>
+                </div>   
+                <div className="startTime">
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="startTime"
+              placeholder="8:00 AM"
+              {...register(`addresses.${index}.businessHours.6.startTime`)}/>
+            <label htmlFor="startTime">Start Time</label>
+          </div>
+        </div>
+                <div className="col-md">
+          <div className="form-floating">
+            <input
+              type="time"
+              className="form-control"
+              id="endTime"
+              placeholder="8:00 AM" {...register(`addresses.${index}.businessHours.6.endTime`)}
+            />
+            <label htmlFor="endTime">End Time</label>
+          </div>
+        </div>
+                </div>
+                
+                      </div>
+                </div>))} 
             </>
+            
           )}
           {currentStep === 3 && (
             /* Tags */
@@ -624,9 +740,9 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <span className="input-group-text">Primary Tag</span>
                 <select
                   className="form-select"
-                  aria-label="Default select example"
-                  name="description"
-                  onChange={handleInputChange}
+                  aria-label="Default select example"                  
+                  {... register("tags.0.tag")}
+                  {... register("tags.0.description")}
                 >
                   <option value="1">One</option>
                   <option value="2">Two</option>
@@ -637,25 +753,21 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <span className="input-group-text">Secondary Tag</span>
                 <Multiselect
                   isObject={false}
-                  onSelect={(selectedList) =>
-                    handleTagChange(selectedList, "secondaryTags")
-                  }
+                  
                   options={[
                     "Option 1",
                     "Option 2",
                     "Option 3",
                     "Option 4",
                     "Option 5",
-                  ]}
+                  ]}  
                 />
               </div>
               <div className="col-md-6">
                 <span className="input-group-text">Social Impact Tags</span>
                 <Multiselect
                   isObject={false}
-                  onSelect={(selectedList) =>
-                    handleTagChange(selectedList, "socialImpactTags")
-                  }
+                  
                   options={[
                     "Option 1",
                     "Option 2",
@@ -674,8 +786,8 @@ const StoreForm = (StoreForm: StoreForm) => {
                     name="hasClass"
                     id="flexRadioDefault1"
                     value="true"
-                    checked={formData.hasClass== true}
-                    onChange={handleRadioChange}
+                    
+                   
                   />
                   <label
                     className="form-check-label"
@@ -691,8 +803,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                     name="hasClass"
                     id="flexRadioDefault2"
                     value="false"
-                    checked={formData.hasClass== false}
-                    onChange={handleRadioChange}
+                    
                   />
                   <label
                     className="form-check-label"
@@ -701,6 +812,14 @@ const StoreForm = (StoreForm: StoreForm) => {
                     No
                   </label>
                 </div>
+                <div className="col-md-6">
+                <span className="input-group-text">Event + Classes</span>
+                <textarea
+                  className="form-control"
+                  aria-label="With textarea"
+                  {...register("additionalInformation")}
+                ></textarea>
+              </div>
               </div>
             </>
           )}
@@ -710,7 +829,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <button
                   type="button"
                   className="btn btn-secondary"
-                  onClick={handlePrev}
+                  
                 >
                   Previous
                 </button>
@@ -721,8 +840,7 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <button
                   type="button"
                   className="btn btn-primary"
-                  onClick={handleNext}
-                  disabled={!isStepValid(currentStep)}
+                               
                 >
                   Next
                 </button>
@@ -732,9 +850,7 @@ const StoreForm = (StoreForm: StoreForm) => {
               <div className="submit">
                 <button
                   type="submit"
-                  className="btn btn-primary"
-                  onClick={handleNext}
-                >
+                  className="btn btn-primary" >
                   Save
                 </button>
               </div>
