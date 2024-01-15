@@ -91,7 +91,7 @@ export interface WebPresence {
 export function getStore(authToken: string) {
   return new Promise(async (resolve, reject) => {
     try {
-      const response = await axios.get(url + "api/store/?page=2&size=70", {
+      const response = await axios.get(url + "api/store/?page=1&size=100", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -105,6 +105,27 @@ export function getStore(authToken: string) {
     }
   });
 }
+export function searchStoreByname(authToken: string, storeName: string) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios.get(
+        url + `api/search/store/byName?key=${storeName}&page=0&size=100`,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      console.log(response);
+      resolve(response);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+}
+
 export async function addStore(data: StoreData, authToken: string | null) {
   try {
     const response = await axios.post(url + "api/store/addStore", data, {
@@ -130,4 +151,21 @@ export async function addStore(data: StoreData, authToken: string | null) {
 
     throw error;
   }
+}
+export async function deleteStore(authToken: string, id: string) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await axios.delete(url + `api/store/${id}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      console.log(response);
+      resolve(response);
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
 }

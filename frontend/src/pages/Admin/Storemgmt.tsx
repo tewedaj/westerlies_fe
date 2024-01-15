@@ -5,24 +5,32 @@ import Anavbar from "../../components/admincomponents/Anavbar";
 import plus from "../../assets/admin/plus.png";
 import { useEffect, useState } from "react";
 import StoreForm from "../../components/admincomponents/StoreForm";
-import { getStore, StoreData } from "./controller.admin";
+import {
+  getStore,
+  StoreData,
+  searchStoreByname,
+  deleteStore,
+} from "./controller.admin";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { FcSearch } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Storemgmt = () => {
   const [searchText, setSearchText] = useState("");
   const [storeData, setStoreData] = useState<StoreData[]>([]);
+  const [filteredData, setSearchData] = useState<StoreData[]>([]);
+  const [getId, setId] = useState("");
   const [addStore, setAddstore] = useState<boolean>(false);
   const columns = [
     {
       name: "Store Name",
       selector: (row: StoreData): string => row.name,
     },
-    {
-      id: "Store id",
-      selector: (row: StoreData): number => row.id,
-    },
+    // {
+    //   id: "Store id",
+    //   selector: (row: StoreData): number => row.id,
+    // },
     {
       name: "City",
       selector: (row: StoreData): string => {
@@ -63,19 +71,20 @@ const Storemgmt = () => {
   ];
 
   const handleEdit = (row: StoreData) => {
-    console.log("Edit clicked for row:", row);
+    console.log("Edit clicked for row:", row.id);
     // Add your edit logic here
   };
 
   const handleDelete = (row: StoreData) => {
-    console.log("Delete clicked for row:", row);
-    // Add your delete logic here
+    console.log("Delete clicked for row:", row.name);
+    setId(`${row.id}`);
+    console.log("Deleted", row.name);
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
     // Debugging
     console.log("Search Text:", e.target.value);
-    console.log("Filtered Data:", storeData);
+    console.log("Filtered Data:", filteredData);
   };
   const navigate = useNavigate();
   useEffect(() => {
@@ -97,19 +106,36 @@ const Storemgmt = () => {
       navigate("/login");
     }
   }, []);
-
-  const filteredData = storeData.filter((row) => {
-    const lowerCaseSearchText = searchText.toLowerCase();
-
-    return (
-      row.name.toLowerCase().includes(lowerCaseSearchText) ||
-      row.addresses[0]?.location?.city.mapAttribute.name
-        .toLowerCase()
-        .includes(lowerCaseSearchText) ||
-      row.addresses[0]?.location?.city.countryName
-        .toLowerCase()
-        .includes(lowerCaseSearchText)
-    );
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+    if (isAuthenticated !== null && isAuthenticated !== "false") {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        searchStoreByname(authToken, searchText)
+          .then((response: any) => {
+            const filteredData = response.data;
+            setSearchData(filteredData);
+          })
+          .catch((error) => {
+            console.error("Error fetching search data:", error);
+          });
+      }
+    }
+  });
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("isAuthenticated");
+    if (isAuthenticated !== null && isAuthenticated !== "false") {
+      const authToken = localStorage.getItem("authToken");
+      if (authToken) {
+        deleteStore(authToken, getId)
+          .then((response: any) => {
+            console.log("store deleted");
+          })
+          .catch((error: any) => {
+            console.error("Error deleting store:", error);
+          });
+      }
+    }
   });
   return (
     <>
