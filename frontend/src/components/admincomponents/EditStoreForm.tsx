@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState } from "react";
 import "./StoreForm.css";
 import { StoreForm } from "./prop.StoreForm";
 import Multiselect from "multiselect-react-dropdown";
@@ -11,138 +11,15 @@ import {
   uploadImage,
 } from "../../pages/Admin/controller.admin";
 import GoogleMapPicker from "./MapComponentPicker";
-const StoreForm = (StoreForm: StoreForm) => {
+const EditStoreForm = (StoreForm: StoreForm) => {
   const [file, setFile] = useState<File | null>(null);
 
   const form = useForm<StoreData>({
     defaultValues: {
       additionalInformation: "",
-      addresses: [
-        {
-          businessHours: [
-            {
-              day: "Monday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-            {
-              day: "Tuesday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-            {
-              day: "Wednesday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-            {
-              day: "Thursday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-            {
-              day: "Friday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-            {
-              day: "Saturday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-            {
-              day: "Sunday",
-              endTime: "",
-              id: 0,
-              open: true,
-              startTime: "",
-            },
-          ],
-          email: "",
-          id: 0,
-          location: {
-            city: {
-              countryName: "",
-              countryShortName: "",
-              id: 0,
-              mapAttribute: {
-                id: 0,
-                latitude: 0,
-                longitude: 0,
-                name: "",
-                shortName: "",
-                zoom: 0,
-              },
-            },
-            id: 0,
-            latitude: 0,
-            longitude: 0,
-            route: "",
-            secondStreet: "",
-            state: "",
-            street: "",
-            tip: "",
-            zip: "",
-          },
-          phoneNumber: "",
-        },
-      ],
-      claimed: true,
-      currentAddress: {
-        businessHours: [
-          {
-            day: "",
-            endTime: "",
-            id: 0,
-            open: true,
-            startTime: "",
-          },
-        ],
-        email: "",
-        id: 0,
-        location: {
-          city: {
-            countryName: "",
-            countryShortName: "",
-            id: 0,
-            mapAttribute: {
-              id: 0,
-              latitude: 0,
-              longitude: 0,
-              name: "",
-              shortName: "",
-              zoom: 0,
-            },
-          },
-          id: 0,
-          latitude: 0,
-          longitude: 0,
-          route: "",
-          secondStreet: "",
-          state: "",
-          street: "",
-          tip: "",
-          zip: "",
-        },
-        phoneNumber: "",
-      },
+
       description: "",
-      hasClass: false,
-      id: 0,
-      learnWithUs: "",
-      meetUs: "",
+
       name: "",
       products: [
         {
@@ -1136,4 +1013,4 @@ const StoreForm = (StoreForm: StoreForm) => {
   );
 };
 
-export default StoreForm;
+export default EditStoreForm;

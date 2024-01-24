@@ -14,14 +14,15 @@ import {
 import { IoAddCircleSharp } from "react-icons/io5";
 import { FcSearch } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import EditStoreForm from "../../components/admincomponents/EditStoreForm";
 
 const Storemgmt = () => {
   const [searchText, setSearchText] = useState("");
-  const [storeData, setStoreData] = useState<StoreData[]>([]);
-  const [filteredData, setSearchData] = useState<StoreData[]>([]);
+  const [, setStoreData] = useState<StoreData[]>([]);
+  const [filteredData2, setSearchData] = useState<StoreData[]>([]);
   const [getId, setId] = useState("");
   const [addStore, setAddstore] = useState<boolean>(false);
+  const [editStore, setEditStore] = useState<boolean>(false);
   const columns = [
     {
       name: "Store Name",
@@ -72,7 +73,7 @@ const Storemgmt = () => {
 
   const handleEdit = (row: StoreData) => {
     console.log("Edit clicked for row:", row.id);
-    // Add your edit logic here
+    setEditStore(!editStore);
   };
 
   const handleDelete = (row: StoreData) => {
@@ -84,7 +85,7 @@ const Storemgmt = () => {
     setSearchText(e.target.value);
     // Debugging
     console.log("Search Text:", e.target.value);
-    console.log("Filtered Data:", filteredData);
+    console.log("Filtered Data:", filteredData2);
   };
   const navigate = useNavigate();
   useEffect(() => {
@@ -121,7 +122,7 @@ const Storemgmt = () => {
           });
       }
     }
-  });
+  }, [searchText]);
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (isAuthenticated !== null && isAuthenticated !== "false") {
@@ -129,14 +130,15 @@ const Storemgmt = () => {
       if (authToken) {
         deleteStore(authToken, getId)
           .then((response: any) => {
-            console.log("store deleted");
+            console.log(response, "store deleted");
           })
           .catch((error: any) => {
             console.error("Error deleting store:", error);
           });
       }
     }
-  });
+  }, [getId]);
+
   return (
     <>
       <Aheader />
@@ -155,6 +157,7 @@ const Storemgmt = () => {
             </h1>
           </div>
           <StoreForm isOpen={addStore} />
+          <EditStoreForm isOpen={editStore} />
           <div className="search-box">
             <input
               type="text"
@@ -170,7 +173,7 @@ const Storemgmt = () => {
             <DataTable
               title="Store Data"
               columns={columns}
-              data={filteredData}
+              data={filteredData2}
               pagination
               paginationPerPage={10}
               paginationRowsPerPageOptions={[5, 10, 20, 30]}
