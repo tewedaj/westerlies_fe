@@ -21,6 +21,7 @@ const Storemgmt = () => {
   const [, setStoreData] = useState<StoreData[]>([]);
   const [filteredData2, setSearchData] = useState<StoreData[]>([]);
   const [getId, setId] = useState("");
+  const [getIdEdit, setIdEdit] = useState(0);
   const [addStore, setAddstore] = useState<boolean>(false);
   const [editStore, setEditStore] = useState<boolean>(false);
   const columns = [
@@ -73,6 +74,13 @@ const Storemgmt = () => {
 
   const handleEdit = (row: StoreData) => {
     console.log("Edit clicked for row:", row.id);
+    // Check if row.id is defined before setting the state
+    if (row.id !== undefined) {
+      setIdEdit(row.id);
+    } else {
+      console.error("Row ID is undefined");
+      // Handle the case where row.id is undefined, such as showing an error message
+    }
     setEditStore(!editStore);
   };
 
@@ -87,22 +95,31 @@ const Storemgmt = () => {
     console.log("Search Text:", e.target.value);
     console.log("Filtered Data:", filteredData2);
   };
+  const performSearch = () => {
+    if (searchText.trim() !== "") {
+      searchStoreByname(searchText)
+        .then((response: any) => {
+          const filteredData = response.data;
+          setSearchData(filteredData);
+        })
+        .catch((error) => {
+          console.error("Error fetching search data:", error);
+        });
+    }
+  };
   const navigate = useNavigate();
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
 
     if (isAuthenticated !== null && isAuthenticated !== "false") {
-      const authToken = localStorage.getItem("authToken");
-      if (authToken) {
-        getStore(authToken)
-          .then((response: any) => {
-            const responseData = response.data as unknown as StoreData[];
-            setStoreData(responseData);
-          })
-          .catch((error) => {
-            console.error("Error fetching store data:", error);
-          });
-      }
+      getStore()
+        .then((response: any) => {
+          const responseData = response.data as unknown as StoreData[];
+          setStoreData(responseData);
+        })
+        .catch((error) => {
+          console.error("Error fetching store data:", error);
+        });
     } else {
       navigate("/login");
     }
@@ -110,32 +127,19 @@ const Storemgmt = () => {
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (isAuthenticated !== null && isAuthenticated !== "false") {
-      const authToken = localStorage.getItem("authToken");
-      if (authToken) {
-        searchStoreByname(authToken, searchText)
-          .then((response: any) => {
-            const filteredData = response.data;
-            setSearchData(filteredData);
-          })
-          .catch((error) => {
-            console.error("Error fetching search data:", error);
-          });
-      }
+      performSearch();
     }
   }, [searchText]);
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("isAuthenticated");
     if (isAuthenticated !== null && isAuthenticated !== "false") {
-      const authToken = localStorage.getItem("authToken");
-      if (authToken) {
-        deleteStore(authToken, getId)
-          .then((response: any) => {
-            console.log(response, "store deleted");
-          })
-          .catch((error: any) => {
-            console.error("Error deleting store:", error);
-          });
-      }
+      deleteStore(getId)
+        .then((response: any) => {
+          console.log(response, "store deleted");
+        })
+        .catch((error: any) => {
+          console.error("Error deleting store:", error);
+        });
     }
   }, [getId]);
 
@@ -157,7 +161,7 @@ const Storemgmt = () => {
             </h1>
           </div>
           <StoreForm isOpen={addStore} />
-          <EditStoreForm isOpen={editStore} />
+          <EditStoreForm isOpen={editStore} id={getIdEdit} />
           <div className="search-box">
             <input
               type="text"
@@ -166,7 +170,7 @@ const Storemgmt = () => {
               onChange={handleSearch}
             />{" "}
             <h2>
-              <FcSearch />
+              <FcSearch onClick={performSearch} />
             </h2>
           </div>
           <div className="storedata">

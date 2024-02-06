@@ -128,3 +128,10 @@
 .input-group{
   width: 50%;
 }
+.map-section-try{
+  display: flex;
+  width: 60%;
+  height: 100%;
+  margin-left: 2%;
+  margin-bottom: 0px;
+}
