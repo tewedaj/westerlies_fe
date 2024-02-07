@@ -372,12 +372,14 @@ const EditStoreForm = ({ isOpen, id }: EditStoreForm) => {
     setWatchAddresses([...watchAddresses, newAddress]);
   };
 
-  const removeAddress = async (index: number) => {
-    // Filter out the address at the specified index
-    const updatedAddresses = watchAddresses.filter((_, i) => i !== index);
+  const removeAddress = (index: number) => {
+    console.log("Before removal:", watchAddresses);
 
-    // Set the form values with the updated addresses array
+    const updatedAddresses = watchAddresses.filter((_, i) => i !== index);
+    console.log("After removal:", updatedAddresses);
+
     setValue("addresses", updatedAddresses);
+    setWatchAddresses([...updatedAddresses]);
   };
   const deleteWebPresence = async (id: number) => {
     try {
