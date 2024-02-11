@@ -13,3 +13,14 @@ export const getStoreDetailInfo = async (storeId: number,addressId: number) => {
       console.log(error);
     }
   };
+
+  export const getRandomStores = async () => {
+    try {
+      const response = await axios.get(`${url}api/store/random/4`);
+      const stores = response.data;
+        return stores;
+
+    } catch (error) {
+      console.log(error);
+    }
+  }

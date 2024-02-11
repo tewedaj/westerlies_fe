@@ -5,6 +5,27 @@ interface LocationInputProps {
   callBack: (param: string, param2: string) => void;
 }
 
+
+const requestPlaceAutocomplete = (query:string) => {
+  // Generate a unique callback function name
+  const callbackName = 'handlePlaceResponse';
+
+  // Create a script element
+  const script = document.createElement('script');
+
+  // Set the source URL with the Place Autocomplete API endpoint and parameters
+  script.src = `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${query}&key=AIzaSyDJmqRKafG0fWbgp-emUx3PuE1IQp_7F6U&callback=${callbackName}`;
+
+  // Append the script to the document body
+  document.body.appendChild(script);
+
+  // Clean up after the script has loaded
+  script.onload = () => {
+    document.body.removeChild(script);
+  };
+};
+
+
 function LocationInput({ callBack }: LocationInputProps) {
   const [city, setCity] = useState('');
   const [locations, setLocations] = useState([]);
@@ -21,10 +42,11 @@ function LocationInput({ callBack }: LocationInputProps) {
       const endpoint = "https://maps.googleapis.com/maps/api/place/details/json";
       const params = {
         place_id: place_id,
-        key: apiKey
+        key: "AIzaSyDJmqRKafG0fWbgp-emUx3PuE1IQp_7F6U"
       };
 
       const response = await axios.get(endpoint, { params });
+ 
       const data = response.data;
       var resData = {};
       console.log("RRRRR: ", response);
@@ -45,23 +67,22 @@ function LocationInput({ callBack }: LocationInputProps) {
 if (city && !selected ) {
   // Use the Google Places API to fetch location predictions
   axios
-    .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json`, {
-      params: {
-        input: city,
-        key: apiKey,
-      },
+    .get(`https://apibeta.westerlies.com/api/search/city?key=${city}&page=0&size=100`, {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
     })
     .then((response) => {
-      const data = response.data;
-      if (data.status === 'OK') {
-        setLocations(data.predictions);
-      } else {
-        setLocations([]);
-      }
+     // alert("RESPONSE: "+JSON.stringify(response.data))
+     setLocations(response.data);
+
+      // const data = response.data;
+      // if (data.status === 'OK') {
+      //   setLocations(data);
+      // } else {
+      //   setLocations([]);
+      // }
     })
     .catch((error) => {
       console.error('Error fetching location predictions:', error);
@@ -73,13 +94,12 @@ if (city && !selected ) {
   }, [city, apiKey]);
 
   const handleLocationSelect = async (location:any) => {
-   var message : any= await getCountry(location.place_id);
+  // var message : any= await getCountry(location.place_id);
   
-  console.log("MESSAGE: ",message);
-  callBack(message?.city,message?.country)
+  callBack(location?.mapAttribute?.shortName,location?.countryName)
 
 
-    setCity(location.description);
+    setCity(location?.mapAttribute?.shortName);
     setSelected(true);
     setLocations([]);
 
@@ -88,7 +108,7 @@ if (city && !selected ) {
   return (
     <div className={"locationSuggetion"}>
       <input
-      className="locationInput"
+        className="locationInput"
         type="text"
         placeholder="ENTER LOCATION (e.g. city name, zip code)"
         value={city}
@@ -97,10 +117,10 @@ if (city && !selected ) {
       <ul>
         {locations.map((location:any) => (
           <li
-            key={location.place_id}
+            key={location.id}
             onClick={() => handleLocationSelect(location)}
           >
-            {location.description}
+            {location.mapAttribute.shortName}
           </li>
         ))}
       </ul>

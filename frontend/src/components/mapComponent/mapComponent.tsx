@@ -68,9 +68,12 @@ const GoogleMap = (props: any,locations : LocationMap[]) => {
           <img src={selectedPlaceImage}   alt="Shop" />
           </div>
           <h4>{selectedPlace.name}</h4>
-          <button style={{padding:5, background:'#06876',borderRadius:5,border:'none'}}>
-            Detail
-          </button>
+          <button onClick={() => {
+    console.log("sdfdsfsdf");
+    // window.location.href = `/shop_page/${selectedPlace.id}`;
+}} style={{padding: 5, background: '#06876', borderRadius: 5, border: 'none'}}>
+    Detail
+</button>
         </div>
       </InfoWindow>
     </Map>
