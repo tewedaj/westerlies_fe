@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import "./StoreForm.css";
 import { StoreForm } from "./prop.StoreForm";
 import Multiselect from "multiselect-react-dropdown";
@@ -7,78 +7,76 @@ import { BsHouseAddFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import {
   StoreData,
+  Tag,
   addStore,
+  getTag,
   uploadImage,
 } from "../../pages/Admin/controller.admin";
 import GoogleMapPicker from "./MapComponentPicker";
 const StoreForm = (StoreForm: StoreForm) => {
-  const [file, setFile] = useState<File | null>(null);
-
   const form = useForm<StoreData>({
     defaultValues: {
       additionalInformation: "",
+      primaryTag: {
+        id: 41,
+        tag: "",
+        description: "",
+        icon: "",
+        tagType: "PRODUCT",
+      },
+      googleReviewUrl: "",
       addresses: [
         {
           businessHours: [
             {
               day: "Monday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
             {
               day: "Tuesday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
             {
               day: "Wednesday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
             {
               day: "Thursday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
             {
               day: "Friday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
             {
               day: "Saturday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
             {
               day: "Sunday",
               endTime: "",
-              id: 0,
-              open: true,
+              open: false,
               startTime: "",
             },
           ],
           email: "",
-          id: 0,
           location: {
             city: {
               countryName: "",
               countryShortName: "",
-              id: 0,
               mapAttribute: {
-                id: 0,
                 latitude: 0,
                 longitude: 0,
                 name: "",
@@ -86,7 +84,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                 zoom: 0,
               },
             },
-            id: 0,
             latitude: 0,
             longitude: 0,
             route: "",
@@ -100,47 +97,9 @@ const StoreForm = (StoreForm: StoreForm) => {
         },
       ],
       claimed: true,
-      currentAddress: {
-        businessHours: [
-          {
-            day: "",
-            endTime: "",
-            id: 0,
-            open: true,
-            startTime: "",
-          },
-        ],
-        email: "",
-        id: 0,
-        location: {
-          city: {
-            countryName: "",
-            countryShortName: "",
-            id: 0,
-            mapAttribute: {
-              id: 0,
-              latitude: 0,
-              longitude: 0,
-              name: "",
-              shortName: "",
-              zoom: 0,
-            },
-          },
-          id: 0,
-          latitude: 0,
-          longitude: 0,
-          route: "",
-          secondStreet: "",
-          state: "",
-          street: "",
-          tip: "",
-          zip: "",
-        },
-        phoneNumber: "",
-      },
+      currentAddress: null,
       description: "",
       hasClass: false,
-      id: 0,
       learnWithUs: "",
       meetUs: "",
       name: "",
@@ -153,158 +112,212 @@ const StoreForm = (StoreForm: StoreForm) => {
       ],
       profilePicture: "",
       profileVideo: "",
-      rating: 0,
       storeType: "CRAFT_STORE",
       story: "",
       tags: [
         {
+          id: 41,
           description: "",
           icon: "",
-          id: 0,
           tag: "",
           tagType: "PRODUCT",
         },
       ],
       webPresences: [
         {
-          id: 0,
           link: "",
-          order: 0,
           webSite: "Website",
         },
         {
-          id: 0,
           link: "",
-          order: 0,
           webSite: "Facebook",
         },
         {
-          id: 0,
           link: "",
-          order: 0,
           webSite: "Instagram",
         },
         {
-          id: 0,
           link: "",
-          order: 0,
           webSite: "WeChat",
         },
         {
-          id: 0,
           link: "",
-          order: 0,
           webSite: "Weibo",
         },
         {
-          id: 0,
           link: "",
-          order: 0,
           webSite: "TikTok",
         },
       ],
     },
   });
-  const { handleSubmit, register, watch, setValue } = form;
-  const watchAddresses = watch("addresses", []);
-  const addAddress = () => {
-    // Clone the current array of addresses
-    const updatedAddresses = [...watchAddresses];
+  const {
+    handleSubmit,
+    register,
+    watch,
+    setValue,
+    formState: { errors },
+  } = form;
 
-    // Add a new address object to the array
-    updatedAddresses.push({
-      businessHours: [
-        {
-          day: "Monday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Tuesday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Wednesday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Thursday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Friday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Saturday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Sunday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-      ],
-      email: "",
-      id: 0,
+  const watchAddresses = watch("addresses", []);
+  const [tags, setTags] = useState<Tag[]>([]);
+  useEffect(() => {
+    // Fetch tags from API and update state
+    async function fetchTags() {
+      try {
+        const response: any = await getTag();
+        setTags(response.data);
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+      }
+    }
+    fetchTags();
+  }, []);
+
+  const [file, setFile] = useState<File | null>(null);
+  const [coordinates, setCoordinates] = useState(
+    Array.from({ length: watchAddresses.length }, () => ({
+      latitude: 0.0,
+      longitude: 0.0,
+    }))
+  );
+
+  const handleLatitudeChange = (lat: number, index: number) => {
+    setCoordinates((prevCoordinates) => {
+      const updatedCoordinates = [...prevCoordinates];
+      updatedCoordinates[index] = {
+        ...updatedCoordinates[index],
+        latitude: lat,
+      };
+      return updatedCoordinates;
+    });
+  };
+
+  const handleLongitudeChange = (lng: number, index: number) => {
+    setCoordinates((prevCoordinates) => {
+      const updatedCoordinates = [...prevCoordinates];
+      updatedCoordinates[index] = {
+        ...updatedCoordinates[index],
+        longitude: lng,
+      };
+      return updatedCoordinates;
+    });
+  };
+
+  const handleAddressChange = (newAddress: string, index: number) => {
+    const parsedAddress = parseAddress(newAddress);
+    const updatedAddresses = [...watchAddresses];
+    updatedAddresses[index] = {
+      ...updatedAddresses[index],
       location: {
         city: {
-          countryName: "",
-          countryShortName: "",
-          id: 0,
+          countryName: parsedAddress.country,
+          countryShortName: parsedAddress.city,
           mapAttribute: {
-            id: 0,
-            latitude: 0,
-            longitude: 0,
-            name: "",
+            latitude: coordinates[index].latitude,
+            longitude: coordinates[index].longitude,
+            name: parsedAddress.city,
             shortName: "",
             zoom: 0,
           },
         },
-        id: 0,
-        latitude: 0,
-        longitude: 0,
+        latitude: coordinates[index].latitude,
+        longitude: coordinates[index].longitude,
         route: "",
         secondStreet: "",
-        state: "",
-        street: "",
+        state: parsedAddress.state,
+        street: parsedAddress.street,
         tip: "",
-        zip: "",
+        zip: parsedAddress.zip,
       },
-      phoneNumber: "",
-    });
-
-    // Update the form state with the new addresses array
+    };
     setValue("addresses", updatedAddresses);
   };
 
+  const parseAddress = (addressString: string) => {
+    const [street, city, stateZip, country] = addressString.split(", ");
+    const [state, zip] = stateZip.split(" ");
+
+    return { street, city, state, zip, country };
+  };
+
+  const addAddress = () => {
+    setValue("addresses", [
+      ...watchAddresses,
+      {
+        businessHours: [
+          {
+            day: "Monday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+          {
+            day: "Tuesday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+          {
+            day: "Wednesday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+          {
+            day: "Thursday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+          {
+            day: "Friday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+          {
+            day: "Saturday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+          {
+            day: "Sunday",
+            endTime: "",
+            open: false,
+            startTime: "",
+          },
+        ],
+        email: "",
+        location: {
+          city: {
+            countryName: "",
+            countryShortName: "",
+            mapAttribute: {
+              latitude: 0,
+              longitude: 0,
+              name: "",
+              shortName: "",
+              zoom: 0,
+            },
+          },
+          latitude: 0,
+          longitude: 0,
+          route: "",
+          secondStreet: "",
+          state: "",
+          street: "",
+          tip: "",
+          zip: "",
+        },
+        phoneNumber: "",
+      },
+    ]);
+  };
+
   const removeAddress = (index: number) => {
-    // Clone the current array of addresses
-    const updatedAddresses = [...watchAddresses];
-
-    // Remove the address object at the specified index
-    updatedAddresses.splice(index, 1);
-
-    // Update the form state with the updated addresses array
+    const updatedAddresses = watchAddresses.filter((_, i) => i !== index);
     setValue("addresses", updatedAddresses);
   };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -314,11 +327,9 @@ const StoreForm = (StoreForm: StoreForm) => {
 
   const uploadAndSetProfilePicture = async () => {
     try {
-      const authToken = localStorage.getItem("authToken");
-
-      if (file && authToken) {
+      if (file) {
         // Call the API function to upload the image and get the response
-        const response = await uploadImage(file, authToken);
+        const response = await uploadImage(file);
 
         // Return the URL after uploading the image
         return response;
@@ -337,33 +348,48 @@ const StoreForm = (StoreForm: StoreForm) => {
       return null;
     }
   };
+  const handleMultiselectChange = (selectedList: any[]) => {
+    const selectedTags: any = selectedList.map((tagName) => {
+      return tags.find((tag) => tag.tag === tagName);
+    });
+
+    // Set the form value for the "tags" field
+    setValue("tags", selectedTags);
+  };
   const [currentStep, setCurrentStep] = useState(0);
-  const watchStoreInfoFields = watch([
-    "name",
-    "description",
-    "profilePicture",
-    "profileVideo",
-  ]);
 
   const handleNext = () => {
-    // Add validation logic here if needed
-    // For example, check if all required fields are filled for the current step
-
-    // Move to the next step or perform other actions
     setCurrentStep((prevStep) => prevStep + 1);
   };
-
-  const isNextButtonDisabled = () => {
-    // Check if all required fields for the "Store Info" section are filled
-    return !watchStoreInfoFields.every((field) => field !== "");
-  };
+  const [profilePictureUrl, setProfilepicture] = useState("");
 
   const onSubmit = async () => {
     try {
       // Call the function to upload the image and get the profilePicture URL
-      const profilePictureUrl = await uploadAndSetProfilePicture();
+      if (file !== null) {
+        const profilePicture = await uploadImage(file);
+        setProfilepicture(profilePicture);
+      }
+      const selectedTagId = watch("primaryTag.id"); // Watch for changes in the primaryTag.id field
+      const selectedtags = watch("tags");
+      console.log("Selected Tag:", selectedtags);
 
-      // If the profilePictureUrl is available, set it in the form data
+      // Convert selectedTagId to a numberconst selected
+      const TagIdNumber = parseInt(String(selectedTagId), 10);
+
+      const selectedTag = tags.find((tag) => tag.id === TagIdNumber); // Find the corresponding tag object
+
+      console.log("Selected Tag:", selectedTag);
+
+      if (selectedTag) {
+        console.log("Selected Tag:", selectedTag);
+        // Update the primaryTag field in the form data with the selected tag object
+        setValue("primaryTag", selectedTag);
+      } else {
+        console.warn("Selected tag not found");
+      }
+
+      //If the profilePictureUrl is available, set it in the form data
       if (profilePictureUrl) {
         // Update the profilePicture field in the form data
         setValue("profilePicture", profilePictureUrl);
@@ -372,10 +398,7 @@ const StoreForm = (StoreForm: StoreForm) => {
         console.log("Updated form data:", form.getValues());
 
         // Call the API function to add store data
-        const authToken = localStorage.getItem("authToken");
-
-        // Call the API function to add store data
-        const response = await addStore(form.getValues(), authToken);
+        const response = await addStore(form.getValues());
         // Log the API response
         console.log("API response:", response);
 
@@ -550,7 +573,7 @@ const StoreForm = (StoreForm: StoreForm) => {
           {currentStep === 1 && (
             /* Working Hours */
             <>
-              {watchAddresses.map((address, index) => (
+              {watchAddresses.map((_address, index) => (
                 <div className="address-section">
                   <div key={index} className="address-section-input">
                     <div className="col-12">
@@ -563,6 +586,20 @@ const StoreForm = (StoreForm: StoreForm) => {
                         id=""
                         placeholder="1234 Main St"
                         {...register(`addresses.${index}.location.street`)}
+                      />
+                    </div>
+                    <div className="col-12">
+                      <label htmlFor="" className="form-label">
+                        Country
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id=""
+                        placeholder="1234 Main St"
+                        {...register(
+                          `addresses.${index}.location.city.countryName`
+                        )}
                       />
                     </div>
                     <div className="col-md-6">
@@ -578,18 +615,37 @@ const StoreForm = (StoreForm: StoreForm) => {
                         )}
                       />
                     </div>
+                    <div className="col-md-6">
+                      <label htmlFor="" className="form-label">
+                        longitude
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id=""
+                        {...register(`addresses.${index}.location.longitude`)}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="" className="form-label">
+                        latitude
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id=""
+                        {...register(`addresses.${index}.location.latitude`)}
+                      />
+                    </div>
                     <div className="col-md-4">
                       <label htmlFor="" className="form-label">
                         State
                       </label>
-                      <select
+                      <input
                         id=""
                         className="form-select"
                         {...register(`addresses.${index}.location.state`)}
-                      >
-                        <option selected>Choose...</option>
-                        {/* Add your state options here */}
-                      </select>
+                      />
                     </div>
                     <div className="col-md-2">
                       <label htmlFor="" className="form-label">
@@ -644,7 +700,16 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="map-section">
-                    <GoogleMapPicker callBack={(lat: any, lng: any) => {}} />
+                    <GoogleMapPicker
+                      index={index}
+                      callBack={(lat: any, lng: any) => {
+                        handleLatitudeChange(lat, index);
+                        handleLongitudeChange(lng, index);
+                      }}
+                      onAddressChange={(newAddress: string) =>
+                        handleAddressChange(newAddress, index)
+                      }
+                    />
                   </div>
                 </div>
               ))}
@@ -655,13 +720,9 @@ const StoreForm = (StoreForm: StoreForm) => {
             /* Working Hours */
 
             <>
-              {watchAddresses.map((address, index) => (
+              {watchAddresses.map((_address, index) => (
                 <div key={index} className="businessHours">
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -708,10 +769,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -758,10 +815,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -808,10 +861,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -858,10 +907,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -908,10 +953,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -958,10 +999,6 @@ const StoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
                     <div className="form-check">
                       <input
                         className="form-check-input"
@@ -1018,81 +1055,61 @@ const StoreForm = (StoreForm: StoreForm) => {
                 <span className="input-group-text">Primary Tag</span>
                 <select
                   className="form-select"
-                  aria-label="Default select example"
-                  {...register("tags.0.tag")}
-                  {...register("tags.0.description")}
+                  aria-label="Primary Tag select"
+                  {...register("primaryTag.id")}
                 >
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  {tags.map((tag, index) => (
+                    <option key={index} value={tag.id}>
+                      {tag.tag}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="col-md-6">
                 <span className="input-group-text">Secondary Tag</span>
+
                 <Multiselect
                   isObject={false}
-                  options={[
-                    "Option 1",
-                    "Option 2",
-                    "Option 3",
-                    "Option 4",
-                    "Option 5",
-                  ]}
+                  options={tags.map((tag) => tag.tag)}
+                  onSelect={handleMultiselectChange}
+                  onRemove={handleMultiselectChange}
                 />
               </div>
-              <div className="col-md-6">
-                <span className="input-group-text">Social Impact Tags</span>
-                <Multiselect
-                  isObject={false}
-                  options={[
-                    "Option 1",
-                    "Option 2",
-                    "Option 3",
-                    "Option 4",
-                    "Option 5",
-                  ]}
-                />
-              </div>
-              <div className="col-md-6">
-                <span className="input-group-text">Do you offer classes?</span>
-                <div className="form-check">
+
+              <div className="col">
+                <div className="input-group-text">
+                  <span className="input-group-text" id="link">
+                    Google Review
+                  </span>
                   <input
-                    className="form-check-input"
-                    type="radio"
-                    name="hasClass"
-                    id="flexRadioDefault1"
-                    value="true"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexRadioDefault1"
-                  >
-                    Yes
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="hasClass"
-                    id="flexRadioDefault2"
-                    value="false"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexRadioDefault2"
-                  >
-                    No
-                  </label>
-                </div>
-                <div className="col-md-6">
-                  <span className="input-group-text">Event + Classes</span>
-                  <textarea
+                    type="text"
                     className="form-control"
-                    aria-label="With textarea"
-                    {...register("additionalInformation")}
-                  ></textarea>
+                    aria-label="link"
+                    {...register("googleReviewUrl")}
+                  />
                 </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="flexRadioDefault1"
+                    {...register("hasClass")}
+                  />
+
+                  <label className="form-check-label">
+                    Does store offer classes?
+                  </label>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <span className="input-group-text">Event + Classes</span>
+                <textarea
+                  className="form-control"
+                  aria-label="With textarea"
+                  {...register("learnWithUs")}
+                ></textarea>
               </div>
             </>
           )}
@@ -1112,10 +1129,7 @@ const StoreForm = (StoreForm: StoreForm) => {
               <div className="nxt">
                 <button
                   type="button"
-                  className={`btn btn-primary ${
-                    isNextButtonDisabled() ? "disabled" : ""
-                  }`}
-                  disabled={isNextButtonDisabled()}
+                  className="btn btn-primary"
                   onClick={handleNext}
                 >
                   Next

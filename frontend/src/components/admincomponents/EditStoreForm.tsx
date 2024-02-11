@@ -1,155 +1,354 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./StoreForm.css";
-import { StoreForm } from "./prop.StoreForm";
+import { EditStoreForm } from "./prop.StoreForm";
 import Multiselect from "multiselect-react-dropdown";
 import { IoIosRemoveCircle } from "react-icons/io";
 import { BsHouseAddFill } from "react-icons/bs";
-import { useForm } from "react-hook-form";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import {
+  Address,
+  editStoreParts,
+  getStoreById,
   StoreData,
-  addStore,
+  StoreEditData,
+  Tag,
+  WebPresence,
   uploadImage,
+  AddressEdit,
+  editAddressParts,
+  LocationEdit,
+  editAddressLocationParts,
+  BusinessHour,
+  editAddressBusinessHourParts,
+  deleteWebpresenceParts,
+  addTagParts,
+  removeTagParts,
+  WebPresenceEdit,
+  editWebpresenceParts,
+  addAddressParts,
+  deleteAddressParts,
 } from "../../pages/Admin/controller.admin";
+import { useForm } from "react-hook-form";
 import GoogleMapPicker from "./MapComponentPicker";
-const EditStoreForm = (StoreForm: StoreForm) => {
+import TagFetcher from "./TagFetcher";
+const EditStoreForm = ({ isOpen, id }: EditStoreForm) => {
+  const [formValues, setFormValues] = useState<StoreData | null>(null); // Initialize with null
+  const { register, handleSubmit, setValue } = useForm();
+  const [watchAddresses, setWatchAddresses] = useState<Address[]>([]);
+  const [watchWebPresence, setWebPresence] = useState<WebPresence[]>([]);
+  const [WebPresenceID, setWebPresenceId] = useState(0);
+  const [watchTags, setTags] = useState<Tag[]>([]);
+  const [watchTagsTag, setWatchTagsTag] = useState<string[]>([]);
   const [file, setFile] = useState<File | null>(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      const isAuthenticated = localStorage.getItem("isAuthenticated");
+      if (
+        isAuthenticated !== null &&
+        isAuthenticated !== "false" &&
+        id !== undefined
+      ) {
+        try {
+          const response: any = await getStoreById(id);
+          setFormValues(response.data); // Set formValues after response is received
+        } catch (error) {
+          console.error("Error finding store:", error);
+        }
+      }
+    };
 
-  const form = useForm<StoreData>({
-    defaultValues: {
-      additionalInformation: "",
+    fetchData();
+  }, [id]);
 
-      description: "",
+  // Log formValues when it changes
+  useEffect(() => {
+    console.log(formValues, "this is form values");
+    console.log(formValues?.profilePicture, "this is url");
+  }, [formValues]);
+  useEffect(() => {
+    if (formValues) {
+      const addresses: Address[] = formValues.addresses.map(
+        (address, index) => {
+          setValue(
+            `addresses[${index}].location.street`,
+            address.location.street
+          );
+          setValue(
+            `addresses[${index}].location.city.countryName`,
+            address.location.city.countryName
+          );
+          setValue(
+            `addresses[${index}].location.city.mapAttribute.name`,
+            address.location.city.mapAttribute.name
+          );
+          setValue(
+            `addresses[${index}].location.longitude`,
+            address.location.longitude
+          );
+          setValue(
+            `addresses[${index}].location.latitude`,
+            address.location.latitude
+          );
+          setValue(
+            `addresses[${index}].location.state`,
+            address.location.state
+          );
+          setValue(`addresses[${index}].location.zip`, address.location.zip);
+          setValue(`addresses[${index}].location.id`, address.location.id);
+          setValue(`addresses[${index}].email`, address.email);
+          setValue(`addresses[${index}].phoneNumber`, address.phoneNumber);
+          setValue(`addresses[${index}].id`, address.id);
+          const updatedBusinessHours: BusinessHour[] =
+            address.businessHours.map((businessHour, index2) => {
+              setValue(
+                `addresses[${index}].businessHours[${index2}.id]`,
+                businessHour.id
+              );
+              setValue(
+                `addresses[${index}].businessHours[${index2}.startTime]`,
+                businessHour.startTime
+              );
+              setValue(
+                `addresses[${index}].businessHours[${index2}.endTime]`,
+                businessHour.endTime
+              );
+              setValue(
+                `addresses[${index}].businessHours[${index2}.day]`,
+                businessHour.day
+              );
+              setValue(
+                `addresses[${index}].businessHours[${index2}.open]`,
+                businessHour.open
+              );
+              return {
+                id: businessHour.id,
+                startTime: businessHour.startTime,
+                endTime: businessHour.endTime,
+                day: businessHour.day,
+                open: businessHour.open,
+              };
+            });
 
-      name: "",
-      products: [
-        {
-          description: "",
-          label: "",
-          value: 0,
-        },
-      ],
-      profilePicture: "",
-      profileVideo: "",
-      rating: 0,
-      storeType: "CRAFT_STORE",
-      story: "",
-      tags: [
-        {
-          description: "",
-          icon: "",
-          id: 0,
-          tag: "",
-          tagType: "PRODUCT",
-        },
-      ],
-      webPresences: [
-        {
-          id: 0,
-          link: "",
-          order: 0,
-          webSite: "Website",
-        },
-        {
-          id: 0,
-          link: "",
-          order: 0,
-          webSite: "Facebook",
-        },
-        {
-          id: 0,
-          link: "",
-          order: 0,
-          webSite: "Instagram",
-        },
-        {
-          id: 0,
-          link: "",
-          order: 0,
-          webSite: "WeChat",
-        },
-        {
-          id: 0,
-          link: "",
-          order: 0,
-          webSite: "Weibo",
-        },
-        {
-          id: 0,
-          link: "",
-          order: 0,
-          webSite: "TikTok",
-        },
-      ],
+          return {
+            email: address.email,
+            location: {
+              city: {
+                countryName: address.location.city.countryName,
+                countryShortName: "", // You may need to provide a default or extract this from somewhere
+                mapAttribute: {
+                  latitude: address.location.latitude,
+                  longitude: address.location.longitude,
+                  name: address.location.city.mapAttribute.name,
+                  shortName: "", // You may need to provide a default or extract this from somewhere
+                  zoom: 0, // You may need to provide a default or extract this from somewhere
+                },
+              },
+              latitude: address.location.latitude,
+              longitude: address.location.longitude,
+              route: "", // You may need to provide a default or extract this from somewhere
+              secondStreet: "", // You may need to provide a default or extract this from somewhere
+              state: address.location.state,
+              street: address.location.street, // Street value directly from the address object
+              tip: "", // You may need to provide a default or extract this from somewhere
+              zip: address.location.zip,
+            },
+            phoneNumber: address.phoneNumber,
+            businessHours: updatedBusinessHours, // Assuming businessHours is defined elsewhere
+          };
+        }
+      );
+      const webPresences: WebPresence[] = formValues.webPresences.map(
+        (webPresences, index) => {
+          setValue(`webPresences[${index}].link`, webPresences.link);
+          setValue(`webPresences[${index}].webSite`, webPresences.webSite);
+          setValue(`webPresences[${index}].id`, webPresences.id);
+          if (webPresences.id) {
+            setWebPresenceId(webPresences.id);
+          }
+          return {
+            link: webPresences.link,
+            webSite: webPresences.webSite,
+          };
+        }
+      );
+      const tags: Tag[] = formValues.tags.map((tags, index) => {
+        setValue(`tags[${index}].tag`, tags.tag);
+        setValue(`tags[${index}].description`, tags.description);
+        setValue(`tags[${index}].icon`, tags.icon);
+        setValue(`tags[${index}].id`, tags.id);
+        setValue(`tags[${index}].tagType`, tags.tagType);
+        return {
+          id: tags.id,
+          tag: tags.tag,
+          tagType: tags.tagType,
+          icon: tags.icon,
+          description: tags.description,
+        };
+      });
+      // Set watchAddresses with updated addresses array
+      setWatchAddresses([...addresses]);
+      setWebPresence([...webPresences]);
+      setTags([...tags]);
+      setWatchTagsTag(tags.map((tag) => tag.tag));
+      setValue("name", formValues.name);
+      setValue("description", formValues.description);
+      setValue("additionalInformation", formValues.additionalInformation);
+      setValue("googleReviewUrl", formValues.googleReviewUrl);
+      setValue("hasClass", formValues.hasClass);
+      setValue("learnWithUs", formValues.learnWithUs);
+
+      // Set other form values here
+    }
+    console.log(watchAddresses, "dwebduw");
+  }, [formValues, setValue]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    setFile(selectedFile || null);
+  };
+  const [coordinates, setCoordinates] = useState<
+    { latitude: number; longitude: number }[]
+  >(
+    Array.from({ length: watchAddresses.length }, () => ({
+      latitude: 0.0,
+      longitude: 0.0,
+    }))
+  );
+  const [mapClicked, setMapClicked] = useState(false);
+
+  const handleLatitudeChange = (lat: number, index: number) => {
+    setCoordinates((prevCoordinates) => {
+      const updatedCoordinates = [...prevCoordinates];
+      updatedCoordinates[index] = {
+        ...updatedCoordinates[index],
+        latitude: lat,
+      };
+      return updatedCoordinates;
+    });
+    setMapClicked(true); // Set mapClicked to true when latitude changes
+  };
+
+  const handleLongitudeChange = (lng: number, index: number) => {
+    setCoordinates((prevCoordinates) => {
+      const updatedCoordinates = [...prevCoordinates];
+      updatedCoordinates[index] = {
+        ...updatedCoordinates[index],
+        longitude: lng,
+      };
+      return updatedCoordinates;
+    });
+    setMapClicked(true); // Set mapClicked to true when longitude changes
+  };
+
+  const handleAddressChange = useCallback(
+    (newAddress: string, index: number) => {
+      if (!mapClicked) {
+        // Return early if address change is not due to map click
+        return;
+      }
+
+      const parsedAddress = parseAddress(newAddress);
+
+      setWatchAddresses((prevAddresses) => {
+        const updatedAddresses = [...prevAddresses];
+        const updatedAddress = { ...updatedAddresses[index] };
+
+        updatedAddress.location = {
+          ...updatedAddress.location,
+          city: {
+            ...updatedAddress.location.city,
+            countryName: parsedAddress.country,
+            countryShortName: parsedAddress.city,
+            mapAttribute: {
+              ...updatedAddress.location.city.mapAttribute,
+              latitude: coordinates[index]?.latitude || 0,
+              longitude: coordinates[index]?.longitude || 0,
+              name: parsedAddress.city,
+            },
+          },
+          latitude: coordinates[index]?.latitude || 0,
+          longitude: coordinates[index]?.longitude || 0,
+          state: parsedAddress.state,
+          street: parsedAddress.street,
+          zip: parsedAddress.zip,
+        };
+
+        updatedAddresses[index] = updatedAddress;
+
+        return updatedAddresses;
+      });
+
+      // Reset mapClicked to false after handling address change
+      setMapClicked(false);
+
+      // Manually update form control values with the new address data
+      setValue(`addresses.${index}.location.street`, parsedAddress.street);
+      setValue(`addresses.${index}.location.state`, parsedAddress.state);
+      setValue(`addresses.${index}.location.zip`, parsedAddress.zip);
+      setValue(
+        `addresses.${index}.location.latitude`,
+        coordinates[index]?.latitude
+      );
+      setValue(
+        `addresses.${index}.location.longitude`,
+        coordinates[index]?.longitude
+      );
+
+      setValue(
+        `addresses.${index}.location.city.countryName`,
+        parsedAddress.country
+      );
+      setValue(
+        `addresses.${index}.location.city.countryShortName`,
+        parsedAddress.city
+      );
+      setValue(
+        `addresses.${index}.location.city.mapAttribute.name`,
+        parsedAddress.city
+      );
+      setValue(
+        `addresses.${index}.location.city.mapAttribute.latitude`,
+        coordinates[index]?.latitude
+      );
+      setValue(
+        `addresses.${index}.location.city.mapAttribute.longitude`,
+        coordinates[index]?.longitude
+      );
+
+      // Update other form control values as needed
     },
-  });
-  const { handleSubmit, register, watch, setValue } = form;
-  const watchAddresses = watch("addresses", []);
-  const addAddress = () => {
-    // Clone the current array of addresses
-    const updatedAddresses = [...watchAddresses];
+    [coordinates, setWatchAddresses, setValue, mapClicked]
+  );
 
-    // Add a new address object to the array
-    updatedAddresses.push({
+  const parseAddress = (addressString: string) => {
+    const [street, city, stateZip, country] = addressString.split(", ");
+    const [state, zip] = stateZip.split(" ");
+    console.log("Street:", street);
+    console.log("City:", city);
+    console.log("StateZip:", stateZip);
+    console.log("Country:", country);
+    console.log("State:", state);
+    console.log("Zip:", zip);
+
+    return { street, city, state, zip, country };
+  };
+  const addAddress = () => {
+    // Create a new address object with default values
+    const newAddress = {
       businessHours: [
-        {
-          day: "Monday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Tuesday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Wednesday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Thursday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Friday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Saturday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
-        {
-          day: "Sunday",
-          endTime: "",
-          id: 0,
-          open: true,
-          startTime: "",
-        },
+        { day: "Monday", endTime: "", open: false, startTime: "" },
+        { day: "Tuesday", endTime: "", open: false, startTime: "" },
+        { day: "Wednesday", endTime: "", open: false, startTime: "" },
+        { day: "Thursday", endTime: "", open: false, startTime: "" },
+        { day: "Friday", endTime: "", open: false, startTime: "" },
+        { day: "Saturday", endTime: "", open: false, startTime: "" },
+        { day: "Sunday", endTime: "", open: false, startTime: "" },
       ],
       email: "",
-      id: 0,
       location: {
         city: {
           countryName: "",
           countryShortName: "",
-          id: 0,
           mapAttribute: {
-            id: 0,
             latitude: 0,
             longitude: 0,
             name: "",
@@ -157,7 +356,6 @@ const EditStoreForm = (StoreForm: StoreForm) => {
             zoom: 0,
           },
         },
-        id: 0,
         latitude: 0,
         longitude: 0,
         route: "",
@@ -168,60 +366,51 @@ const EditStoreForm = (StoreForm: StoreForm) => {
         zip: "",
       },
       phoneNumber: "",
-    });
+    };
 
-    // Update the form state with the new addresses array
-    setValue("addresses", updatedAddresses);
+    // Update the addresses state by adding the new address object
+    setWatchAddresses([...watchAddresses, newAddress]);
   };
 
   const removeAddress = (index: number) => {
-    // Clone the current array of addresses
-    const updatedAddresses = [...watchAddresses];
+    console.log("Before removal:", watchAddresses);
 
-    // Remove the address object at the specified index
-    updatedAddresses.splice(index, 1);
+    const updatedAddresses = watchAddresses.filter((_, i) => i !== index);
+    console.log("After removal:", updatedAddresses);
 
-    // Update the form state with the updated addresses array
     setValue("addresses", updatedAddresses);
+    setWatchAddresses([...updatedAddresses]);
   };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    setFile(selectedFile || null);
-  };
-
-  const uploadAndSetProfilePicture = async () => {
+  const deleteWebPresence = async (id: number) => {
     try {
-      const authToken = localStorage.getItem("authToken");
-
-      if (file && authToken) {
-        // Call the API function to upload the image and get the response
-        const response = await uploadImage(file, authToken);
-
-        // Return the URL after uploading the image
-        return response;
-      } else {
-        console.warn(
-          "File or authToken is missing. Cannot upload and set profile picture."
-        );
-        return null; // or handle the case where file or authToken is missing
-      }
-    } catch (error) {
-      console.error(
-        "An error occurred while uploading and setting profile picture:",
-        error
+      await deleteWebpresenceParts(id.toString());
+      console.log(`Web presence with ID ${id} deleted successfully.`);
+      setWebPresence((prevWebPresence) =>
+        prevWebPresence.filter((webPresence) => webPresence.id !== id)
       );
-      // Handle the error, e.g., display an error message to the user
-      return null;
+    } catch (error) {
+      console.error("Error deleting web presence:", error);
+    }
+  };
+  const addTag = async (tagId: number) => {
+    try {
+      // Call the addTagParts API function to add the tag
+      const response = await addTagParts(id.toString(), tagId.toString());
+      console.log(`Tag ${tagId} added successfully.`, response);
+    } catch (error) {
+      console.error("Error adding tag:", error);
+    }
+  };
+  const removeTag = async (tagId: number) => {
+    try {
+      // Call the removeTagParts API function to remove the tag
+      const response = await removeTagParts(id.toString(), tagId.toString());
+      console.log(`Tag ${tagId} removed successfully.`, response);
+    } catch (error) {
+      console.error("Error removing tag:", error);
     }
   };
   const [currentStep, setCurrentStep] = useState(0);
-  const watchStoreInfoFields = watch([
-    "name",
-    "description",
-    "profilePicture",
-    "profileVideo",
-  ]);
-
   const handleNext = () => {
     // Add validation logic here if needed
     // For example, check if all required fields are filled for the current step
@@ -229,54 +418,112 @@ const EditStoreForm = (StoreForm: StoreForm) => {
     // Move to the next step or perform other actions
     setCurrentStep((prevStep) => prevStep + 1);
   };
-
-  const isNextButtonDisabled = () => {
-    // Check if all required fields for the "Store Info" section are filled
-    return !watchStoreInfoFields.every((field) => field !== "");
-  };
-
-  const onSubmit = async () => {
+  const onSubmit = async (data: any) => {
     try {
-      // Call the function to upload the image and get the profilePicture URL
-      const profilePictureUrl = await uploadAndSetProfilePicture();
+      if (formValues) {
+        let updatedProfilePictureUrl = formValues.profilePicture; // Initialize with the existing profile picture URL
 
-      // If the profilePictureUrl is available, set it in the form data
-      if (profilePictureUrl) {
-        // Update the profilePicture field in the form data
-        setValue("profilePicture", profilePictureUrl);
-
-        // Log the updated form data to the console
-        console.log("Updated form data:", form.getValues());
-
-        // Call the API function to add store data
-        const authToken = localStorage.getItem("authToken");
-
-        // Call the API function to add store data
-        const response = await addStore(form.getValues(), authToken);
-        // Log the API response
-        console.log("API response:", response);
-
-        // Download the form data in JSON format
-        const jsonData = JSON.stringify(form.getValues(), null, 2);
-        const blob = new Blob([jsonData], { type: "application/json" });
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = "form_data.json";
-        link.click();
+        if (file !== null) {
+          const newProfilePictureUrl = await uploadImage(file);
+          updatedProfilePictureUrl = newProfilePictureUrl;
+        }
+        const storeData: StoreEditData = {
+          additionalInformation: data.additionalInformation,
+          description: data.description,
+          hasClass: data.hasClass,
+          learnWithUs: data.learnWithUs,
+          name: data.name,
+          profilePicture: updatedProfilePictureUrl, // Use the updated profile picture URL
+        };
+        //console.log(storeData, "this is store data");
+        //await editStoreParts(id.toString(), storeData);
+      }
+      for (let i = 0; i < data.webPresences.length; i++) {
+        const webPresenceId = data.webPresences[i].id;
+        const webPresenceData: WebPresenceEdit = {
+          link: data.webPresences[i].link,
+        };
+        //await editWebpresenceParts(webPresenceId.toString(), webPresenceData);
+        console.log("webpresenceId", webPresenceId);
+        //console.log("webpresenceData", webPresenceData);
       }
 
-      // Additional actions, if any
+      for (let i = 0; i < data.addresses.length; i++) {
+        const address = data.addresses[i];
+        const addressId = data.addresses[i]?.id;
+        const addressData: AddressEdit = {
+          phoneNumber: data.addresses[i]?.phoneNumber,
+          email: data.addresses[i]?.email,
+        };
+        const locationId = data.addresses[i]?.location.id;
+        const locationData: LocationEdit = {
+          city: {
+            countryName: data.addresses[i]?.location.city.countryName,
+            countryShortName: data.addresses[i]?.location.city.countryShortName,
+            mapAttribute: {
+              latitude: data.addresses[i]?.location.city.mapAttribute.latitude,
+              longitude:
+                data.addresses[i]?.location.city.mapAttribute.longitude,
+              name: data.addresses[i]?.location.city.mapAttribute.name,
+              shortName:
+                data.addresses[i]?.location.city.mapAttribute.shortName,
+              zoom: data.addresses[i]?.location.city.mapAttribute.zoom,
+            },
+          },
+          latitude: data.addresses[i]?.location.latitude,
+          longitude: data.addresses[i]?.location.longitude,
+          route: data.addresses[i]?.location.route,
+          secondStreet: data.addresses[i]?.location.secondStreet,
+          state: data.addresses[i]?.location.state,
+          street: data.addresses[i]?.location.street,
+          tip: data.addresses[i]?.location.tip,
+          zip: data.addresses[i]?.location.zip,
+        };
+        if (addressId && addressData) {
+          //await editAddressParts(addressId.toString(), addressData);
+        }
+        if (locationId && locationData) {
+          //await editAddressLocationParts(locationId.toString(), locationData);
+        }
+        console.log(addressId, "this is addressId");
+        //console.log(addressData, "this is addressData");
+
+        console.log(locationId, "this is location id");
+        // console.log(locationData, "this is locationData");
+        for (let j = 0; j < address.businessHours.length; j++) {
+          const businessHour = address.businessHours[j];
+          console.log("Business Hour ID:", businessHour.id);
+          const businessHourId = businessHour.id;
+          const businessHourData: BusinessHour = {
+            day: businessHour.day,
+            open: businessHour.open,
+            startTime: businessHour.startTime,
+            endTime: businessHour.endTime,
+          };
+          if (businessHourId && businessHourData) {
+            // await editAddressBusinessHourParts(
+            //   businessHourId.toString(),
+            //   businessHourData
+            // );
+          }
+        }
+      }
+
+      console.log("Store data updated successfully!");
     } catch (error) {
-      console.error("An error occurred while handling form submission:", error);
-      console.error("Error details:", JSON.stringify(error, null, 2));
-      // Handle the error, e.g., display an error message to the user
+      console.error("Error updating store data:", error);
     }
   };
 
   const steps = ["Store Info", "Address", "Working Hours", "Tags"];
   return (
     <>
-      <div className={StoreForm.isOpen ? "storeForm" : "storeForm-disabled"}>
+      <div className={isOpen ? "storeForm" : "storeForm-disabled"}>
+        <div className="plussign">
+          <h1>
+            <IoIosCloseCircleOutline />
+          </h1>
+        </div>
         <div className="navigation-form">
           <ul>
             {steps.map((step, index) => (
@@ -306,6 +553,11 @@ const EditStoreForm = (StoreForm: StoreForm) => {
                 />
               </div>
               <div className="col-md-6">
+                <img
+                  src={`${formValues?.profilePicture}`}
+                  className="img-fluid"
+                  alt="..."
+                />
                 <input
                   type="file"
                   className="form-control"
@@ -332,104 +584,48 @@ const EditStoreForm = (StoreForm: StoreForm) => {
                   {...register("additionalInformation")}
                 ></textarea>
               </div>
-              <div className="address-section-input">
-                <div className="col">
-                  <div className="input-group-text">
-                    <span className="input-group-text" id="link">
-                      Website
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label="link"
-                      {...register(`webPresences.0.link`)}
-                    />
+              {watchWebPresence.map((_address, index) => (
+                <div>
+                  <div className="address-section-input">
+                    <div className="col">
+                      <div className="input-group-text">
+                        <input
+                          className="input-group-text"
+                          id="link"
+                          {...register(`webPresences.${index}.webSite`)}
+                          readOnly
+                        />
+                        <input
+                          type="text"
+                          className="form-control"
+                          aria-label="link"
+                          {...register(`webPresences.${index}.link`)}
+                        />
+                        <h6>
+                          <IoIosCloseCircleOutline
+                            onClick={() => deleteWebPresence(WebPresenceID)}
+                          />
+                        </h6>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="address-section-input">
-                <div className="col">
-                  <div className="input-group-text">
-                    <span className="input-group-text" id="link">
-                      Facebook
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label="link"
-                      {...register(`webPresences.1.link`)}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="address-section-input">
-                <div className="col">
-                  <div className="input-group-text">
-                    <span className="input-group-text" id="link">
-                      Instagram
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label="link"
-                      {...register(`webPresences.2.link`)}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="address-section-input">
-                <div className="col">
-                  <div className="input-group-text">
-                    <span className="input-group-text" id="link">
-                      WeChat
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label="link"
-                      {...register(`webPresences.3.link`)}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="address-section-input">
-                <div className="col">
-                  <div className="input-group-text">
-                    <span className="input-group-text" id="link">
-                      Weibo
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label="link"
-                      {...register(`webPresences.4.link`)}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="address-section-input">
-                <div className="col">
-                  <div className="input-group-text">
-                    <span className="input-group-text" id="link">
-                      TikTok
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label="link"
-                      {...register(`webPresences.5.link`)}
-                    />
-                  </div>
-                </div>
-              </div>
+              ))}
             </>
           )}
           {currentStep === 1 && (
             /* Working Hours */
             <>
-              {watchAddresses.map((address, index) => (
+              {watchAddresses.map((_address, index) => (
                 <div className="address-section">
                   <div key={index} className="address-section-input">
+                    <input
+                      type="number"
+                      className="form-control"
+                      id=""
+                      placeholder="1234 Main St"
+                      {...register(`addresses.${index}.id`)}
+                    />
                     <div className="col-12">
                       <label htmlFor="" className="form-label">
                         Street
@@ -440,6 +636,20 @@ const EditStoreForm = (StoreForm: StoreForm) => {
                         id=""
                         placeholder="1234 Main St"
                         {...register(`addresses.${index}.location.street`)}
+                      />
+                    </div>
+                    <div className="col-12">
+                      <label htmlFor="" className="form-label">
+                        Country
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id=""
+                        placeholder="1234 Main St"
+                        {...register(
+                          `addresses.${index}.location.city.countryName`
+                        )}
                       />
                     </div>
                     <div className="col-md-6">
@@ -455,18 +665,37 @@ const EditStoreForm = (StoreForm: StoreForm) => {
                         )}
                       />
                     </div>
+                    <div className="col-md-6">
+                      <label htmlFor="" className="form-label">
+                        longitude
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id=""
+                        {...register(`addresses.${index}.location.longitude`)}
+                      />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="" className="form-label">
+                        latitude
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id=""
+                        {...register(`addresses.${index}.location.latitude`)}
+                      />
+                    </div>
                     <div className="col-md-4">
                       <label htmlFor="" className="form-label">
                         State
                       </label>
-                      <select
+                      <input
                         id=""
                         className="form-select"
                         {...register(`addresses.${index}.location.state`)}
-                      >
-                        <option selected>Choose...</option>
-                        {/* Add your state options here */}
-                      </select>
+                      />
                     </div>
                     <div className="col-md-2">
                       <label htmlFor="" className="form-label">
@@ -521,7 +750,16 @@ const EditStoreForm = (StoreForm: StoreForm) => {
                     </div>
                   </div>
                   <div className="map-section">
-                    <GoogleMapPicker callBack={(lat: any, lng: any) => {}} />
+                    <GoogleMapPicker
+                      index={index}
+                      callBack={(lat: any, lng: any) => {
+                        handleLatitudeChange(lat, index);
+                        handleLongitudeChange(lng, index);
+                      }}
+                      onAddressChange={(newAddress: string) =>
+                        handleAddressChange(newAddress, index)
+                      }
+                    />
                   </div>
                 </div>
               ))}
@@ -532,358 +770,60 @@ const EditStoreForm = (StoreForm: StoreForm) => {
             /* Working Hours */
 
             <>
+              {/* Map through the watchAddresses array and render address fields */}
               {watchAddresses.map((address, index) => (
                 <div key={index} className="businessHours">
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.0.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Monday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.0.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
+                  {/* Map through businessHours array for each address */}
+                  {address.businessHours.map((businessHour, index2) => (
+                    <div key={index2} className="workingHours">
+                      <div className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={`flexRadioDefault${index2}`}
+                          {...register(
+                            `addresses.${index}.businessHours.${index2}.open`
+                          )}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`flexRadioDefault${index2}`}
+                        >
+                          {businessHour.day}
+                        </label>
                       </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.0.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
+                      <div className="startTime">
+                        <div className="col-md">
+                          <div className="form-floating">
+                            <input
+                              type="time"
+                              className="form-control"
+                              id="startTime"
+                              placeholder="8:00 AM"
+                              {...register(
+                                `addresses.${index}.businessHours.${index2}.startTime`
+                              )}
+                            />
+                            <label htmlFor="startTime">Start Time</label>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.1.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Tuesday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.1.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
-                      </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.1.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
+                        <div className="col-md">
+                          <div className="form-floating">
+                            <input
+                              type="time"
+                              className="form-control"
+                              id="endTime"
+                              placeholder="8:00 AM"
+                              {...register(
+                                `addresses.${index}.businessHours.${index2}.endTime`
+                              )}
+                            />
+                            <label htmlFor="endTime">End Time</label>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.2.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Wednesday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.2.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
-                      </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.2.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.3.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Thursday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.3.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
-                      </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.3.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.4.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Friday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.4.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
-                      </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.4.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.5.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Saturday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.5.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
-                      </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.5.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="workingHours">
-                    <input
-                      type="hidden"
-                      {...register(`addresses.${index}.businessHours.0.id`)}
-                    />
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="flexRadioDefault1"
-                        {...register(`addresses.${index}.businessHours.6.open`)}
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexRadioDefault1"
-                      >
-                        Sunday
-                      </label>
-                    </div>
-                    <div className="startTime">
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="startTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.6.startTime`
-                            )}
-                          />
-                          <label htmlFor="startTime">Start Time</label>
-                        </div>
-                      </div>
-                      <div className="col-md">
-                        <div className="form-floating">
-                          <input
-                            type="time"
-                            className="form-control"
-                            id="endTime"
-                            placeholder="8:00 AM"
-                            {...register(
-                              `addresses.${index}.businessHours.6.endTime`
-                            )}
-                          />
-                          <label htmlFor="endTime">End Time</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               ))}
             </>
@@ -891,85 +831,98 @@ const EditStoreForm = (StoreForm: StoreForm) => {
           {currentStep === 3 && (
             /* Tags */
             <>
-              <div className="col-md-6">
-                <span className="input-group-text">Primary Tag</span>
-                <select
-                  className="form-select"
-                  aria-label="Default select example"
-                  {...register("tags.0.tag")}
-                  {...register("tags.0.description")}
-                >
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-              <div className="col-md-6">
-                <span className="input-group-text">Secondary Tag</span>
-                <Multiselect
-                  isObject={false}
-                  options={[
-                    "Option 1",
-                    "Option 2",
-                    "Option 3",
-                    "Option 4",
-                    "Option 5",
-                  ]}
-                />
-              </div>
-              <div className="col-md-6">
-                <span className="input-group-text">Social Impact Tags</span>
-                <Multiselect
-                  isObject={false}
-                  options={[
-                    "Option 1",
-                    "Option 2",
-                    "Option 3",
-                    "Option 4",
-                    "Option 5",
-                  ]}
-                />
-              </div>
-              <div className="col-md-6">
-                <span className="input-group-text">Do you offer classes?</span>
-                <div className="form-check">
+              <TagFetcher
+                render={(tags) => (
+                  <>
+                    <div className="col-md-6">
+                      <span className="input-group-text">Primary Tag</span>
+                      <select
+                        className="form-select"
+                        aria-label="Primary Tag select"
+                        {...register("primaryTag.id")}
+                      >
+                        {tags.map((tag, index) => (
+                          <option key={index} value={tag.id}>
+                            {tag.tag}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="col-md-6">
+                      <span className="input-group-text">Secondary Tag</span>
+
+                      <Multiselect
+                        isObject={false}
+                        options={tags.map((tag) => tag.tag)}
+                        selectedValues={watchTagsTag}
+                        onSelect={(selectedList, selectedItem) => {
+                          if (selectedItem) {
+                            const selectedTag = tags.find(
+                              (tag) => tag.tag === selectedItem
+                            );
+                            if (
+                              selectedTag &&
+                              typeof selectedTag.id === "number"
+                            ) {
+                              // Type check for id
+                              addTag(selectedTag.id);
+                            }
+                          }
+                        }}
+                        onRemove={(selectedList, removedItem) => {
+                          if (removedItem) {
+                            const removedTag = tags.find(
+                              (tag) => tag.tag === removedItem
+                            );
+                            if (
+                              removedTag &&
+                              typeof removedTag.id === "number"
+                            ) {
+                              // Type check for id
+                              removeTag(removedTag.id);
+                            }
+                          }
+                        }}
+                      />
+                    </div>
+                  </>
+                )}
+              />
+
+              <div className="col">
+                <div className="input-group-text">
+                  <span className="input-group-text" id="link">
+                    Google Review
+                  </span>
                   <input
-                    className="form-check-input"
-                    type="radio"
-                    name="hasClass"
-                    id="flexRadioDefault1"
-                    value="true"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexRadioDefault1"
-                  >
-                    Yes
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="hasClass"
-                    id="flexRadioDefault2"
-                    value="false"
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor="flexRadioDefault2"
-                  >
-                    No
-                  </label>
-                </div>
-                <div className="col-md-6">
-                  <span className="input-group-text">Event + Classes</span>
-                  <textarea
+                    type="text"
                     className="form-control"
-                    aria-label="With textarea"
-                    {...register("additionalInformation")}
-                  ></textarea>
+                    aria-label="link"
+                    {...register("googleReviewUrl")}
+                  />
                 </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="flexRadioDefault1"
+                    {...register("hasClass")}
+                  />
+
+                  <label className="form-check-label">
+                    Does store offer classes?
+                  </label>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <span className="input-group-text">Event + Classes</span>
+                <textarea
+                  className="form-control"
+                  aria-label="With textarea"
+                  {...register("learnWithUs")}
+                ></textarea>
               </div>
             </>
           )}
@@ -989,10 +942,7 @@ const EditStoreForm = (StoreForm: StoreForm) => {
               <div className="nxt">
                 <button
                   type="button"
-                  className={`btn btn-primary ${
-                    isNextButtonDisabled() ? "disabled" : ""
-                  }`}
-                  disabled={isNextButtonDisabled()}
+                  className="btn btn-primary"
                   onClick={handleNext}
                 >
                   Next
