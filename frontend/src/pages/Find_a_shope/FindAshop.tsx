@@ -147,7 +147,7 @@ const FindAshop = () => {
                           "apibeta.westerlies.com"
                         )}
                         callBack={() => {
-                          navigator("/shop_page/" + shop.storeId);
+                          navigator("/shop_page/" + shop.storeId +"/"+city );
                         }}
                         primaryKey={shop.primaryKey}
                         address={""}

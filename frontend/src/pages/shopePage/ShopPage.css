@@ -64,6 +64,43 @@
     position: relative;
     margin-top: 5%;
 }
+.result-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.result-2 {
+    margin: 0px;
+    padding: 10px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    width: 85%;
+}
+.result-2 h3{
+    font-family: "brandon-grotesque", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 30px;
+    color: #202D3F;
+    line-height: 1.5;
+}
+.result-2 p{
+    margin-top: 10px;
+    color: var(--color1);
+    text-decoration: none;
+    font-family: 'Freight Sans Pro Medium', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.result-2 img {
+    width: 100%;
+    height: 28dvh;
+}
 .section-one-part1 img{
     width: 90%;
     height: 70dvh;
@@ -158,6 +195,17 @@
     height: 100vh;
     top: -9vh;
 }
+
+.section-two-two{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    position: relative;
+    height: 50vh;
+    top: -9vh;
+    background-color: '#202D3F';
+}
+
 .section-two-part1{
     display: flex;
     flex-direction: column;

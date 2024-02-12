@@ -21,6 +21,7 @@ function App() {
 
           <Route path="/Shop Page" element={<ShopPage />} />
           <Route path="/Shop_Page/:id" element={<ShopPage />} />
+          <Route path="/Shop_Page/:id/:city" element={<ShopPage />} />
 
           <Route path="/Admin" element={<Main />} />
           <Route path="/store mgmt" element={<Storemgmt />} />

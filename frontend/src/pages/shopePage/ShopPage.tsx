@@ -10,9 +10,10 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import Footer from "../../components/footer/Footer";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useActionData, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getRandomStores, getStoreDetailInfo } from "./shopeController";
 import GoogleMap from "../../components/mapComponent/mapComponent";
+import { set } from "react-hook-form";
 
 const ShopPage = () => {
   const [isNavbarVisibletwo] = useState(false);
@@ -23,10 +24,19 @@ const ShopPage = () => {
   const [storeInfo, setStoreInfo] = useState<any>();
   const [shopeLocation, setShopeLocation] = useState<any[]>([]);
   const [randomStore,setRandomStore] = useState([]);
-
+  const [diffCity, setDiffCity] = useState<any[]>([]);
+  //const [isFirstRendered, setIsFirstRendered] = useState<boolean>(false);
+  const [selectedCity, setSelectedCity] = useState<any>();
+  const navg: any = useNavigate();
+  
+  var isFirstRendered = false;
   useEffect(() => {
     getStoreDetailInfo(storeId, 0).then((res) => {
       setStoreInfo(res);
+     var diffCity = getUniqueStates(res?.addresses);
+    console.log("Diff City: ", param?.city);
+    setSelectedCity(param?.city);
+      setDiffCity(diffCity);
       var locationList: any[] = [];
       res?.addresses?.map((item: any) => {
         locationList.push({
@@ -45,6 +55,32 @@ const ShopPage = () => {
 
   }, []);
 
+
+  function getLocationListBasedOnCity(city: any) {
+    var locationList: any[] = [];
+    storeInfo?.addresses?.map((item: any) => {
+      if (item.location.state == city) {
+        locationList.push({
+          latitude: item?.location?.latitude,
+          longitude: item?.location?.longitude,
+        });
+      }
+    });
+    return locationList;
+  }
+
+  function getUniqueStates(addresses: any): any[] {
+    let uniqueStates = new Set();
+    console.log("Addresses: ", addresses);
+    addresses.map((address: any) => {
+        let state = address.location.state;
+        uniqueStates.add(state);
+    });
+    console.log("Unique States: ", uniqueStates)
+    return Array.from(uniqueStates);
+}
+
+
   return (
     <>
       <Header
@@ -62,13 +98,13 @@ const ShopPage = () => {
               <a>{/* <IoIosArrowBack /> Back to Directory */}</a>
             </div>
 
-            <div className="section-one-part1-image">
+            <div className="result-2">
               <img
                 src={storeInfo?.profilePicture
                   .replace("http://", "https://")
                   .replace("api.westerlies.io", "apibeta.westerlies.com")}
               />
-              <p> This image belongs to this shop.</p>
+              <p> This image belongs to d {storeInfo?.name} </p>
             </div>
           </div>
 
@@ -84,13 +120,28 @@ const ShopPage = () => {
               <div className="section-one-part2-links">
                 <div className="section-one-part2-links-social">
                   <h5>SOCIAL</h5>
-                  <h3>
-                    <FontAwesomeIcon icon={faFacebookF} />
-                  </h3>
-                  &nbsp;&nbsp;&nbsp;
-                  <h3>
-                    <FontAwesomeIcon icon={faInstagram} />
-                  </h3>
+                  { 
+                    storeInfo?.webPresences?.map((item: any) => {
+                      if (item?.webSite == "INSTAGRAM") {
+                        return (
+                          <a target="_blank" style={{textDecoration: 'none', color: 'black',fontSize: 30, margin:10, marginLeft: 0,marginTop:0 }} href={item.link}>
+                            <FontAwesomeIcon icon={faInstagram} />
+                          </a>
+                        );
+                      }
+                      if (item?.webSite == "FACEBOOK") {
+                        return (
+                          <a target="_blank" style={{textDecoration: 'none', color: 'black',fontSize: 30, margin:10, marginLeft: 0,marginTop:0 }} href={item.link}>
+                            <FontAwesomeIcon icon={faFacebookF} />
+                          </a>
+                        );
+                      }
+
+                  
+                      return <></>;
+                  })
+                }
+           
                 </div>
 
                 <div className="section-one-part2-links-join">
@@ -125,38 +176,45 @@ const ShopPage = () => {
           </div>
         </div>
 
-        <div className="section-two">
+        
+
+{storeInfo?.addresses.map((items: any,index: number) => {
+    if(selectedCity != items.location.state){
+      return(<></>)
+    }
+
+  if(!isFirstRendered){
+    isFirstRendered = true;
+
+    return (
+<div className="section-two">
           <div className="section-two-part1">
             <h1>Stop by</h1>
 
             <div className="section-two-part1-infoloc">
               <div className="section-two-part1-info">
                 <div className="section-two-part1-working-days">
-                  {storeInfo?.addresses[0]?.businessHours?.map((item: any) => {
+                  {items?.businessHours?.map((item: any) => {
                     return <p>{item?.day}</p>;
                   })}{" "}
                 </div>
                 <div className="section-two-part1-working-hours">
-                  {storeInfo?.addresses[0]?.businessHours?.map((item: any) => {
+                  {items?.businessHours?.map((item: any) => {
                     return (
                       <p>
-                        {item?.startTime} - {item?.closingTime}
+                        {item?.startTime} - {item?.endTime}
                       </p>
                     );
                   })}{" "}
                 </div>
               </div>
               <div className="section-two-part1-loc">
-                {storeInfo?.addresses.map((item: any) => {
-                  return (
-                    <>
-                      <p>{item?.location?.street}</p>
-                      <p>{item?.location?.city?.countryName}</p>
-                      {/* <p>{item?.location?.city} {item?.state} {item?.zipCode}</p> */}
-                      <p>{item?.location?.country}</p>
-                    </>
-                  );
-                })}
+              
+                      <p>{items?.location?.street}</p>
+                      <p>{items?.location?.city?.countryName}</p>
+                      <p> {items.location?.state} {items.location?.zip}</p>
+                      <p>{items?.location?.country}</p>
+                 
               </div>
             </div>
           </div>
@@ -165,40 +223,85 @@ const ShopPage = () => {
               id="map"
               style={{ width: 500, overflow: "hidden", background: "red" }}
             >
-              <GoogleMap locations={shopeLocation} />
+              <GoogleMap locations={getLocationListBasedOnCity(selectedCity)} />
+            </div>
+            <div style={{display:'flex',flexDirection:'column',color:'white'}}>
+                  {diffCity?.map((state: any) => {
+                    return(
+                      <span onClick={()=>{
+                        setSelectedCity(state);
+                      }} style={{backgroundColor: selectedCity == state? "gray" : '#F2ECE5',margin:10,borderRadius: 10,color:'black',padding:15}}>{state}</span>
+                    )
+                  })
+                  }
             </div>
           </div>
+      
         </div>
+    )
+   
+  }
+
+  return(
+    <div className="section-two-two" style={{background:'#202D3F'}}>
+    <div className="section-two-part1">
+     
+
+      <div className="section-two-part1-infoloc" >
+        <div className="section-two-part1-info">
+          <div className="section-two-part1-working-days" >
+            {items.businessHours?.map((item: any) => {
+              return <p>{item?.day}</p>;
+            })}{" "}
+          </div>
+          <div className="section-two-part1-working-hours">
+            {items.businessHours?.map((item: any) => {
+              return (
+                <p>
+                  {item?.startTime} - {item?.endTime}
+                </p>
+              );
+            })}{" "}
+          </div>
+        </div>
+        <div className="section-two-part1-loc">
+       
+              <p>{items?.location?.street}</p>
+                      <p>{items?.location?.city?.countryName}</p>
+                      <p> {items.location?.state} {items.location?.zip}</p>
+                      <p>{items?.location?.country}</p>
+        
+        </div>
+      </div>
+    </div>
+    <div className="section-two-part2">
+
+    </div>
+  </div>
+  )
+}
+)}
+      
+
+        
         <div className="section-three">
           <div className="section-three-text">
             {" "}
             <h1>Gallery</h1>
           </div>
           <div className="section-three-images" style={{height:700}}>
-          <iframe
-        title="Instagram Post"
-        src="https://www.instagram.com/p/CY9pJiiu6eJ/embed/captioned/?cr=1&v=14&wp=583&rd=https%3A%2F%google.com&rp=%2Fembed%3Furl%3Dhttps%253A%252F%252Fwww.instagram.com%252Fp%252FC1sw3fEJJ9W%252F%253Fhl%253Den%26id%3Dmntl-sc-block_1-0-9-iframe%26options%3De30%253D%26docId%3D8422682#%7B%22ci%22%3A0%2C%22os%22%3A1948.5%2C%22ls%22%3A430.90000000037253%2C%22le%22%3A1514.800000000745%7D"
-        width="500"
-        height="600"
-                style={{zIndex:1000, margin: 10}}
-      ></iframe>
-
-<iframe
-        title="Instagram Post"
-        src="https://www.instagram.com/p/CYppzRHI_o5/embed/captioned/?cr=1&v=14&wp=583&rd=https%3A%2F%google.com&rp=%2Fembed%3Furl%3Dhttps%253A%252F%252Fwww.instagram.com%252Fp%252FC1sw3fEJJ9W%252F%253Fhl%253Den%26id%3Dmntl-sc-block_1-0-9-iframe%26options%3De30%253D%26docId%3D8422682#%7B%22ci%22%3A0%2C%22os%22%3A1948.5%2C%22ls%22%3A430.90000000037253%2C%22le%22%3A1514.800000000745%7D"
-        width="500"
-        height="600"
-                style={{zIndex:1000, margin: 10}}
-      ></iframe>
-
-
-<iframe
-        title="Instagram Post"
-        src="https://www.instagram.com/p/CYQIJTwOQza/embed/captioned/?cr=1&v=14&wp=583&rd=https%3A%2F%google.com&rp=%2Fembed%3Furl%3Dhttps%253A%252F%252Fwww.instagram.com%252Fp%252FC1sw3fEJJ9W%252F%253Fhl%253Den%26id%3Dmntl-sc-block_1-0-9-iframe%26options%3De30%253D%26docId%3D8422682#%7B%22ci%22%3A0%2C%22os%22%3A1948.5%2C%22ls%22%3A430.90000000037253%2C%22le%22%3A1514.800000000745%7D"
-        width="500"
-        height="600"
-                style={{zIndex:1000, margin: 10}}
-      ></iframe>
+        {storeInfo?.instagramPhotos.map((item:any) => {
+          return (
+            <iframe
+            title="Instagram Post"
+            src={item.url +"embed/captioned/?cr=1&v=14&wp=583&rd=https%3A%2F%google.com&rp=%2Fembed%3Furl%3Dhttps%253A%252F%252Fwww.instagram.com%252Fp%252FC1sw3fEJJ9W%252F%253Fhl%253Den%26id%3Dmntl-sc-block_1-0-9-iframe%26options%3De30%253D%26docId%3D8422682#%7B%22ci%22%3A0%2C%22os%22%3A1948.5%2C%22ls%22%3A430.90000000037253%2C%22le%22%3A1514.800000000745%7D"}
+            width="500"
+            height="600"
+                    style={{zIndex:1000, margin: 10}}
+          ></iframe>
+          )
+        })}
+          
     </div>
         </div>
         <div className="section-four">
@@ -242,18 +345,25 @@ const ShopPage = () => {
             </div>
           </div> */}
           <div>
-            <button> read reviews on google</button>
+            <button onClick={() =>{
+              // open google reviews link in a new tab
+              window.open(storeInfo?.googleReviewUrl)
+            }} > read reviews on google</button>
           </div>
         </div>
         <div className="section-five">
           <div className="section-five-part1">
             <h1>Other Stores You May Love</h1>
           </div>
-          <div className="section-five-part2">
+          <div style={{margin:20,display:'flex',flexDirection:'row'}}>
             { randomStore.map((res: any)=>(
-  <div className="section-five-part2-results">
+  <div  onClick={()=>{
+    // go to a new store page
+   
+    window.open(`/shop_page/${res.id}`)
+  }} className="section-five-part2-results">
   {" "}
-  <img     src={storeInfo?.profilePicture
+  <img     src={res?.profilePicture
                   .replace("http://", "https://")
                   .replace("api.westerlies.io", "apibeta.westerlies.com")} />
   <h3>{res.name}</h3>
